@@ -1,0 +1,107 @@
+#login-center{
+
+    width: 40%;
+    height: 50%;
+    background-color: #FFFFFF;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 3em;
+    margin: auto;
+}
+
+#login{
+
+    width: 40%;
+    height: 50%;
+    background-color: #FFFFFF;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 3em;
+    margin: auto;
+}
+
+
+
+body{
+
+    margin:0;
+    padding:0;
+    background-color:#F9F9F9
+}
+
+
+#topbar
+{
+    float: left;
+    padding-bottom:0.5%;
+    width:100%;
+    height: 10%;
+    background-color:#bdeab9;
+
+}
+
+#logo{
+    float:left;
+    margin-right:8px;
+    margin-top:3px;
+    height:150%;
+    width: 4%;
+}
+
+.logo-text{
+    float:left;
+    color: #003768;
+    margin-top:20px;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 140%;
+}
+
+
+.sign-in-text
+{
+
+    padding-left: 35%;
+    padding-right: 18%;
+
+}
+
+.sign-in-text-url
+{
+
+    padding-left:43%;
+    padding-right: 22%;
+    font-family: sans-serif;
+    font-weight: 700;
+    font-size: 100%;
+    color: #003768;
+}
+
+#login-fields{
+
+    border-radius: 0.4em;
+    height:15%;
+    width: 100%;
+    margin-top: 4%;
+}
+#submit
+{
+    height:15%;
+    width: 100%;
+    margin-top: 4%;
+    border-radius: 0.5em;
+    background-color: green;
+    color: white;
+    margin-bottom: 2%;
+
+}
+a:link{
+
+    text-decoration: none!important;
+}
