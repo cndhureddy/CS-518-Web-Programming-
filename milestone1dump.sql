@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 28, 2017 at 11:57 PM
+-- Generation Time: Oct 02, 2017 at 01:50 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -180,12 +180,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `phone_number` varchar(10) NOT NULL,
   `time_zone` varchar(20) NOT NULL,
   `skype_id` varchar(30) NOT NULL,
-  `picture` blob NOT NULL,
+  `picture` varchar(200) NOT NULL DEFAULT '../images/default.png',
   `mode` varchar(20) NOT NULL,
   `timestamp` timestamp NOT NULL,
   PRIMARY KEY (`user_id`),
   KEY `work_space_url` (`work_space_url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `email_id`, `full_name`, `display_name`, `password`, `work_space_url`, `description`, `status`, `phone_number`, `time_zone`, `skype_id`, `picture`, `mode`, `timestamp`) VALUES
+(1, 'mater@rsprings.gov', 'Tow Mater', 'mater', '@mater', 'cs.odu.slack', '', 'busy', '7573559674', 'UTC', 'master', '../images/default.png', 'away', '2017-09-30 04:00:00'),
+(2, 'porsche@rsprings.gov', 'porsche', 'porsche', '@sally', 'cs.odu.slack', '', '', '', '', '', '../images/default.png', '', '2017-09-30 04:00:00'),
+(3, 'hornet@rsprings.gov', 'Doc Hudson', 'Doc Hudson', ' @doc', 'cs.odu.slack', '', '', '', '', '', '../images/default.png', '', '2017-09-30 04:00:00'),
+(4, 'topsecret@agent.org', 'Finn McMissile', 'Finn McMissile', '@mcmissile', 'cs.odu.slack', '', '', '', '', '', '../images/default.png', '', '2017-09-30 04:00:00'),
+(5, 'kachow@rusteze.com', 'Lightning McQueen', 'Lightning McQueen', '@mcqueen', 'cs.odu.slack', '', '', '', '', '', '../images/default.png', '', '2017-09-30 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -209,6 +220,13 @@ CREATE TABLE IF NOT EXISTS `work_space` (
   PRIMARY KEY (`work_space_url`),
   KEY `work_space_url` (`work_space_url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `work_space`
+--
+
+INSERT INTO `work_space` (`emial_id`, `full_name`, `display_name`, `password`, `Q1`, `Q2`, `Q3`, `Q4`, `work_space_name`, `work_space_url`, `time_stamp`) VALUES
+('sukesh.sangam@gmail.com', 'sukesh sangam', 'sukesh', 'COOLdev0099', '', '', '', '', 'cs odu workspace', 'cs.odu.slack', '2017-09-29 04:00:00');
 
 --
 -- Constraints for dumped tables
