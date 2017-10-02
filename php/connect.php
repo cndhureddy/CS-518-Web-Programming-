@@ -6,8 +6,8 @@
  * Time: 11:19 PM
  */
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "admin";
+$password = "M0n@rch$";
 $database ="slack_lampstack";
 $conn = mysqli_connect($servername, $username, $password ,$database);
 if ($conn->connect_error) {
