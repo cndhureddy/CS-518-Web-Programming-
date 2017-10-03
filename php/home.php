@@ -33,7 +33,8 @@ echo $_SESSION['email'];
 ?>
 
 <div class="vertical-div">
-
+    <div id="username-display-in-div"> <?php echo $_SESSION["display_name"]; ?></div>
+        <div id="fullname-display-in-div"> <?php echo $_SESSION["full_name"]; ?></div>
 
     <div tabindex="0" class="top-user-button onclick-menu">
 
