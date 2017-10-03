@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>ODU CS Slack</title>
     <link rel="stylesheet" type="text/css" href="../css/home.css">
-    <link rel='stylesheet' type='text/css' href='../css/homecss.php' />
+    <link rel='stylesheet' type='text/css' href="../css/homecss.php" />
 
 </head>
 <body>
