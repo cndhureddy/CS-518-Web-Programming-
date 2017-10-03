@@ -1,0 +1,156 @@
+body{
+
+    margin:0;
+    padding:0;
+    background-color:#F1F1F1;
+}
+
+.vertical-div{
+    float: left;
+
+    position:fixed;
+    padding:0;
+    margin:0;
+
+    top:0;
+    left:0;
+
+
+    background-color: #4D394B;
+    width: 13%;
+    height: 100%;
+
+    }
+
+.top-user-button{
+
+    width: 100%;
+    height: 6%;
+    background-color: #4D394B;
+    padding:0;
+    margin:0;
+    border: 0;
+
+}
+
+
+.onclick-menu {
+    position: relative;
+    display: inline-block;
+}
+.onclick-menu:before {
+    content: "oducsSLACK";
+    font-weight: 900;
+    font-size: 150%;
+    Helvetica: Helvetica;
+    position: relative;
+    color: #FFFFFF;
+    top: 40%;
+    left: 10%;
+}
+.onclick-menu:focus .onclick-menu-content {
+    display: block;
+    background-color: #FFFFFF;
+    left:10%;
+    width:130%;
+    list-style-type: none;
+    border-radius: 1em;
+    outline: none;
+    border: 2px black;
+    z-index: 1;
+    height: 450%;
+
+}
+.onclick-menu-content {
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    height:140%;
+    display: none;
+}
+
+
+div:focus{
+
+    outline: none;
+
+}
+#demo {
+    margin: 30px 0 50px 0;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#demo .wrapper {
+    display: inline-block;
+    width: 180px;
+    margin: 0 10px 0 0;
+    height: 20px;
+    position: relative;
+}
+
+#username-display{
+
+    color: white;
+    font-weight: 700;
+    Helvetica: Helvetica;
+    padding-left: 10%;
+
+
+}
+#username-display-in-div{
+
+    color: black;
+    font-weight: 700;
+    Helvetica: Helvetica;
+    padding-left: 10%;
+
+
+}
+#fullname-display-in-div{
+
+    color: #A6A0A2;
+    font-family: Arial;
+    font-size: 90%;
+    padding-left: 10%;
+    
+    
+}
+.user-dropdown{
+     border:0;
+    margin-right: 10%;
+    margin-left: 10%;
+    width: 80%;
+    height: 10%;
+    border-radius: 0.5em;
+    background-color: #FFFFFF;
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.user-dropdown:hover{
+
+    background-color: #2D9EE0;
+
+
+}
+#submit-button{
+    border: 0;
+    background-color: #FFFFFF;
+    width: 80%;
+    height: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 0.5em;
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#submit-button:hover{
+
+    background-color: #2D9EE0;
+
+}
+
