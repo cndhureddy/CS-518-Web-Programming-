@@ -25,9 +25,7 @@ CREATE DATABASE slack_lamp_stack;
 USE slack_lamp_stack;
 
 =======
-CREATE DATABASE slack_lampstack;
 
-USE slack_lampstack; 
 >>>>>>> c6ebe6f50a6db1a29caf03ef05a7a560ab258135
 
 --
