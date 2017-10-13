@@ -1,3 +1,414 @@
+<<<<<<< HEAD
+body{
+
+    margin:0;
+    padding:0;
+    background-color:#F1F1F1;
+}
+
+.vertical-div{
+    float: left;
+
+    position:fixed;
+    padding:0;
+    margin:0;
+
+    top:0;
+    left:0;
+
+
+    background-color: #4D394B;
+    width: 13%;
+    height: 100%;
+
+    }
+
+
+.dropdown-menu_home > ul {
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+    transition: visibility 0.5s;
+    opacity: 0;
+    background-color: #FFFFFF;
+    margin-left: 10%;
+    border-radius: 1em;
+    list-style-type: none;
+    width:100%;
+    padding-top: 5%;
+    padding-bottom: 3%;
+
+
+}
+
+.dropdown-menu_home > div:focus ~ ul {
+    visibility: visible;
+    opacity: 1;
+    z-index: 8;
+}
+
+.dropdown-menu_home_test :hover {
+
+    background-color: rgb(62,49,60);
+
+
+
+}
+
+
+#display_info_home{
+
+    background-color: #4D394B;
+    margin:0;
+    border: 0;
+    font-weight: 900;
+    font-size: 150%;
+    Helvetica: Helvetica;
+    color: #FFFFFF;
+    padding-top: 3%;
+    padding-left: 10%;
+    outline: none;
+
+
+}
+
+
+#display_info_home:hover{
+
+    background-color: #3E313C;
+
+}
+
+#dis_user_name{
+    Helvetica: Helvetica;
+    color: #FFFFFF;
+    font-size: 70%;
+}
+
+.home-top-nav{
+    position:fixed;
+    float: left;
+    width: 87% ;
+    height: 7%;
+    margin-left: 13%;
+    background-color: #FFFFFF;
+
+
+
+}
+
+.submit-button{
+
+    border: 0;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 45%;
+    margin-left: -8%;
+    border-radius: 0.5em;
+    text-align: left;
+    font-family: Helvetica;
+    padding: 2%;
+    margin-bottom: 2%;
+    cursor: pointer;
+}
+
+.submit-button:hover{
+
+    background-color: #2D9EE0;
+
+}
+.dp_home{
+    float: left;
+    height: 20%;
+    width: 20%;
+    margin-left: -7%;
+}
+.full_name_display{
+
+    color: #A0A0A2;
+
+}
+
+.all_threads{
+
+    color:#A0A0A2;
+
+    font-size: 100%;
+    font-weight: 600;
+    font-family: Helvetica;
+    padding-left: 10%;
+    margin-top: 10%;
+    margin-bottom:10% ;
+}
+.all_threads:hover{
+
+    background-color: rgb(62,49,60) ;
+}
+
+#channels_tag{
+
+    padding-left: 10%;
+    padding-right: 50%;
+    text-decoration: none;
+    color: #A0A0A2;
+    font-weight: 400;
+    font-size: 110%;
+
+
+}
+#channels_tag:hover{
+
+    color: #FFFFFF;
+
+
+}
+#channels_tag_div{
+
+    color: #A0A0A2;
+}
+#channels_tag_button{
+
+    background-color: transparent;
+    border: none;
+    color: #A0A0A2;
+    outline: none;
+    cursor: pointer;
+}
+.chat_area{
+    float: left;
+    margin-left: 13%;
+    margin-top: 3.5%;
+    width: 87%;
+    height: 86%;
+
+    overflow-y:auto;
+    overflow-x:hidden ;
+    position: fixed;
+
+    z-index: -1;
+
+
+
+
+}
+.message_post{
+
+
+
+    margin-left: 14%;
+    border: solid 1px grey;
+    width: 83%;
+    min-height: 1.5em;
+    max-height: 3em;
+    overflow-y: auto;
+    max-width: 83%;
+    padding: 0.2% 0.2% 0.2% 0.2%;
+    border-radius: 0.3em;
+    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 1%;
+
+}
+
+.channel_name{
+
+
+
+    margin-top: 2%;
+
+    width: 100%;
+    text-align: left;
+    padding-left: 10%;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: #A0A0A2;
+    font-size: 93%;
+    font-weight: 550;
+    cursor: pointer;
+
+
+
+}
+
+
+
+
+.channel_name:hover{
+
+    background-color: rgb(62,49,60) ;
+}
+
+.top_channel_display{
+
+    color: #2C2D30;
+    font-weight: 700;
+    margin-left: 1% ;
+    margin-top: 1%;
+    font-size: 120%;
+
+}
+
+.message_submit{
+
+    border: solid red 2px;
+    margin-left: 95%;
+
+}
+.message_display{
+
+    padding:1%;
+
+    width: 98%;
+
+    bottom: 0;
+    word-wrap: break-word;
+
+
+}
+
+
+/*
+.top-user-button{
+
+    width: 100%;
+    height: 6%;
+    background-color: #4D394B;
+    padding:0;
+    margin:0;
+    border: 0;
+
+}
+
+
+.onclick-menu {
+    position: relative;
+    display: inline-block;
+}
+.onclick-menu:before {
+    content: "oducsSLACK";
+    font-weight: 900;
+    font-size: 150%;
+    Helvetica: Helvetica;
+    position: relative;
+    color: #FFFFFF;
+    top: 40%;
+    left: 10%;
+}
+.onclick-menu:focus .onclick-menu-content {
+    display: block;
+    background-color: #FFFFFF;
+    left:10%;
+    width:130%;
+    list-style-type: none;
+    border-radius: 1em;
+    outline: none;
+    border: 2px black;
+    z-index: 1;
+    height: 450%;
+
+}
+.onclick-menu-content {
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    height:140%;
+    display: none;
+}
+
+
+div:focus{
+
+    outline: none;
+
+}
+#demo {
+    margin: 30px 0 50px 0;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#demo .wrapper {
+    display: inline-block;
+    width: 180px;
+    margin: 0 10px 0 0;
+    height: 20px;
+    position: relative;
+}
+
+#username-display{
+
+    color: white;
+    font-weight: 700;
+    Helvetica: Helvetica;
+    padding-left: 10%;
+
+
+}
+#username-display-in-div{
+
+    color: black;
+    font-weight: 700;
+    Helvetica: Helvetica;
+    padding-left: 10%;
+
+
+}
+#fullname-display-in-div{
+
+    color: #A6A0A2;
+    font-family: Arial;
+    font-size: 90%;
+    padding-left: 10%;
+    
+    
+}
+.user-dropdown{
+     border:0;
+    margin-right: 10%;
+    margin-left: 10%;
+    width: 80%;
+    height: 10%;
+    border-radius: 0.5em;
+    background-color: #FFFFFF;
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.user-dropdown:hover{
+
+    background-color: #2D9EE0;
+
+
+}
+#submit-button{
+
+    border: 0;
+    background-color: #FFFFFF;
+    width: 80%;
+    height: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 0.5em;
+    text-align: left;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+    cursor: pointer;
+}
+
+#submit-button:hover{
+
+    background-color: #2D9EE0;
+
+}
+
+
+
+*/
+=======
 body{
 
     margin:0;
@@ -154,3 +565,4 @@ div:focus{
 
 }
 
+>>>>>>> c6ebe6f50a6db1a29caf03ef05a7a560ab258135
