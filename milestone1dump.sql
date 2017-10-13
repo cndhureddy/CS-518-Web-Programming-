@@ -18,15 +18,14 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-<<<<<<< HEAD
+
 
 CREATE DATABASE slack_lamp_stack;
 
 USE slack_lamp_stack;
 
-=======
 
->>>>>>> c6ebe6f50a6db1a29caf03ef05a7a560ab258135
+
 
 --
 -- Database: `slack_lamp_stack`
