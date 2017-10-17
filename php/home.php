@@ -17,6 +17,8 @@
  * Date: 10/1/2017
  * Time: 12:30 AM
  */
+
+
 session_start();
 
 if($_SESSION['email'])
@@ -126,6 +128,7 @@ else{
           $channel_id = $_GET['channel_id'];
 
           $user_id = $_GET['user_id'];
+          $channel_name =$_GET['channel_name'];
 
           if ($channel_id) {
               echo '<div class="top_channel_display" > #' . $_GET['channel_name'] . '</div>';
@@ -151,19 +154,23 @@ else{
 
     <div class="chat_area">
 
-        <?php include("retrieve_messages.php"); ?>
+        <?php include("retrieve_messages.php");
+
+        ?>
+        <div id="test"></div>
 
     </div>
 
 <div class="message_post">
 <form method="post" action="message_post.php">
-    <input type="text" name="message"  contenteditable="true" placeholder="Message" >
+    <textarea type="text" class="input_message" name="message"  contenteditable="true" placeholder="Message" ></textarea>
     <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
         <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
+    <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
     </input>
    <!--<input type="text" class="message_post" contenteditable="true" type="text"/>
 -->
-    <input class="message_submit" type="submit"  >
+    <button class="submit_button_message" type="submit" value=""> <i class="fa fa-paper-plane lg" aria-hidden="true"></i> </button>
 </form>
 </div>
 

@@ -6,9 +6,9 @@
  * Time: 11:19 PM
  */
 $servername = "localhost";
-$username = "admin";
-$password = "M0n@rch$";
-$database ="slack_lamp_stack";
+$username = "root";
+$password = "";
+$database ="slack_lamp_stack_518";
 $conn = mysqli_connect($servername, $username, $password ,$database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

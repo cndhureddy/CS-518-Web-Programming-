@@ -60,4 +60,4 @@ $channel_id=get_channel_id($conn,$email,$channel_name);
 //echo $channel_id ."channelid"."";
 $parameter="channel_id=".($channel_id)."&user_id=".($user_id)."&channel_name=".($channel_name);
 //$_SESSION[""]=
-header("location: home.php?$parameter");
+header("location: home.php?$parameter#test");
