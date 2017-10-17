@@ -195,15 +195,15 @@ body{
 
 
     margin-left: 14%;
-    border: solid 1px grey;
-    width: 83%;
+  /*  border: solid 1px grey;
+*/    width: 83%;
     min-height: 1.5em;
     max-height: 3em;
     overflow-y: auto;
     max-width: 83%;
     padding: 0.2% 0.2% 0.2% 0.2%;
     border-radius: 0.3em;
-    background-color: #FFFFFF;
+    background-color: transparent;
     position: absolute;
     bottom: 1%;
 
@@ -268,6 +268,99 @@ body{
 
 }
 
+
+.input_message{
+
+    width: 95%;
+    padding: 0.2% 0.2% 0.2% 0.2%;
+
+    border: solid 1px grey;
+
+    overflow-y: auto;
+
+
+    border-top-left-radius:0.3em ;
+    border-bottom-left-radius:0.3em ;
+    background-color: #FFFFFF;
+
+}
+
+.submit_button_message{
+
+    float: left;
+    position: absolute;
+    left: 95.33%;
+    bottom:16%;
+    height: 76%;
+    border-top-right-radius:0.5em ;
+    border-bottom-right-radius:0.5em ;
+    outline: none;
+    background-color: transparent;
+    background-color: #6ABCF9;
+    border: none;
+
+
+}
+
+
+.message_user_image{
+
+    height: 5%;
+    width: 4%;
+    border: solid 1px gray;
+    margin-left: 0.5%;
+    border-radius: 50%;
+
+}
+
+.message_user_full_name{
+
+    float: left;
+    margin-left: 6%;
+    margin-top: -4%;
+
+
+
+}
+.message_display{
+    float: left;
+    margin-left: 5%;
+    margin-top: -3.5%;
+
+
+}
+.fullname_msg_span{
+
+    font-weight: 600;
+
+
+}
+
+.left_hr{
+
+    width: 40%;
+
+    float: left;
+}
+
+
+.right_hr{
+
+    width: 40%;
+
+    float: right;
+}
+.today_text{
+
+    margin-left: 9%;
+
+}
+.date_msg_text{
+
+    margin-left: 5%;
+
+
+}
 
 /*
 .top-user-button{
