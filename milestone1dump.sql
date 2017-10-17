@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 13, 2017 at 06:39 PM
+-- Generation Time: Oct 17, 2017 at 02:11 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -18,14 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
-
-CREATE DATABASE slack_lamp_stack;
-
-USE slack_lamp_stack;
-
-
 --
--- Database: `slack_lamp_stack`
+-- Database: `slack_lamp_stack_518`
 --
 
 -- --------------------------------------------------------
@@ -46,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `channels` (
   PRIMARY KEY (`channel_id`),
   KEY `wokr_space_url_channels` (`work_space_url`),
   KEY `user_id_channels` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channels`
@@ -54,7 +48,10 @@ CREATE TABLE IF NOT EXISTS `channels` (
 
 INSERT INTO `channels` (`channel_id`, `channel_name`, `work_space_url`, `privacy_settings`, `purpose`, `user_id`, `timestamp`) VALUES
 (1, 'general', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-10 04:00:00'),
-(2, 'random', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-10 04:00:00');
+(2, 'random', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-10 04:00:00'),
+(3, 'testing', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00'),
+(4, 'milestone-1', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00'),
+(5, 'web_programming', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -73,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `channel_messages` (
   PRIMARY KEY (`message_id`),
   KEY `channel_id_messaged` (`channel_id`),
   KEY `user_id_messages` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channel_messages`
@@ -109,7 +106,43 @@ INSERT INTO `channel_messages` (`message_id`, `channel_id`, `user_id`, `message`
 (27, 1, 1, '<!--hjgjyh-->', '2017-10-11 02:27:08', 'False'),
 (28, 1, 1, '<!--hjgjyh-->', '2017-10-11 02:27:09', 'False'),
 (29, 1, 1, 'I\'m', '2017-10-11 02:40:50', 'False'),
-(30, 1, 1, '<!--hjgjyh-->', '2017-10-11 02:41:04', 'False');
+(30, 1, 1, '<!--hjgjyh-->', '2017-10-11 02:41:04', 'False'),
+(31, 1, 4, 'hello', '2017-10-17 00:24:46', 'False'),
+(32, 4, 4, 'this is milestone1\r\n', '2017-10-17 00:42:24', 'False'),
+(33, 4, 4, 'this is milestone1\r\n', '2017-10-17 00:42:25', 'False'),
+(34, 5, 4, 'hhh', '2017-10-17 00:42:48', 'False'),
+(35, 5, 4, 'hello', '2017-10-17 00:49:28', 'False'),
+(36, 4, 4, 'dude', '2017-10-17 00:50:23', 'False'),
+(37, 4, 4, 'dude', '2017-10-17 00:51:24', 'False'),
+(38, 4, 4, 'hello', '2017-10-17 00:52:44', 'False'),
+(39, 4, 4, 'hello', '2017-10-17 00:53:41', 'False'),
+(40, 4, 4, 'hello', '2017-10-17 00:55:17', 'False'),
+(41, 4, 4, 'hello', '2017-10-17 00:55:41', 'False'),
+(42, 3, 4, 'hello', '2017-10-17 00:55:55', 'False'),
+(43, 3, 4, 'nice its working', '2017-10-17 00:56:11', 'False'),
+(44, 5, 4, 'nice work', '2017-10-17 00:56:24', 'False'),
+(45, 2, 4, 'how are you?\r\n', '2017-10-17 00:57:30', 'False'),
+(46, 1, 4, 'I am sukku. Nice to meet u', '2017-10-17 00:57:51', 'False'),
+(47, 1, 4, 'good', '2017-10-17 01:01:08', 'False'),
+(48, 2, 1, 'fine', '2017-10-17 01:02:24', 'False'),
+(49, 2, 1, 'hau \r\ni \r\nam \r\ntoo\r\ngood\r\n', '2017-10-17 01:02:41', 'False'),
+(50, 2, 1, 'h\r\nh\r\nh\r\nh', '2017-10-17 01:02:57', 'False'),
+(51, 4, 7, 'namste guru\r\n', '2017-10-17 01:06:30', 'False'),
+(52, 2, 7, 'random it is', '2017-10-17 01:06:43', 'False'),
+(53, 1, 8, 'done my work', '2017-10-17 01:35:32', 'False'),
+(54, 1, 9, 'okay nice job\r\n', '2017-10-17 01:40:00', 'False'),
+(55, 5, 10, 'what r u talking', '2017-10-17 01:40:35', 'False'),
+(56, 2, 10, 'how is norfolk', '2017-10-17 01:40:55', 'False'),
+(57, 2, 10, 'how is norfolk', '2017-10-17 01:40:57', 'False'),
+(58, 1, 1, '', '2017-10-17 01:41:39', 'False'),
+(59, 1, 1, '', '2017-10-17 01:45:24', 'False'),
+(60, 1, 1, '', '2017-10-17 01:45:45', 'False'),
+(61, 1, 1, '', '2017-10-17 01:45:49', 'False'),
+(62, 1, 1, '', '2017-10-17 01:45:57', 'False'),
+(63, 3, 1, '', '2017-10-17 01:46:07', 'False'),
+(64, 1, 1, '', '2017-10-17 01:49:53', 'False'),
+(65, 1, 1, '', '2017-10-17 01:49:57', 'False'),
+(66, 2, 1, 'ljkjkl', '2017-10-17 01:50:40', 'False');
 
 -- --------------------------------------------------------
 
@@ -133,7 +166,38 @@ CREATE TABLE IF NOT EXISTS `channel_users` (
 
 INSERT INTO `channel_users` (`channel_id`, `user_id`, `joined_date`, `left_date`) VALUES
 (1, 1, '2017-10-10 04:00:00', '2017-10-10 04:00:00'),
-(2, 1, '2017-10-10 04:00:00', '2017-10-10 04:00:00');
+(2, 1, '2017-10-10 04:00:00', '2017-10-10 04:00:00'),
+(2, 2, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(2, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(3, 1, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(3, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(5, 7, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(5, 6, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(5, 5, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(5, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(5, 1, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(4, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(4, 1, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(3, 6, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(3, 5, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(2, 8, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(2, 7, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(4, 7, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(4, 6, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 2, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 5, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(2, 5, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 6, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(2, 6, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 7, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 8, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 9, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(2, 9, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(1, 10, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(2, 10, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(5, 10, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
+(5, 9, '2017-10-16 04:00:00', '2017-10-16 04:00:00');
 
 -- --------------------------------------------------------
 
@@ -243,7 +307,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `timestamp` timestamp NOT NULL,
   PRIMARY KEY (`user_id`),
   KEY `work_space_url` (`work_space_url`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -252,8 +316,13 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`user_id`, `email_id`, `full_name`, `display_name`, `password`, `work_space_url`, `description`, `status`, `phone_number`, `time_zone`, `skype_id`, `picture`, `mode`, `timestamp`) VALUES
 (1, 'mater@rsprings.gov', 'Tow Mater', 'Tow Mater', '@mater', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-10 04:00:00'),
 (2, 'porsche@rsprings.gov', 'Sally Carrera', 'Sally Carrera', '@sally', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-10 04:00:00'),
-(3, 'hornet@rsprings.gov', 'hornet', 'hornet', '@hornet', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-10 04:00:00'),
-(4, 'sukesh.sangam@gmail.com', 'sukesh sangam', 'sukesh sangam', 'COOLDev0099', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-10 04:00:00');
+(4, 'sukesh.sangam@gmail.com', 'sukesh sangam', 'sukesh sangam', 'COOLDev0099', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-10 04:00:00'),
+(5, 'hornet@rsprings.gov', 'Doc Hudson', 'Doc Hudson', '@doc', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
+(6, 'topsecret@agent.org', 'Finn McMissile', 'Finn McMissile', '@mcmissile', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
+(7, 'kachow@rusteze.com', 'Lightning McQueen', 'Lightning McQueen', '@mcqueen', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
+(8, 'chinga@cars.com', 'Chick Hicks', 'Chick Hicks', '@chick', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
+(9, 'sindhujareddy.pannala@gmail.com', 'sindhu reddy', 'sindhu reddy', '@sindhu', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
+(10, 'shwethashyam@gmail.com', 'shwetha', 'shwetha', '@shwetha', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00');
 
 -- --------------------------------------------------------
 
