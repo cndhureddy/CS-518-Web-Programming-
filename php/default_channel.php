@@ -37,3 +37,6 @@ function get_channel_id($conn,$email,$channel_name){
 }
 
 $channel_id=get_channel_id($conn,$email,$channel_name);
+
+
+mysqli_close($conn);

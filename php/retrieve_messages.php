@@ -103,3 +103,5 @@ function retrieving_messages($conn,$channel_id){
 }
 
 retrieving_messages($conn,$channel_id);
+
+mysqli_close($conn);
