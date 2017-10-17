@@ -38,7 +38,7 @@ if($email!=""&$password!="")
             $_SESSION['display_name'] = $result_user_name[1];
 
             mysqli_close($conn);
-            header('location:home.php');
+            header('location:home.php#test');
         }
         else
         {

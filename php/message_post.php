@@ -15,8 +15,7 @@ include("connect.php");
 $message = $_POST['message'];
 $user_id = $_POST['user_id'];
 $channel_id = $_POST['channel_id'];
-
-
+$channel_name= $_POST['channel_name'];
 function insert_message($conn,$message,$user_id,$channel_id){
 
     $smileys = explode(':', $message); //
@@ -29,6 +28,8 @@ function insert_message($conn,$message,$user_id,$channel_id){
         $smiley_status='True';
     }
 
+    date_default_timezone_set("America/New_York");
+
 
     $date = new DateTime();
 
@@ -36,15 +37,19 @@ function insert_message($conn,$message,$user_id,$channel_id){
     echo $current_date;
     $message_final=mysqli_real_escape_string($conn,$message);
 
- $query="insert into channel_messages values(DEFAULT,'$channel_id','$user_id','$message_final','$current_date','$smiley_status')";
-    mysqli_query($conn,$query);
- echo $query;
-//echo "hello";
 
+    if (trim($message_final)!=='') {
+        $query = "insert into channel_messages values(DEFAULT,'$channel_id','$user_id','$message_final','$current_date','$smiley_status')";
+        mysqli_query($conn, $query);
+        //echo $query;
+//echo "hello";
+    }
 
 
 }
 
 insert_message($conn,$message,$user_id,$channel_id);
 mysqli_close($conn);
-header("location: home.php");
+$parameter="channel_id=".($channel_id)."&user_id=".($user_id)."&channel_name=".($channel_name);
+echo $parameter;
+header("location: home.php?$parameter#test");
