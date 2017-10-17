@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 17, 2017 at 04:25 PM
+-- Generation Time: Oct 17, 2017 at 04:54 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -24,14 +24,13 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `channels`
---
-
 CREATE DATABASE `slack_lamp_stack_518`;
 USE slack_lamp_stack_518;
 
 
+--
+-- Table structure for table `channels`
+--
 
 DROP TABLE IF EXISTS `channels`;
 CREATE TABLE IF NOT EXISTS `channels` (
@@ -90,10 +89,10 @@ INSERT INTO `channel_messages` (`message_id`, `channel_id`, `user_id`, `message`
 (6, 2, 8, 'hello', '2017-10-14 04:00:00', 'false'),
 (7, 4, 8, 'hello', '2017-10-14 04:00:00', 'false'),
 (8, 5, 8, 'hello', '2017-10-14 04:00:00', 'false'),
-(9, 4, 1, 'Can some provide me good tutorials for php', '2017-10-17 16:13:29', 'False'),
-(10, 1, 1, 'can some one provide me good tutorials for php?', '2017-10-17 16:14:42', 'False'),
-(11, 1, 4, 'Hello , this may help you https://www.tutorialspoint.com/php/', '2017-10-17 16:15:54', 'True'),
-(12, 2, 4, 'Hi ', '2017-10-17 16:17:05', 'False'),
+(9, 4, 1, 'Can some provide me good tutorials for php', '2017-10-16 16:13:29', 'False'),
+(10, 1, 1, 'can some one provide me good tutorials for php?', '2017-10-16 16:14:42', 'False'),
+(11, 1, 4, 'Hello , this may help you https://www.tutorialspoint.com/php/', '2017-10-16 16:15:54', 'True'),
+(12, 2, 4, 'Hi ', '2017-10-16 16:17:05', 'False'),
 (13, 5, 9, 'Hi all, can some one provide me good tutorials on sql', '2017-10-16 05:01:00', 'false'),
 (14, 3, 9, 'hi , all this is testing message', '2017-10-16 05:00:00', 'false');
 
