@@ -36,7 +36,7 @@ function retrieving_messages($conn,$channel_id){
    
    //$row_message_id=$result_message_id->fetch_all(PDO::FETCH_ASSOC);
    
-   
+   echo "//////////////////////////////////////////////////////////////////////////////////";
     print_r($row_message_id);
      echo "this is retrieve messages.php file3";
 
