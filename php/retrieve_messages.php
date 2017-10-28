@@ -32,9 +32,9 @@ function retrieving_messages($conn,$channel_id){
      echo "test";
    
     print_r($result_message_id);
-    $row_message_id=$result_message_id->fetch_all();
+    //$row_message_id=$result_message_id->fetch_all();
    
-   //$row_message_id=$result_message_id->fetch_all(PDO::FETCH_ASSOC);
+   $row_message_id=mysqli_fetch_all ($result_message_id, MYSQLI_ASSOC)
    
    echo "//////////////////////////////////////////////////////////////////////////////////";
     print_r($row_message_id);
