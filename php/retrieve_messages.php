@@ -27,8 +27,9 @@ function retrieving_messages($conn,$channel_id){
     $counter_yesterday=0;
         echo "this is retrieve messages.php file2";
     $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction ";
+   echo $query_message_id;
     $result_message_id=$conn->query($query_message_id);
-
+     echo "test";
     $row_message_id=$result_message_id->fetch_all(MYSQLI_ASSOC);
    // print_r($row_message_id);
      echo "this is retrieve messages.php file3";
