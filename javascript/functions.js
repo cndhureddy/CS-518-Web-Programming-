@@ -22,7 +22,6 @@ $( document ).ready(function() {
 
       $.ajax({
            type: "POST",
-          async: false,
            url: "../php/likes.php",
            data: {type_like:button_name , message_id: message_id, user_id: user_id},
           dataType:'json',
@@ -41,20 +40,20 @@ $( document ).ready(function() {
                 if(data[0]>0) {
                     if ($i_tag_like[0]) {
 
-                        $("#" + message_id_str_like).text(data[0]);
+                        $("#"+message_id_str_like).text(data[0]);
 
                     }
                     else {
 
                         like_no = data[0];
 
-                        var tag = '<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"' + String(message_id) + '_like\" >' + like_no + '</i>&nbsp;';
-                        $("#" + message_id_div).append(tag);
+                        var tag = '<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"' + String(message_id) + '_like\" >' + like_no + '</i>';
+                        $("#"+message_id_div).append(tag);
                     }
                 }
                 else{
 
-                    $("#" + message_id_str_like).remove();
+                    $("#"+message_id_str_like).remove();
 
                 }
 
@@ -63,20 +62,20 @@ $( document ).ready(function() {
                if(data[1]>0) {
                    if ($i_tag_dislike[0]) {
 
-                       $("#" + message_id_str_dislike).text(data[1]);
+                       $("#"+message_id_str_dislike).text(data[1]);
 
                    }
                    else {
 
                        dislike_no = data[1];
 
-                       var tag = '<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"' + String(message_id) + '_like\" >' + dislike_no + '</i>&nbsp;';
+                       var tag = '<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"  id=\"' + String(message_id) + '_dislike\" >' + dislike_no + '</i>';
                        $("#" + message_id_div).append(tag);
                    }
                }
                else{
 
-                   $("#" + message_id_str_dislike).remove();
+                   $("#"+message_id_str_dislike).remove();
 
                }
 
