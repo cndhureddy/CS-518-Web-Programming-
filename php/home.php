@@ -22,7 +22,7 @@
  * Date: 10/1/2017
  * Time: 12:30 AM
  */
-error_reporting(E_ALL);
+
 
 session_start();
 
@@ -133,9 +133,9 @@ else{
 
     <div class="chat_area" >
 
-     <?php  include("retrieve_messages.php");
-             
-        ?> 
+        <?php include("retrieve_messages.php");
+
+        ?>
         <div id="test"   user_id="<?php echo $user_id ?>"></div>
 
     </div>
@@ -151,6 +151,7 @@ else{
 -->
     <button class="submit_button_message" type="submit" value=""> <i class="fa fa-paper-plane lg" aria-hidden="true"></i> </button>
 </form>
+
 </div>
 
 
