@@ -15,7 +15,7 @@ include("connect.php");
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
 
-     echo "this is retrieve messages.php file1";
+    // echo "this is retrieve messages.php file1";
 
    $query = "select  * from channel_messages where channel_id='" . $channel_id . "'";
 
@@ -27,21 +27,21 @@ function retrieving_messages($conn,$channel_id){
     $temp_time_month="";
     $counter_today=0;
     $counter_yesterday=0;
-        echo "this is retrieve messages.php file2";
+   //     echo "this is retrieve messages.php file2";
     $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction";
-   echo $query_message_id;
+  // echo $query_message_id;
    // $result_message_id=$conn->query($query_message_id);
-   $result_message_id=mysqli_query($conn,$query_message_id)
-     echo "test";
+  $result_message_id=mysqli_query($conn,$query_message_id)
+  //   echo "test";
    
-    print_r($result_message_id);
+   // print_r($result_message_id);
     //$row_message_id=$result_message_id->fetch_all();
    
-   $row_message_id=mysqli_fetch_all ($result_message_id, MYSQLI_ASSOC)
+  // $row_message_id=mysqli_fetch_all ($result_message_id, MYSQLI_ASSOC)
    
-   echo "//////////////////////////////////////////////////////////////////////////////////";
-    print_r($row_message_id);
-     echo "this is retrieve messages.php file3";
+  // echo "//////////////////////////////////////////////////////////////////////////////////";
+  //  print_r($row_message_id);
+  //   echo "this is retrieve messages.php file3";
 
 
     while($row=$result->fetch_array(MYSQLI_ASSOC))
@@ -77,7 +77,7 @@ function retrieving_messages($conn,$channel_id){
             if($temp_time==$formated_time_am_pm) {
 
                
-               echo "this is retrieve messages.php file";
+             //  echo "this is retrieve messages.php file";
 
                 echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" . htmlspecialchars($row["message"]) ." <br> " ;
 
