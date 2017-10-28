@@ -28,6 +28,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `channels`
 --
 
+CREATE DATABASE `slack_lamp_stack_518`;
+USE slack_lamp_stack_518;
+
 DROP TABLE IF EXISTS `channels`;
 CREATE TABLE IF NOT EXISTS `channels` (
   `channel_id` int(11) NOT NULL AUTO_INCREMENT,
