@@ -133,7 +133,7 @@ else{
 
     <div class="chat_area" >
 
-     <?php  //include("retrieve_messages.php");
+     <?php  include("retrieve_messages.php");
               echo "hello";
         ?> 
         <div id="test"   user_id="<?php echo $user_id ?>"></div>
