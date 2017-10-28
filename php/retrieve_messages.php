@@ -8,7 +8,7 @@
 error_reporting(E_ALL);
 include("connect.php");
 
-echo "this is retrieve messages.php file";
+
 
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
@@ -67,7 +67,7 @@ function retrieving_messages($conn,$channel_id){
             if($temp_time==$formated_time_am_pm) {
 
                
-
+               echo "this is retrieve messages.php file";
 
                 echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" . htmlspecialchars($row["message"]) ." <br> " ;
 
