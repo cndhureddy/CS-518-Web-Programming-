@@ -13,7 +13,7 @@ include("connect.php");
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
 
-
+     echo "this is retrieve messages.php file1";
 
    $query = "select  * from channel_messages where channel_id='" . $channel_id . "'";
 
@@ -25,13 +25,13 @@ function retrieving_messages($conn,$channel_id){
     $temp_time_month="";
     $counter_today=0;
     $counter_yesterday=0;
-
+        echo "this is retrieve messages.php file2";
     $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction ";
     $result_message_id=$conn->query($query_message_id);
 
     $row_message_id=$result_message_id->fetch_all(MYSQLI_ASSOC);
    // print_r($row_message_id);
-
+     echo "this is retrieve messages.php file3";
 
 
     while($row=$result->fetch_array(MYSQLI_ASSOC))
