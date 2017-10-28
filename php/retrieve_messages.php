@@ -5,8 +5,11 @@
  * Date: 10/10/2017
  * Time: 2:05 AM
  */
-
+error_reporting(E_ALL);
 include("connect.php");
+
+
+
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
 
