@@ -22,7 +22,7 @@
  * Date: 10/1/2017
  * Time: 12:30 AM
  */
-
+error_reporting(E_ALL);
 
 session_start();
 
