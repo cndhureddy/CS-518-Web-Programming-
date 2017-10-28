@@ -8,7 +8,7 @@
 error_reporting(E_ALL);
 include("connect.php");
 
-echo "this is retrieve messages.php file"
+echo "this is retrieve messages.php file";
 
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
@@ -66,16 +66,7 @@ function retrieving_messages($conn,$channel_id){
             }
             if($temp_time==$formated_time_am_pm) {
 
-               /* echo "<div><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
-
-
-                echo "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
-
-               */
-             //   echo "<div class=\"the_whole_message_sub\">";
-               // echo "<br>";
-
-
+               
 
 
                 echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" . htmlspecialchars($row["message"]) ." <br> " ;
@@ -94,7 +85,7 @@ function retrieving_messages($conn,$channel_id){
                 echo "</div>";
 
                echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button></div> </div>";
-              //  echo "</div>";
+            
 
             }
             else{
@@ -175,4 +166,4 @@ mysqli_close($conn);
 
 
    
- echo "this is retrieve messages.php file"
+ 
