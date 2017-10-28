@@ -86,7 +86,7 @@ function retrieving_messages($conn,$channel_id){
                 if($count_dislike>0)
                 {
 
-                    echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"  id=\"". htmlspecialchars($row["message_id"]). "_dislike\"  >".$count_dislike."</i>";
+                    echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"  id=\"". htmlspecialchars($row["message_id"]). "_dislike\"  >".$count_dislike."</i>&nbsp;";
                 }
                 echo "</div>";
 
@@ -150,7 +150,7 @@ function retrieving_messages($conn,$channel_id){
                 if($count_dislike>0)
                 {
 
-                    echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\" id=\"".htmlspecialchars($row["message_id"])."_dislike\" >".$count_dislike."</i>";
+                    echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\" id=\"".htmlspecialchars($row["message_id"])."_dislike\" >".$count_dislike."</i>&nbsp;";
                 }
                 echo "</div></div> ";
 

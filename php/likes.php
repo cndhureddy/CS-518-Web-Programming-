@@ -42,7 +42,7 @@ else{
     mysqli_query($conn, $query);
 }
 
-$query_message_id_like="SELECT count(*) as count FROM `message_reaction` WHERE message_id='$message_id' and reaction=1";
+$query_message_id_like="SELECT count(*) as count FROM `message_reaction` WHERE message_id='$message_id' and reaction='1'";
 $result_message_id_like=$conn->query($query_message_id_like);
 if(mysqli_num_rows($result_message_id_like)>0) {
     $row_message_id_like=$result_message_id_like->fetch_array(MYSQLI_ASSOC);
@@ -50,7 +50,7 @@ if(mysqli_num_rows($result_message_id_like)>0) {
     // print_r($row_message_id);
 
 }
-$query_message_id_dislike="SELECT count(*) as count FROM `message_reaction` WHERE message_id='$message_id' and reaction=2";
+$query_message_id_dislike="SELECT count(*) as count FROM `message_reaction` WHERE message_id='$message_id' and reaction='2'";
 
 $result_message_id_dislike=$conn->query($query_message_id_dislike);
 if(mysqli_num_rows($result_message_id_dislike)>0) {
@@ -59,7 +59,7 @@ if(mysqli_num_rows($result_message_id_dislike)>0) {
 
 }
 
-echo json_encode([$count_like,$count_like]);
+echo json_encode([$count_like,$count_dislike]);
 
 
     mysqli_close($conn);
