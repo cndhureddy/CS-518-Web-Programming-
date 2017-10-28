@@ -8,7 +8,7 @@
 error_reporting(E_ALL);
 include("connect.php");
 
-
+/*
 
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
@@ -173,3 +173,6 @@ retrieving_messages($conn,$channel_id);
 
 mysqli_close($conn);
 
+*/
+   
+ echo "this is retrieve messages.php file"
