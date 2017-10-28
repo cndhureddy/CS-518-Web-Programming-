@@ -41,33 +41,7 @@ else{
 
 <div class="vertical-div">
 
-    <!--
 
-    <div tabindex="0" class="top-user-button onclick-menu">
-
-    <div class="onclick-menu-content ">
-
-        <div id="username-display-in-div"> </div>
-        <div id="fullname-display-in-div"> </div>
-        <br>
-        <!--<button class="user-dropdown" onclick="alert("hello dude");" > Set a Status</button>
-        <button class="user-dropdown" >Profile & account</button>
-
-        <form   action="logout.php" method="post">
-            <input id="submit-button"  type="submit" value="Sign Out"/>
-
-        </form>-->
-        <!--<li><button >Look, mom</button></li>
-        <li><button >no JavaScript!</button></li>
-        <li><button >Pretty nice, right?</button></li>-->
-
-
-
-
-<!--
-    </div>
-        <div id="username-display"> </div>
--->
 
     <?php include("home_page_services.php"); ?>
 
