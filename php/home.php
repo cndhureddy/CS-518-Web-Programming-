@@ -6,6 +6,11 @@
     <link rel="stylesheet" type="text/css" href="../css/home.css">
 <!--    <link rel='stylesheet' type='text/css' href='../css/homecss.php' />
 --> <script src="https://use.fontawesome.com/383a6f63f0.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="../javascript/functions.js"></script>
 </head>
 <body>
 
@@ -97,7 +102,7 @@ else{
     </form>
 
 -->
-    <div class="all_threads"><i class="fa fa-comments-o " aria-hidden="true"></i> All Threads </div>
+    <div class="all_threads" ><i class="fa fa-comments-o " aria-hidden="true"></i> All Threads </div>
 
     <div id="channels_tag_div"><a href="" id="channels_tag"> Channels </a> <button id="channels_tag_button"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></div>
 
@@ -152,12 +157,12 @@ else{
     </div>
 
 
-    <div class="chat_area">
+    <div class="chat_area" >
 
         <?php include("retrieve_messages.php");
 
         ?>
-        <div id="test"></div>
+        <div id="test"   user_id="<?php echo $user_id ?>"></div>
 
     </div>
 

@@ -10,6 +10,8 @@ include("connect.php");
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
 
+
+
    $query = "select  * from channel_messages where channel_id='" . $channel_id . "'";
 
     $result =$conn->query($query);
@@ -20,6 +22,15 @@ function retrieving_messages($conn,$channel_id){
     $temp_time_month="";
     $counter_today=0;
     $counter_yesterday=0;
+
+    $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction ";
+    $result_message_id=$conn->query($query_message_id);
+
+    $row_message_id=$result_message_id->fetch_all(MYSQLI_ASSOC);
+   // print_r($row_message_id);
+
+
+
     while($row=$result->fetch_array(MYSQLI_ASSOC))
     {
         echo "<br>";
@@ -34,8 +45,22 @@ function retrieving_messages($conn,$channel_id){
 
             $formated_time_am_pm=date("h:i A",strtotime($row["timestamp"]));
            // echo $row["timestamp"];
+        $message_id_for_likes=$row["message_id"];
+        $query_message_id_like="SELECT count(*) as count FROM `message_reaction` WHERE message_id='$message_id_for_likes' and reaction=1";
+        $result_message_id_like=$conn->query($query_message_id_like);
+        if(mysqli_num_rows($result_message_id_like)>0) {
+        $row_message_id_like=$result_message_id_like->fetch_array(MYSQLI_ASSOC);
+        $count_like=$row_message_id_like["count"];
+        // print_r($row_message_id);
+            }
+        $query_message_id_dislike="SELECT count(*) as count FROM `message_reaction` WHERE message_id='$message_id_for_likes' and reaction=2";
 
+        $result_message_id_dislike=$conn->query($query_message_id_dislike);
+            if(mysqli_num_rows($result_message_id_dislike)>0) {
+                $row_message_id_dislike = $result_message_id_dislike->fetch_array(MYSQLI_ASSOC);
+                $count_dislike=$row_message_id_dislike["count"];
 
+            }
             if($temp_time==$formated_time_am_pm) {
 
                /* echo "<div><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
@@ -44,9 +69,29 @@ function retrieving_messages($conn,$channel_id){
                 echo "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
 
                */
+             //   echo "<div class=\"the_whole_message_sub\">";
+               // echo "<br>";
 
-                echo "<div class=\"message_display\">" . htmlspecialchars($row["message"]) . "</div>";
 
+
+
+                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" . htmlspecialchars($row["message"]) ." <br> " ;
+
+
+                if($count_like>0)
+                {
+                    echo "<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\" id=\"". htmlspecialchars($row["message_id"]). "_like\">".$count_like."</i> &nbsp;";
+
+                }
+                if($count_dislike>0)
+                {
+
+                    echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"  id=\"". htmlspecialchars($row["message_id"]). "_dislike\"  >".$count_dislike."</i>";
+                }
+                echo "</div>";
+
+               echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button></div> </div>";
+              //  echo "</div>";
 
             }
             else{
@@ -84,14 +129,33 @@ function retrieving_messages($conn,$channel_id){
 
 
 
-                echo "<div><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
+
+                echo " <div class=\"the_whole_message\">";
+
+                echo "<div class=\"image_div\"><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
 
 
                 echo "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
 
 
-                echo "<div class=\"message_display\">" . htmlspecialchars($row["message"]) . "</div>";
+                echo "<div class=\"message_display \" id=\"".htmlspecialchars($row["message_id"])."_div\"><div class=\"only_message\">".htmlspecialchars($row["message"])."  </div>  ";
 
+
+
+                if($count_like>0)
+                {
+                    echo "<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"".htmlspecialchars($row["message_id"])."_like\"  >".$count_like."</i> &nbsp;";
+
+                }
+                if($count_dislike>0)
+                {
+
+                    echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\" id=\"".htmlspecialchars($row["message_id"])."_dislike\" >".$count_dislike."</i>";
+                }
+                echo "</div></div> ";
+
+
+                echo "<div class=\"message_reactions\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button></div>";
 
 
 
