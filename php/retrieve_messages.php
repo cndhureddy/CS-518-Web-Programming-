@@ -5,17 +5,12 @@
  * Date: 10/10/2017
  * Time: 2:05 AM
  */
-ini_set('display_startup_errors', 1);
-ini_set('display_errors', 1);
-error_reporting(-1);
+
 include("connect.php");
-
-
-
 function retrieving_messages($conn,$channel_id){
    // echo $channel_id;
 
-    // echo "this is retrieve messages.php file1";
+
 
    $query = "select  * from channel_messages where channel_id='" . $channel_id . "'";
 
@@ -27,21 +22,13 @@ function retrieving_messages($conn,$channel_id){
     $temp_time_month="";
     $counter_today=0;
     $counter_yesterday=0;
-   //     echo "this is retrieve messages.php file2";
-    $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction";
-  // echo $query_message_id;
+
+//    $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction ";
    // $result_message_id=$conn->query($query_message_id);
-  $result_message_id=mysqli_query($conn,$query_message_id)
-  //   echo "test";
-   
-   // print_r($result_message_id);
-    //$row_message_id=$result_message_id->fetch_all();
-   
-  // $row_message_id=mysqli_fetch_all ($result_message_id, MYSQLI_ASSOC)
-   
-  // echo "//////////////////////////////////////////////////////////////////////////////////";
-  //  print_r($row_message_id);
-  //   echo "this is retrieve messages.php file3";
+
+    //$row_message_id=$result_message_id->fetch_all(MYSQLI_ASSOC);
+   // print_r($row_message_id);
+
 
 
     while($row=$result->fetch_array(MYSQLI_ASSOC))
@@ -76,8 +63,17 @@ function retrieving_messages($conn,$channel_id){
             }
             if($temp_time==$formated_time_am_pm) {
 
-               
-             //  echo "this is retrieve messages.php file";
+               /* echo "<div><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
+
+
+                echo "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
+
+               */
+             //   echo "<div class=\"the_whole_message_sub\">";
+               // echo "<br>";
+
+
+
 
                 echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" . htmlspecialchars($row["message"]) ." <br> " ;
 
@@ -94,8 +90,8 @@ function retrieving_messages($conn,$channel_id){
                 }
                 echo "</div>";
 
-               echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button></div> </div>";
-            
+               echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> </div>";
+              //  echo "</div>";
 
             }
             else{
@@ -159,7 +155,7 @@ function retrieving_messages($conn,$channel_id){
                 echo "</div></div> ";
 
 
-                echo "<div class=\"message_reactions\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button></div>";
+                echo "<div class=\"message_reactions\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
 
 
 
@@ -173,7 +169,3 @@ function retrieving_messages($conn,$channel_id){
 retrieving_messages($conn,$channel_id);
 
 mysqli_close($conn);
-
-
-   
- 
