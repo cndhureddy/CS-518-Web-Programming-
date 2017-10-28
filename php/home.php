@@ -16,7 +16,7 @@
 
 
 <?php
-/**
+/*
  * Created by PhpStorm.
  * User: ssangam
  * Date: 10/1/2017
