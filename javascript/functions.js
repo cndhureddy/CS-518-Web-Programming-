@@ -22,7 +22,7 @@ function insert_tread(message_id,user_id)
 
             var object = JSON.parse(data);
             //console.log(object[0]);
-
+            $(".appended_message").remove();
             $(".thread_input").val('');
 
 
@@ -96,7 +96,9 @@ $( document ).ready(function() {
            success: function (data) {
 
                var obj = JSON.parse(data);
-
+              // console.log(obj);
+               //console.log(obj1);
+                //var obj = obj1[0];
                $channel_name=$(".top_channel_display").text();
 
                var $thread_tag_check = $(".the_thread_for_a_message");
@@ -116,6 +118,25 @@ $( document ).ready(function() {
 
 
                }
+
+
+               var object =  obj[0];
+               console.log(obj);//JSON.parse(data);
+               console.log(object);
+
+               $(".thread_input").val('');
+
+
+               object.forEach(function(entry){
+
+
+                   console.log(entry);
+
+                   $append_tag='<div class=\"appended_message\"><div class="combine_append"><div><img class=\"appended_image\"src=\"'+ entry["user_thread_picture"] +'\"/></div><div class=\"appended_username\" >'+ entry["user_name_thread"] +'</div><div class=\"appended_thread_time\">'+ entry["time"] +'</div> </div><br> <div class=\"appended_thread_message\">'+ entry["thread_message"] +'</div></div>';
+
+                   $(".thread_start").append($append_tag);
+               });
+
 
 
 
