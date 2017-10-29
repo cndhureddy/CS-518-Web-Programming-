@@ -2,7 +2,7 @@
 //function insert_like_dislike() {
 
 
-
+/*
 function insert_tread(message_id,user_id)
 {
 
@@ -43,11 +43,76 @@ function insert_tread(message_id,user_id)
 
 
 }
-
+*/
 
 
 $( document ).ready(function() {
 //    console.log( "ready!" );
+
+
+
+
+
+
+    $(document).on('click', '#thread_message_submit', function(){
+
+
+
+        message_id=$(".form_thread").attr("message_id");
+        user_id=$(".form_thread").attr("user_id");
+        console.log(message_id);
+        console.log(user_id);
+        insert_input_message=$(".thread_input").val();
+
+        console.log(insert_input_message);
+        console.log("hello");
+        $.ajax({
+
+            type: "POST",
+            url: "../php/thread_insert.php",
+            data: { message_id: message_id, user_id: user_id, message: insert_input_message},
+            dataType: 'text',
+            success: function (data) {
+
+                var object = JSON.parse(data);
+                //console.log(object[0]);
+                $(".appended_message").remove();
+                $(".thread_input").val('');
+
+
+                object.forEach(function(entry){
+
+
+                    console.log(entry);
+
+                    $append_tag='<div class=\"appended_message\"><div class="combine_append"><div><img class=\"appended_image\"src=\"'+ entry["user_thread_picture"] +'\"/></div><div class=\"appended_username\" >'+ entry["user_name_thread"] +'</div><div class=\"appended_thread_time\">'+ entry["time"] +'</div> </div><br> <div class=\"appended_thread_message\">'+ entry["thread_message"] +'</div></div>';
+
+                    $(".thread_start").append($append_tag);
+                });
+
+
+            }}
+        );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+
+
 
 
 
@@ -64,11 +129,12 @@ $( document ).ready(function() {
 
    var message_id = parseInt(fired_button);
     var user_id=$("#test").attr("user_id");
+        console.log(fired_button);
+        console.log(button_name);
+       console.log(message_id);
+       console.log(user_id);
 
-  //  console.log(fired_button);
-      //  console.log(button_name);
-      //  console.log(message_id);
-     //   console.log(user_id);
+          //button_name='dis_like'
 
    if(button_name=="thread_message" )
    {
@@ -105,13 +171,13 @@ $( document ).ready(function() {
 
                if($thread_tag_check[0]) {
                    $(".the_thread_for_a_message").remove();
-                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <form onsubmit=\"insert_tread('+obj["message_id"]+','+obj["user_id"]+ ');\"> <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><input class="thread_submit" type="submit" value="Send"> </input> </form>  </div>';
+                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
 
                    $('.thread_management').append($thread_tag);
                }
                else{
 
-                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <form onsubmit=\"insert_tread('+obj["message_id"]+','+obj["user_id"]+ ');\"> <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><input class="thread_submit" type="submit" value="Send"> </input> </form></div>';
+                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
 
                    $('.thread_management').append($thread_tag);
 
@@ -161,7 +227,7 @@ $( document ).ready(function() {
 
 
         );
-   }else {
+   } else{
 
        $.ajax({
            type: "POST",
@@ -229,6 +295,9 @@ $( document ).ready(function() {
 
 
    }
+
+
+
 
     });
 
