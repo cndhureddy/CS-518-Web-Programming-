@@ -260,7 +260,7 @@ body{
 
     padding:1%;
 
-    width: 94%;
+    width: 91%;
 
     bottom: 0;
     word-wrap: break-word;
@@ -436,6 +436,19 @@ body{
 }
 
 
+
+.message_reactions_with_user{
+
+    float: right;
+    margin-top: -1%;
+    margin-right: 1%;
+    background-color:#F1F1F1;
+    border-radius: 0.3em;
+    visibility: visible;
+
+}
+
+
 .message_reactions_sub{
 
     float: right;
@@ -478,8 +491,12 @@ body{
     margin: 2% ;
     background-color: #FFFFFF;
     width: 20%;
-    height: 100%;
+    height: 92%;
     margin-left: 80%;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
 
 }
 .thread_top_bar{
@@ -491,6 +508,107 @@ body{
     background-color: #F1F1F1;
 
 }
+
+.thread_user_image{
+    float: left;
+    height: 10%;
+    width: 10%;
+    border-radius: 0.1em;
+    border: solid gray 0.5px;
+    margin-top: 3%;
+    margin-left: 3%;
+
+}
+
+.thread_message_username{
+
+    float: left;
+    margin-top: 3%;
+    margin-left: 3%;
+
+}
+
+.thread_time{
+    float: left;
+    font-family: Helvetica;
+    font-size: 73%;
+    margin-top: 4%;
+    margin-left: 1%;
+
+}
+
+.thread_message{
+
+
+    margin-left: 3%;
+    margin-top: 10%;
+    word-wrap: break-word;
+}
+.thread_input{
+
+    border: solid 1px grey;
+
+    overflow-y: auto;
+    width: 100%;
+
+    border-radius:0.3em ;
+    background-color: #FFFFFF;
+
+
+
+}
+.thread_submit{
+
+    float: right;
+    background: none;
+    outline: none;
+    border-radius:0.3em ;
+
+}
+
+
+.appended_image{
+
+    float: left;
+    height: 10%;
+    width: 10%;
+    border-radius: 0.1em;
+    border: solid gray 0.5px;
+    margin-top: 3%;
+    margin-left: 3%;
+
+
+}
+.appended_username{
+
+    float: left;
+    margin-top: 3%;
+    margin-left: 3%;
+
+
+
+}
+.appended_thread_time{
+    float: left;
+    font-family: Helvetica;
+    font-size: 73%;
+    margin-top: 4%;
+    margin-left: 1%;
+
+}
+.appended_thread_message{
+
+
+    margin-left: 17%;
+    margin-top:4%;
+    word-wrap: break-word;
+}
+.combine_append{
+
+    width: 100%;
+}
+
+
 /*
 .top-user-button{
 
