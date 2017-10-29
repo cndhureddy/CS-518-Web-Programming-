@@ -51,6 +51,133 @@ $( document ).ready(function() {
 
 
 
+/*
+
+    $("#thread_count").click(function () {
+
+
+        var user_id = $("#test").attr("user_id");
+        var message_id = $(this).val();
+        var button_name=this.id;
+            console.log(user_id);
+            console.log(message_id);
+
+
+
+
+
+
+
+        $(".thread_management").remove();
+
+        $(".chat_area").css("width", "67%");
+
+        $(".message_post").css("width", "67%");
+
+        $(".message_sub").css("width","88%");
+        $(".only_message").css("width","88%");
+        $(".message_display").css("width","90%");
+        $(".message_reactions_with_user").css("margin-top","-2%");
+
+        $('body').append('<div class=\"thread_management\" > <div class=\"thread_top_bar\"> <b style="margin-left: 5%; margin-top: 40%"> Thread</b><button  class=\"close_button\"><i class="fa fa-times" aria-hidden="true"></i></button></div> <div class=\"thread body\"> </div> </div>');
+
+
+
+
+        $.ajax({
+            type: "POST",
+            url: "../php/threads.php",
+            data: {type_like: button_name, message_id: message_id, user_id: user_id},
+            dataType: 'text',
+            success: function (data) {
+
+                var obj = JSON.parse(data);
+                // console.log(obj);
+                //console.log(obj1);
+                //var obj = obj1[0];
+                $channel_name=$(".top_channel_display").text();
+
+                var $thread_tag_check = $(".the_thread_for_a_message");
+
+                if($thread_tag_check[0]) {
+                    $(".the_thread_for_a_message").remove();
+                    $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+
+                    $('.thread_management').append($thread_tag);
+                }
+                else{
+
+                    $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
+
+                    $('.thread_management').append($thread_tag);
+
+
+
+                }
+
+
+                var object =  obj[0];
+                console.log(obj);//JSON.parse(data);
+                console.log(object);
+
+                $(".thread_input").val('');
+
+
+                object.forEach(function(entry){
+
+
+                    console.log(entry);
+
+                    $append_tag='<div class=\"appended_message\"><div class="combine_append"><div><img class=\"appended_image\"src=\"'+ entry["user_thread_picture"] +'\"/></div><div class=\"appended_username\" >'+ entry["user_name_thread"] +'</div><div class=\"appended_thread_time\">'+ entry["time"] +'</div> </div><br> <div class=\"appended_thread_message\">'+ entry["thread_message"] +'</div></div>';
+
+                    $(".thread_start").append($append_tag);
+                });
+
+
+
+
+            }
+        });
+
+
+
+
+
+
+
+        $(".close_button").click(  function()
+            {
+                $(".chat_area").css("width", "87%");
+
+                $(".message_post").css("width", "87%");
+
+
+                $(".thread_management").remove();
+            }
+
+
+        );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+    );
+
+*/
 
 
 
@@ -95,6 +222,31 @@ $( document ).ready(function() {
         );
 
 
+
+
+    $.ajax({
+
+        type:"POST",
+        url:"../php/thread_count_ajax.php",
+        data:{message_id: message_id},
+        dataType: 'json',
+        success: function (data) {
+
+            if(data>0){
+
+                $text_count=data+" replies";
+
+                $("#thread_count_"+message_id).text($text_count);
+
+
+            }
+
+
+        }
+
+
+
+    });
 
 
 
@@ -227,8 +379,151 @@ $( document ).ready(function() {
 
 
         );
-   } else{
+   } else {
 
+
+
+       if(button_name=="thread_count_"+message_id){
+
+
+//console.log("into check");
+
+
+           var user_id = $("#test").attr("user_id");
+           var message_id = $(this).val();
+           var button_name=this.id;
+           console.log(user_id);
+           console.log(message_id);
+
+
+
+
+
+
+
+           $(".thread_management").remove();
+
+           $(".chat_area").css("width", "67%");
+
+           $(".message_post").css("width", "67%");
+
+           $(".message_sub").css("width","88%");
+           $(".only_message").css("width","88%");
+           $(".message_display").css("width","90%");
+           $(".message_reactions_with_user").css("margin-top","-2%");
+
+           $('body').append('<div class=\"thread_management\" > <div class=\"thread_top_bar\"> <b style="margin-left: 5%; margin-top: 40%"> Thread</b><button  class=\"close_button\"><i class="fa fa-times" aria-hidden="true"></i></button></div> <div class=\"thread body\"> </div> </div>');
+
+
+
+
+           $.ajax({
+               type: "POST",
+               url: "../php/threads.php",
+               data: {type_like: button_name, message_id: message_id, user_id: user_id},
+               dataType: 'text',
+               success: function (data) {
+
+                   var obj = JSON.parse(data);
+                   // console.log(obj);
+                   //console.log(obj1);
+                   //var obj = obj1[0];
+                   $channel_name=$(".top_channel_display").text();
+
+                   var $thread_tag_check = $(".the_thread_for_a_message");
+
+                   if($thread_tag_check[0]) {
+                       $(".the_thread_for_a_message").remove();
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+
+                       $('.thread_management').append($thread_tag);
+                   }
+                   else{
+
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + obj["picture"] + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
+
+                       $('.thread_management').append($thread_tag);
+
+
+
+                   }
+
+
+                   var object =  obj[0];
+                   console.log(obj);//JSON.parse(data);
+                   console.log(object);
+
+                   $(".thread_input").val('');
+
+
+                   object.forEach(function(entry){
+
+
+                       console.log(entry);
+
+                       $append_tag='<div class=\"appended_message\"><div class="combine_append"><div><img class=\"appended_image\"src=\"'+ entry["user_thread_picture"] +'\"/></div><div class=\"appended_username\" >'+ entry["user_name_thread"] +'</div><div class=\"appended_thread_time\">'+ entry["time"] +'</div> </div><br> <div class=\"appended_thread_message\">'+ entry["thread_message"] +'</div></div>';
+
+                       $(".thread_start").append($append_tag);
+                   });
+
+
+
+
+               }
+           });
+
+
+
+
+
+
+
+           $(".close_button").click(  function()
+               {
+                   $(".chat_area").css("width", "87%");
+
+                   $(".message_post").css("width", "87%");
+
+
+                   $(".thread_management").remove();
+               }
+
+
+           );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       }
+       else
+       {
        $.ajax({
            type: "POST",
            url: "../php/likes.php",
@@ -293,6 +588,8 @@ $( document ).ready(function() {
 
        });
 
+
+   }
 
    }
 
