@@ -78,6 +78,19 @@ function retrieving_messages($conn,$channel_id){
                 echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" .htmlspecialchars($row["message"]) ." <br> " ;
 
 
+                $query_thread_count="select count(*) from thread where message_id='".$row["message_id"]."'";
+
+                $result_thread_count =$conn->query($query_thread_count);
+
+                $row_count=$result_thread_count->fetch_array(MYSQLI_ASSOC);
+
+
+
+
+
+
+
+
                 if($count_like>0)
                 {
                     echo "<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\" id=\"". htmlspecialchars($row["message_id"]). "_like\">".$count_like."</i> &nbsp;";
@@ -90,6 +103,10 @@ function retrieving_messages($conn,$channel_id){
                 }
                 echo "</div>";
 
+                if($row_count["count(*)"]>0)
+                {
+                echo "<div class=\" thread_count_div\"> <button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"   >".  $row_count["count(*)"] ." replies </button></div>";
+                }
                echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> </div>";
               //  echo "</div>";
 
@@ -142,6 +159,14 @@ function retrieving_messages($conn,$channel_id){
 
 
 
+                $query_thread_count="select count(*) from thread where message_id='".$row["message_id"]."'";
+
+                $result_thread_count =$conn->query($query_thread_count);
+
+                $row_count=$result_thread_count->fetch_array(MYSQLI_ASSOC);
+
+
+
                 if($count_like>0)
                 {
                     echo "<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"".htmlspecialchars($row["message_id"])."_like\"  >".$count_like."</i> &nbsp;";
@@ -152,7 +177,12 @@ function retrieving_messages($conn,$channel_id){
 
                     echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\" id=\"".htmlspecialchars($row["message_id"])."_dislike\" >".$count_dislike."</i>&nbsp;";
                 }
+
+                if($row_count["count(*)"]>0) {
+                    echo "<div class=\" thread_count_div\"> <button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button></div>";
+                }
                 echo "</div></div> ";
+
 
 
                 echo "<div class=\"message_reactions_with_user\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
