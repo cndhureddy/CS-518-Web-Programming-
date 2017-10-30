@@ -233,7 +233,7 @@ $( document ).ready(function() {
         success: function (data) {
             console.log(data);
 
-            var $tag_check = $(".unique_count_"+message_id+" ");
+            var $tag_check = $(".unique_count_"+message_id);
                 console.log($tag_check);
                 if (data > 0) {
                     if($tag_check[0]) {
