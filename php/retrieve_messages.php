@@ -103,10 +103,14 @@ function retrieving_messages($conn,$channel_id){
                 }
                 echo "</div>";
 
+                echo "<div class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
                 if($row_count["count(*)"]>0)
                 {
-                echo "<div class=\" thread_count_div\"> <button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"   >".  $row_count["count(*)"] ." replies </button></div>";
+                    echo "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."  \">";
+                echo "<button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"   >".  $row_count["count(*)"] ." replies </button>";
+                    echo "</div>";
                 }
+                echo "</div>";
                echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> </div>";
               //  echo "</div>";
 
@@ -178,11 +182,14 @@ function retrieving_messages($conn,$channel_id){
                     echo   "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\" id=\"".htmlspecialchars($row["message_id"])."_dislike\" >".$count_dislike."</i>&nbsp;";
                 }
 
+                echo "<div class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
                 if($row_count["count(*)"]>0) {
-                    echo "<div class=\" thread_count_div\"> <button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button></div>";
+                    echo "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."\">";
+                    echo " <button id=\"thread_count_".htmlspecialchars($row["message_id"])."\" value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button>";
+                    echo "</div>";
                 }
                 echo "</div></div> ";
-
+                echo "</div>";
 
 
                 echo "<div class=\"message_reactions_with_user\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";

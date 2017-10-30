@@ -22,3 +22,4 @@ echo $row["count(*)"];
 
 
 //echo $message_id;
+mysqli_close($conn);
