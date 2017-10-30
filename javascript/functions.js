@@ -199,6 +199,7 @@ $( document ).ready(function() {
             url: "../php/thread_insert.php",
             data: { message_id: message_id, user_id: user_id, message: insert_input_message},
             dataType: 'text',
+            async:false,
             success: function (data) {
 
                 var object = JSON.parse(data);
@@ -230,6 +231,7 @@ $( document ).ready(function() {
         url:"../php/thread_count_ajax.php",
         data:{message_id: message_id},
         dataType: 'json',
+        async:false,
         success: function (data) {
             console.log(data);
 
