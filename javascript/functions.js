@@ -231,16 +231,32 @@ $( document ).ready(function() {
         data:{message_id: message_id},
         dataType: 'json',
         success: function (data) {
+            console.log(data);
 
-            if(data>0){
+            var $tag_check = $(".unique_count_"+message_id);
+                console.log($tag_check);
+                if (data > 0) {
+                    if($tag_check[0]) {
+                    $text_count = data + " replies";
+                    $param = "#thread_count_"+ message_id;
+                    $($param).text($text_count);
+                    console.log("checking");
 
-                $text_count=data+" replies";
+                }
+                else{
 
-                $("#thread_count_"+message_id).text($text_count);
+                        $append_button='<div class=\"unique_count_'+message_id+'"><button id=\"thread_count_'+message_id+'\" value=\"'+message_id+'\">'+data+' Replies </button><div>' ;
+                        $(".thread_count_div_"+message_id).append($append_button);
+                    }
+
+            }
+            else{
+
+
+                    $(".thread_count_div_"+message_id).remove();
 
 
             }
-
 
         }
 
@@ -281,10 +297,10 @@ $( document ).ready(function() {
 
    var message_id = parseInt(fired_button);
     var user_id=$("#test").attr("user_id");
-        console.log(fired_button);
-        console.log(button_name);
-       console.log(message_id);
-       console.log(user_id);
+        //console.log(fired_button);
+        //console.log(button_name);
+       //console.log(message_id);
+      // console.log(user_id);
 
           //button_name='dis_like'
 
