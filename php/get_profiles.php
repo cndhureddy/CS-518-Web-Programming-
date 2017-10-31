@@ -29,6 +29,7 @@ else{
     <div ><img id="logo"  src="../images/logo.jpg"></div>
     <div class="logo-text">ODU CS Slack</div>
     <div class="login-button"><form action="home.php" method="post"><input id="signin-button" type="submit" value=" home "></form></div>
+    <div class="login-button"><form action="profiles.php" method="post"><input id="signin-button" type="submit" value=" go back "></form></div>
 </div>
 <br>
 <?php
