@@ -26,6 +26,7 @@
             <input id="login-fields" placeholder="password" type="password" name="password"/>
             <input id="submit" type="submit"/>
             <a id="forgot_p" href="">forgot password?</a>
+            <a id="forgot_p" href="php/registration.php" > Register</a>
             <?php
             session_start();
             //$_SESSION = array();
