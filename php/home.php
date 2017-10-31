@@ -11,6 +11,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script src="../javascript/functions.js"></script>
+
+
+
+
+
 </head>
 <body>
 
@@ -60,10 +65,11 @@ else{
 
 
             <input  class="submit-button"  type="button" value="Set a Status"/>
-            <input  class="submit-button"  type="button" value="Profile & account"/>
-
+            <form method="post" action="userprofile.php">
+            <input  class="submit-button"  type="submit" value="Profile & account" />
+            </form>
             <form  action="logout.php" method="post">
-                <input  class="submit-button"  type="submit" value="Sign Out of <?php print $_SESSION['work_space_name']; ?>" />
+                <input  class="submit-button"  type="submit" value="Sign Out of <?php print $_SESSION['work_space_name']; ?>"  />
 
             </form>
         </ul>

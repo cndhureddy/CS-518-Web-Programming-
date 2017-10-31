@@ -153,7 +153,7 @@ function retrieving_messages($conn,$channel_id){
 
                 echo " <div class=\"the_whole_message\">";
 
-                echo "<div class=\"image_div\"><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
+                echo "<div class=\"image_div\"><img class=\"message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
 
 
                 echo "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
