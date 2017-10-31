@@ -206,6 +206,7 @@ $( document ).ready(function() {
                 //console.log(object[0]);
                 $(".appended_message").remove();
                 $(".thread_start").find('br').remove();
+                $( ".thread_time").after( "<br>" );
                 $(".thread_input").val('');
 
 
