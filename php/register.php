@@ -18,23 +18,27 @@ if(strlen($user_name)>20||strlen($user_name)<6){
   $_SESSION["username_check"]="error";
 
     header('location:registration.php');
+    die();
 }
 if(strlen($email)>200){
 
 
     $_SESSION["email_id_check"]="error";
     header('location:registration.php');
+    die();
 }
 if(strlen($password)>20||strlen($password)<6){
 
     $_SESSION["password_check"]="error";
     header('location:registration.php');
+    die();
 
 }
 if($password!=$confirm_password){
 
     $_SESSION["confirmpassword"]="error";
     header('location:registration.php');
+    die();
 
 }
 
@@ -49,6 +53,7 @@ else{
 
     $_SESSION["invalid_email"]="error";
     header('location:registration.php');
+    die();
 
 }
 
@@ -63,6 +68,7 @@ echo $data_email[0];
 if($data_email[0] > 1) {
     $_SESSION["email_exists"]="error";
     header('location:registration.php');
+    die();
 }
 //echo $user_name;
 $check_username="select * from users where display_name='".mysqli_real_escape_string($conn,$user_name)."'";
@@ -74,6 +80,7 @@ if($data_username[0]>1){
     echo "User Already in Exists<br/>";
     $_SESSION["username_exists"]="error";
     header('location:registration.php');
+    die();
 }
 
 
@@ -94,9 +101,11 @@ if($data_username[0]>1){
     $_SESSION["register_success"]="success";
 
     header('location:registration.php');
+    die();
 
 }else{
     header('location:registration.php');
+    die();
 
 
 

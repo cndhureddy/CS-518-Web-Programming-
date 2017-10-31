@@ -37,6 +37,7 @@ if($_SESSION['email'])
 }
 else{
     header('location:../index.php');
+    die();
 }
 
 //echo $_SESSION['email'];
@@ -84,7 +85,9 @@ else{
 -->
     <div class="all_threads" ><i class="fa fa-comments-o " aria-hidden="true"></i> All Threads </div>
 
-    <div id="channels_tag_div"><a href="" id="channels_tag"> Channels </a> <button id="channels_tag_button"><i class="fa fa-plus-circle" aria-hidden="true"></i></button></div>
+    <form action="profiles.php" method="post"><input class="channel_name" name="hello" type="submit" value="Profiles_page"/> </form>
+
+    <div id="channels_tag_div"><a href="" id="channels_tag"> Channels </a> <form style="float: right;margin-right: 10%;" action="channel_creation.php" method="post"><button type="submit" id="channels_tag_button" value=""><i class="fa fa-plus-circle" aria-hidden="true"></i></input></form></div>
 
 
     <?php
@@ -114,9 +117,39 @@ else{
 
           $user_id = $_GET['user_id'];
           $channel_name =$_GET['channel_name'];
-
+           // echo $channel_id;
           if ($channel_id) {
-              echo '<div class="top_channel_display" > #' . $_GET['channel_name'] . '</div>';
+              echo '<div class="top_channel_display" > #' . htmlspecialchars($_GET['channel_name']) . '</div>';
+
+
+                include ("connect.php");
+
+              $query_channel_check = mysqli_query($conn,"select * from channels where channel_name='".mysqli_real_escape_string($conn,$_GET['channel_name'] )."'");
+              //echo $query_channel_check;
+//$res_e = mysqli_query($conn,$query);
+              $res=mysqli_fetch_row($query_channel_check);
+
+              if($res[3]=="public"){
+
+                  echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
+
+
+              }
+              if($res[3]=="private"){
+
+                    if($user_id==$res[5]){
+
+                        echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name \"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
+
+
+                    }
+
+
+              }
+
+
+
+
 
           }
       }
@@ -125,7 +158,10 @@ else{
 
               include("default_channel.php");
       if ($channel_id) {
+
           echo '<div class="top_channel_display" > # general</div>';
+
+          echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"general\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
       }
 
 

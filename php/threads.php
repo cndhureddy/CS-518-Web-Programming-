@@ -12,22 +12,14 @@ include ("connect.php");
 
 $type_like= $_POST["type_like"];
 $message_id= mysqli_real_escape_string($conn,$_POST["message_id"]);
-$user_id= mysqli_real_escape_string($conn,$_POST["user_id"]);
+//$user_id= mysqli_real_escape_string($conn,$_POST["user_id"]);
 
 //echo $type_like;
 //echo $message_id;
 //echo $user_id;
 
 
-$sql_user_details="select * from users where user_id='$user_id'";
 
-$ret_user=mysqli_query($conn,$sql_user_details);
-
-$row_user=mysqli_fetch_array($ret_user,MYSQLI_ASSOC);
-
-$user_name_thread= $row_user["display_name"];
-
-$user_thread_picture= $row_user["picture"];
 
 $sql_message_thread="select * from channel_messages where message_id='$message_id'";
 
@@ -38,6 +30,36 @@ $_message_thread = $row_message["message"];
 //$_message_timestamp = $row_message["timestamp"];
 
 $formated_time_am_pm=date("d M h:i A",strtotime($row_message["timestamp"]));
+
+
+
+
+
+
+
+$_user_id_thread_msg=$row_message["user_id"];
+
+$sql_user_details="select * from users where user_id='$_user_id_thread_msg'";
+
+$ret_user=mysqli_query($conn,$sql_user_details);
+
+$row_user=mysqli_fetch_array($ret_user,MYSQLI_ASSOC);
+
+$user_name_thread= $row_user["display_name"];
+
+$user_thread_picture= $row_user["picture"];
+
+
+
+
+
+
+$final_array=array('picture'=>$user_thread_picture,'user_name'=>$user_name_thread,'message'=>htmlspecialchars($_message_thread),'time'=>$formated_time_am_pm,'user_id'=>$_user_id_thread_msg,'message_id'=>$message_id);
+
+
+
+
+
 
 
 
@@ -82,7 +104,6 @@ while($row=$result->fetch_array(MYSQLI_ASSOC)){
 
 
 
-$final_array=array('picture'=>$user_thread_picture,'user_name'=>$user_name_thread,'message'=>htmlspecialchars($_message_thread),'time'=>$formated_time_am_pm,'user_id'=>$user_id,'message_id'=>$message_id);
 
 
 array_push($final_array,$thread_message_return);

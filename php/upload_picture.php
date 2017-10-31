@@ -24,7 +24,7 @@ else{
 
 if (!empty($_POST['submit'])){
 
-   include ("connect.php");
+//   include ("connect.php");
 
     $uname= $_POST["uname"];
 
@@ -34,26 +34,31 @@ if (!empty($_POST['submit'])){
     echo $width;
     echo $height;
 
-    $fileupload = $_POST['fileToUpload'];
-    if (empty($fileupload) === true) { //
-        $_SESSION["no_file"]="error";
-        header('location:userprofile.php');
+    //$fileupload = $_POST['fileToUpload'];
+
+    if ($_FILES["fileToUpload"]["name"]!="") {
+
+    }else{ //
+       // $_SESSION["no_file"]="error";
+       header('location:userprofile.php?error=nofile'.$fileupload);
+        die();
     }
 
     if($width>750 || $height>750 ){
 
-        $_SESSION["error_image"]="error";
-        header('location:userprofile.php');
-
+        //$_SESSION["error_image"]="error";
+        header('location:userprofile.php?error=more_height');
+        die();
     }
 
     if($width<250||$height<250)
 
     {
 
-        $_SESSION["error_image"]="error";
-        header('location:userprofile.php');
-
+        //$_SESSION["error_image"]="error";
+        //
+        header('location:userprofile.php?error=less_height');
+        die();
     }
 
 
@@ -115,6 +120,7 @@ if (!empty($_POST['submit'])){
 
             $query = "update users set picture='".mysqli_real_escape_string($conn,$filename_to_insert)."' where email_id='".mysqli_real_escape_string($conn,$_SESSION['email'])."'";
             mysqli_query($conn, $query);
+
 
             header('location:userprofile.php');
             echo <<<EOL

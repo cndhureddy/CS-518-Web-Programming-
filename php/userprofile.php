@@ -27,6 +27,8 @@
             background-color: #2D9EE0;
             border-radius: 0.2em;
             color: #FFFFFF;
+
+
         }
         #update_pic_button{
 
@@ -82,21 +84,23 @@ $res=mysqli_fetch_row($query);
     <div class="logo-text">ODU CS Slack</div>
     <div class="login-button"><form action="home.php"><input id="signin-button" type="submit" value="Home"></form></div>
 </div>
-<div id="login" style="width:80%;">
 
-    <div>
 
-        <div class="image_div_profile"><img style="height: 300px; width: 300px; margin-left:7%; margin-top: 4%;" src="<?php echo $res[11]; ?>"/>
-        <div class="edit_pic"><form action="upload_picture.php" method="post" enctype="multipart/form-data">
+    <div style="text-align: center;">
+
+        <div ><img style="height: 300px; width: 300px; margin-left:7%; margin-top: 4%;" src="<?php echo $res[11]; ?>"/>
+        <form action="upload_picture.php" method="post" enctype="multipart/form-data">
                 Select image to upload:
                 <input type="hidden" name="uname" value="<?php echo $res[3]; ?>"/>
                 <input class="image_upload_class" type="file" name="fileToUpload" id="fileToUpload">
-                <input class="image_upload_class" id="update_pic_button" type="submit" value="update picture" name="submit">
+                <input class="image_upload_class"  type="submit" value="update picture" name="submit">
             </form>
-        </div></div>
-        <div class="display_info">
+        </div>
+        <div >
+            <br>
+            <br>
 
-            <table >
+            <table align="center">
                 <tr>
                     <td>Full name :</td>
                     <td><?php echo $res[2]; ?></td>
@@ -114,24 +118,79 @@ $res=mysqli_fetch_row($query);
             </table>
         </div>
 
-    </div>
 
 
-    <?php  if(isset($_SESSION["no_file"])) {
-        if($_SESSION["no_file"]=="error"){
+    <?php
 
-            echo "<div id=\"error\"> Image not selected , please select the image</div>";
-            $_SESSION["no_file"]="";
+
+
+    echo "";
+
+    $sql_user_id = "SELECT user_id from users where email_id='".mysqli_real_escape_string($conn,$email)."'";
+    $result_user_id = $conn->query($sql_user_id);
+
+
+    if ($result_user_id->num_rows > 0) {
+        // output data of each row
+        while($row_user_id = $result_user_id->fetch_assoc()) {
+            $user_id_channel=$row_user_id["user_id"];
+        }
+    } else {
+    }
+
+    $sql_channel_ids = "SELECT channel_id from channel_users where user_id='$user_id_channel'";
+    $result_channel_id = $conn->query($sql_channel_ids);
+
+    if($result_channel_id->num_rows>0){
+
+        while($result_channel_users=$result_channel_id->fetch_assoc()){
+
+            $channel_id_a=$result_channel_users["channel_id"];
+           // echo $channel_id_a;
+                $sql_channels_display="SELECT channel_name from channels where channel_id='$channel_id_a'";
+            $result_channel_display = $conn->query($sql_channels_display);
+            $result_set_display=$result_channel_display->fetch_assoc();
+            $sql_channels_display_settings="SELECT privacy_settings from channels where channel_id='$channel_id_a'";
+            $result_channel_display_settings = $conn->query($sql_channels_display_settings);
+            $result_set_display_settings=$result_channel_display_settings->fetch_assoc();
+
+
+
+                echo "<p> ".$result_set_display["channel_name"]."-".$result_set_display_settings["privacy_settings"] ."</p>";
+
         }
 
 
-    }?>
 
-    <?php  if(isset($_SESSION["error_image"])) {
-        if($_SESSION["error_image"]=="error"){
 
-            echo "<div id=\"error\"> Image width and height should be in between 250 px and 750 px </div>";
-            $_SESSION["error_image"]="";
+    }
+    else{
+
+
+    }
+
+
+    ?>
+
+
+
+
+    <?php
+    //print_r($_SESSION);
+    if(isset($_GET["error"])) {
+
+
+      //  if($_SESSION["no_file"]==="error"){
+//            $_SESSION["no_file"]="ntg";
+
+        //    unset($_SESSION["no_file"]);
+        if($_GET["error"]=="nofile"){
+            echo "<div class=\"error\"> Image not selected , please select the image</div>";
+
+        }
+        if($_GET["error"]=="more_height"||$_GET["error"]=="less_height"){
+            echo "<div class=\"error\"> Image width and height should be in between 250 px and 750 px </div>";
+
         }
 
 
