@@ -205,6 +205,7 @@ $( document ).ready(function() {
                 var object = JSON.parse(data);
                 //console.log(object[0]);
                 $(".appended_message").remove();
+                $('.thread_start).find('br').remove();
                 $(".thread_input").val('');
 
 
