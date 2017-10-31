@@ -82,7 +82,7 @@ $res=mysqli_fetch_row($query);
     <div class="logo-text">ODU CS Slack</div>
     <div class="login-button"><form action="home.php"><input id="signin-button" type="submit" value="Home"></form></div>
 </div>
-<div id="login">
+<div id="login" style="width:80%;">
 
     <div>
 
