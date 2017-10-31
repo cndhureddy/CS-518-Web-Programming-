@@ -311,11 +311,13 @@ body{
 
 .message_user_image{
 
-    height: 2.5%;
-    width: 2.5%;
+
     border: solid 1px gray;
     margin-left: 1.5%;
     border-radius: 50%;
+    height: 40px;
+    width: 40px;
+
 
 
 }
@@ -475,6 +477,7 @@ body{
     padding: 0;
 
 
+
 }
 .close_button{
     float: right;
@@ -511,8 +514,8 @@ body{
 
 .thread_user_image{
     float: left;
-    height: 10%;
-    width: 10%;
+    height: 40px;
+    width: 40px;
     border-radius: 0.1em;
     border: solid gray 0.5px;
     margin-top: 3%;
@@ -570,8 +573,8 @@ body{
 .appended_image{
 
     float: left;
-    height: 10%;
-    width: 10%;
+    height: 40px;
+    width: 40px;
     border-radius: 0.1em;
     border: solid gray 0.5px;
     margin-top: 3%;
