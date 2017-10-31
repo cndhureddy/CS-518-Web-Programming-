@@ -328,6 +328,7 @@ $( document ).ready(function() {
            type: "POST",
            url: "../php/threads.php",
            data: {type_like: button_name, message_id: message_id, user_id: user_id},
+           async:false,
            dataType: 'text',
            success: function (data) {
 
@@ -341,13 +342,13 @@ $( document ).ready(function() {
 
                if($thread_tag_check[0]) {
                    $(".the_thread_for_a_message").remove();
-                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + image_variable+ '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + image_variable+ '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
 
                    $('.thread_management').append($thread_tag);
                }
                else{
 
-                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + image_variable + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
+                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + image_variable + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
 
                    $('.thread_management').append($thread_tag);
 
@@ -432,33 +433,34 @@ $( document ).ready(function() {
 
            $('body').append('<div class=\"thread_management\" > <div class=\"thread_top_bar\"> <b style="margin-left: 5%; margin-top: 40%"> Thread</b><button  class=\"close_button\"><i class="fa fa-times" aria-hidden="true"></i></button></div> <div class=\"thread body\"> </div> </div>');
 
-
+            console.log(user_id);
 
 
            $.ajax({
                type: "POST",
                url: "../php/threads.php",
                data: {type_like: button_name, message_id: message_id, user_id: user_id},
+               async:false,
                dataType: 'text',
                success: function (data) {
 
                    var obj = JSON.parse(data);
-                   // console.log(obj);
-                   //console.log(obj1);
+                   console.log("thread_count_message_count");
+                   console.log(obj);
                    //var obj = obj1[0];
                    $channel_name=$(".top_channel_display").text();
 
                    var $thread_tag_check = $(".the_thread_for_a_message");
-                   var  image_variable = obj["picture"];
+
                    if($thread_tag_check[0]) {
                        $(".the_thread_for_a_message").remove();
-                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + image_variable + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
 
                        $('.thread_management').append($thread_tag);
                    }
                    else{
 
-                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=' + image_variable + '>  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+obj["user_id"]+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
 
                        $('.thread_management').append($thread_tag);
 
@@ -516,6 +518,7 @@ $( document ).ready(function() {
            type: "POST",
            url: "../php/likes.php",
            data: {type_like: button_name, message_id: message_id, user_id: user_id},
+           async:false,
            dataType: 'json',
            success: function (data) {
 
