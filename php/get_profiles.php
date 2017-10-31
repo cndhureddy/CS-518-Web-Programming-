@@ -46,7 +46,7 @@ while ($row = $result->fetch_assoc()) {
 <div style="text-align: center"><img style="height: 300px; width: 300px; margin-left:7%; margin-top: 4%;" src="<?php echo $row["picture"]; ?>"/>
 <table align="center" style="margin-top: 10%">
     <tr><td>Username : </td><td><?php echo $row["display_name"]; ?></td></tr>
-    <?php   $sql_channel_ids = "SELECT channel_id from channel_users where user_id='$user_id'";
+    <?php   $sql_channel_ids = "SELECT channel_id from channel_users where user_id='".mysqli_real_escape_string($conn,$user_id)."'";
     $result_channel_id = $conn->query($sql_channel_ids);
 
     if($result_channel_id->num_rows>0){
@@ -55,7 +55,7 @@ while ($row = $result->fetch_assoc()) {
 
             $channel_id_a=$result_channel_users["channel_id"];
             // echo $channel_id_a;
-            $sql_channels_display="SELECT channel_name from channels where channel_id='$channel_id_a'";
+            $sql_channels_display="SELECT channel_name from channels where channel_id='".mysqli_real_escape_string($conn,$channel_id_a)."'";
             $result_channel_display = $conn->query($sql_channels_display);
             $result_set_display=$result_channel_display->fetch_assoc();
             $sql_channels_display_settings="SELECT privacy_settings from channels where channel_id='$channel_id_a'";

@@ -138,7 +138,7 @@ $res=mysqli_fetch_row($query);
     } else {
     }
 
-    $sql_channel_ids = "SELECT channel_id from channel_users where user_id='$user_id_channel'";
+    $sql_channel_ids = "SELECT channel_id from channel_users where user_id='".mysqli_real_escape_string($conn,$user_id_channel)."'";
     $result_channel_id = $conn->query($sql_channel_ids);
 
     if($result_channel_id->num_rows>0){
@@ -147,10 +147,10 @@ $res=mysqli_fetch_row($query);
 
             $channel_id_a=$result_channel_users["channel_id"];
            // echo $channel_id_a;
-                $sql_channels_display="SELECT channel_name from channels where channel_id='$channel_id_a'";
+                $sql_channels_display="SELECT channel_name from channels where channel_id='".mysqli_real_escape_string($conn,$channel_id_a)."'";
             $result_channel_display = $conn->query($sql_channels_display);
             $result_set_display=$result_channel_display->fetch_assoc();
-            $sql_channels_display_settings="SELECT privacy_settings from channels where channel_id='$channel_id_a'";
+            $sql_channels_display_settings="SELECT privacy_settings from channels where channel_id='".mysqli_real_escape_string($conn,$channel_id_a)."'";
             $result_channel_display_settings = $conn->query($sql_channels_display_settings);
             $result_set_display_settings=$result_channel_display_settings->fetch_assoc();
 

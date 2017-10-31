@@ -29,6 +29,7 @@ else{
     <div ><img id="logo"  src="../images/logo.jpg"></div>
     <div class="logo-text">ODU CS Slack</div>
     <div class="login-button"><form action="home.php" method="post"><input id="signin-button" type="submit" value=" home "></form></div>
+
 </div>
 <br>
 <table align="center" style="margin-top: 10%">
@@ -51,7 +52,7 @@ echo "<tr><td>$full_name</td><td><form action=\"get_profiles.php\" method='get'>
 
 ?>
     </table>
-?>
+
 
 
 

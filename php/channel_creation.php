@@ -105,7 +105,7 @@ else{
     if(isset($_SESSION["success"])){
         if ($_SESSION["success"] == "success") {
 
-            echo "<div id=\"error\"> Registration successful</div>";
+            echo "<div id=\"error\"> channel creation successful</div>";
             $_SESSION["success"] ="";
         }
     }
