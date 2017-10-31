@@ -369,7 +369,7 @@ $( document ).ready(function() {
 
                    console.log(entry);
 
-                   $append_tag='<div class=\"appended_message\"><div class="combine_append"><div><img class=\"appended_image\"src=\"'+ entry["user_thread_picture"] +'\"/></div><div class=\"appended_username\" >'+ entry["user_name_thread"] +'</div><div class=\"appended_thread_time\">'+ entry["time"] +'</div> </div><br> <div class=\"appended_thread_message\">'+ entry["thread_message"] +'</div></div>';
+                   $append_tag='<div class=\"appended_message\"><div class="combine_append"><div><img class=\"appended_image\"src=\"'+ entry["user_thread_picture"] +'\"/></div><div class=\"appended_username\" >'+ entry["user_name_thread"] +'</div><div class=\"appended_thread_time\">'+ entry["time"] +'</div> </div><br> <div class=\"appended_thread_message\">'+ entry["thread_message"] +'</div></div> <br>';
 
                    $(".thread_start").append($append_tag);
                });
