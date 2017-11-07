@@ -78,7 +78,7 @@ if (!empty($_POST['submit'])){
 
 
     $target_dir= "../images/";
-
+    chmod($target_dir,0777);
 
     $temp = explode(".", $_FILES["fileToUpload"]["name"]);
     $newfilename =$uname. '.' . end($temp);
