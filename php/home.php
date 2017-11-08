@@ -118,11 +118,32 @@ else{
           $user_id = $_GET['user_id'];
           $channel_name =$_GET['channel_name'];
            // echo $channel_id;
+          
+          
+          include ("connect.php");
+
+          $q_check_user_id=mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$_SESSION['email']) ."'");
+          $res_check_user_id=mysqli_fetch_row($q_check_user_id);
+
+          if($res_check_user_id[0]==$user_id)
+          {
+
+          }
+          else{
+              mysqli_close($conn);
+              header('location:home.php#test');
+              die();
+          }
+          
+          
+          
+          
+          
           if ($channel_id) {
               echo '<div class="top_channel_display" > #' . htmlspecialchars($_GET['channel_name']) . '</div>';
 
 
-                include ("connect.php");
+             //   include ("connect.php");
 
               $query_channel_check = mysqli_query($conn,"select * from channels where channel_name='".mysqli_real_escape_string($conn,$_GET['channel_name'] )."'");
               //echo $query_channel_check;
