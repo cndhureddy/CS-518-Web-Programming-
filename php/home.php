@@ -127,7 +127,27 @@ else{
 
           if($res_check_user_id[0]==$user_id)
           {
+                
+              
+               $q_check_user_id_a=mysqli_query($conn,"select * from channel_users where user_id='$user_id' and channel_id='$channel_id'");
+              // $res_check_user_id=mysqli_fetch_row($q_check_user_id);
 
+              if(mysqli_fetch_row($q_check_user_id_a))
+              {
+
+              }
+              else
+              {
+                  mysqli_close($conn);
+                  header('location:home.php#test');
+                  die();
+
+              }
+
+              
+              
+              
+              
           }
           else{
               mysqli_close($conn);
