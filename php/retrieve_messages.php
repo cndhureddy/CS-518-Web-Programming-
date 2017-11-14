@@ -12,7 +12,8 @@ function retrieving_messages($conn,$channel_id){
 
 
 
-   $query = "select  * from channel_messages where channel_id='" . $channel_id . "'";
+   $query = "select * from (SELECT * FROM `channel_messages` where channel_id='" . $channel_id . "' ORDER BY timestamp DESC LIMIT 15)a order by timestamp ASC";
+    //select * from (SELECT * FROM `channel_messages` where channel_id='1' ORDER BY timestamp DESC LIMIT 15)a order by timestamp ASC
 
     $result =$conn->query($query);
     //$message_array = array();
@@ -22,17 +23,25 @@ function retrieving_messages($conn,$channel_id){
     $temp_time_month="";
     $counter_today=0;
     $counter_yesterday=0;
+    $temp_user_id="";
 
 //    $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction ";
    // $result_message_id=$conn->query($query_message_id);
 
     //$row_message_id=$result_message_id->fetch_all(MYSQLI_ASSOC);
    // print_r($row_message_id);
+   // $restrict=0;
 
-
-
+    echo "<div><label class=\"older_messages\" id=\"$channel_id\">older messages</label></div>";
     while($row=$result->fetch_array(MYSQLI_ASSOC))
     {
+        //$restrict=$restrict+1;
+
+       // if($restrict>16){
+            //break;
+
+        //}
+
         echo "<br>";
             $user_id=$row["user_id"];
 
@@ -61,7 +70,13 @@ function retrieving_messages($conn,$channel_id){
                 $count_dislike=$row_message_id_dislike["count"];
 
             }
-            if($temp_time==$formated_time_am_pm) {
+
+
+
+       // echo $row["user_id"];
+     //   echo $temp_user_id;
+
+            if($temp_time==$formated_time_am_pm and $row["user_id"]==$temp_user_id) {
 
                /* echo "<div><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
 
@@ -83,6 +98,7 @@ function retrieving_messages($conn,$channel_id){
                 $result_thread_count =$conn->query($query_thread_count);
 
                 $row_count=$result_thread_count->fetch_array(MYSQLI_ASSOC);
+
 
 
 
@@ -116,6 +132,7 @@ function retrieving_messages($conn,$channel_id){
 
             }
             else{
+                $temp_user_id=$row["user_id"];
                 $temp_time=$formated_time_am_pm;
                 date_default_timezone_set("America/New_York");
                 //echo time();

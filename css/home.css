@@ -393,7 +393,7 @@ body{
 }
 .date_msg_text{
 
-    margin-left: 5%;
+    margin-left: 6%;
 
 
 }
@@ -611,6 +611,13 @@ body{
     width: 100%;
 }
 
+
+.older_messages{
+
+    margin-left: 48%;
+
+
+}
 
 /*
 .top-user-button{

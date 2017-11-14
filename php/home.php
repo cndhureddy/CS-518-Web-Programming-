@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script src="../javascript/functions.js"></script>
+    <script src="../javascript/pagination.js"></script>
 
 
 
@@ -49,7 +50,14 @@ else{
 
 
 
-    <?php include("home_page_services.php"); ?>
+    <?php include("home_page_services.php");
+
+    $q_check_user_id_1=mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$_SESSION['email']) ."'");
+    $res_check_user_id_1=mysqli_fetch_row($q_check_user_id_1);
+    $_SESSION["user_id"]=$res_check_user_id_1[0];
+
+
+    ?>
 
 
     <div class="dropdown-menu_home ">

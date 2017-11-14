@@ -292,9 +292,9 @@ $( document ).ready(function() {
 
 
 
+    $(document).on('click', "button", function(){
 
-
-    $("button").click(function() {
+   // $("button").click(function() {
         var fired_button = $(this).val();
         var button_name= this.id;
 
@@ -360,8 +360,8 @@ $( document ).ready(function() {
 
 
                var object =  obj[0];
-               console.log(obj);//JSON.parse(data);
-               console.log(object);
+              // console.log(obj);//JSON.parse(data);
+               //console.log(object);
 
                $(".thread_input").val('');
 
@@ -413,8 +413,9 @@ $( document ).ready(function() {
            var user_id = $("#test").attr("user_id");
            var message_id = $(this).val();
            var button_name=this.id;
-           console.log(user_id);
-           console.log(message_id);
+         //  console.log(user_id);
+           //console.log("in thread count");
+           //console.log(message_id);
 
 
 
@@ -516,6 +517,11 @@ $( document ).ready(function() {
        }
        else
        {
+           console.log(button_name);
+           console.log(message_id);
+           //console.log(user_id);
+           //user_id=$("#test").attr("user_id");
+           console.log(user_id);
        $.ajax({
            type: "POST",
            url: "../php/likes.php",
