@@ -78,7 +78,7 @@ public function retrieve_next_messages($channel_id,$count){
             if($temp_time==$formated_time_am_pm and $row["user_id"]==$temp_user_id) {
 
 
-                $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" .htmlspecialchars($row["message"]) ." <br> ";
+                $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\"><pre>" .htmlspecialchars($row["message"]) ." </pre><br> ";
 
                 $query_thread_count=$db_object->get_thread_count($row["message_id"]);
 
@@ -157,7 +157,7 @@ public function retrieve_next_messages($channel_id,$count){
                 $attach_div=$attach_div. "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
 
 
-                $attach_div=$attach_div. "<div class=\"message_display \" id=\"".htmlspecialchars($row["message_id"])."_div\"><div class=\"only_message\">".htmlspecialchars($row["message"])."  </div>  ";
+                $attach_div=$attach_div. "<div class=\"message_display \" id=\"".htmlspecialchars($row["message_id"])."_div\"><div class=\"only_message\"><pre>".htmlspecialchars($row["message"])." </pre> </div>  ";
 
 
                 $query_thread_count=$db_object->get_thread_count($row["message_id"]);

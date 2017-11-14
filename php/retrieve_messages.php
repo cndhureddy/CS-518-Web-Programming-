@@ -71,6 +71,8 @@ function retrieving_messages($conn,$channel_id){
 
             }
 
+
+
        // echo $row["user_id"];
      //   echo $temp_user_id;
 
@@ -88,7 +90,7 @@ function retrieving_messages($conn,$channel_id){
 
 
 
-                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" .htmlspecialchars($row["message"]) ." <br> " ;
+                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\"><pre>" .htmlspecialchars($row["message"]) ." </pre><br> " ;
 
 
                 $query_thread_count="select count(*) from thread where message_id='".$row["message_id"]."'";
@@ -174,7 +176,7 @@ function retrieving_messages($conn,$channel_id){
                 echo "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
 
 
-                echo "<div class=\"message_display \" id=\"".htmlspecialchars($row["message_id"])."_div\"><div class=\"only_message\">".htmlspecialchars($row["message"])."  </div>  ";
+                echo "<div class=\"message_display \" id=\"".htmlspecialchars($row["message_id"])."_div\"><div class=\"only_message\"><pre>".htmlspecialchars($row["message"])." </pre> </div>  ";
 
 
 
