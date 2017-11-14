@@ -37,7 +37,7 @@ public function retrieve_next_messages($channel_id,$count){
         $row_count=$result_count->fetch_array(MYSQLI_ASSOC);
         $attach_div="";
         if($row_count["count(*)"]>=$count) {
-            $attach_div=$row_count["count(*)"]." ".$check_count."<div><label class=\"older_messages\" id=\"$channel_id\">older messages</label></div>";
+            $attach_div="<div><label class=\"older_messages\" id=\"$channel_id\">older messages</label></div>";
 
         }else{
             $attach_div="<div><label class=\"the_end\" id=\"$channel_id\">End of channel messages</label></div>";
