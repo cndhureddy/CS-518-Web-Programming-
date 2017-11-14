@@ -22,6 +22,7 @@ function retrieving_messages($conn,$channel_id){
     $temp_time_month="";
     $counter_today=0;
     $counter_yesterday=0;
+    $temp_user_id="";
 
 //    $query_message_id="select message_id,reaction,count(*) from message_reaction group by message_id,reaction ";
    // $result_message_id=$conn->query($query_message_id);
@@ -61,7 +62,11 @@ function retrieving_messages($conn,$channel_id){
                 $count_dislike=$row_message_id_dislike["count"];
 
             }
-            if($temp_time==$formated_time_am_pm) {
+
+       // echo $row["user_id"];
+     //   echo $temp_user_id;
+
+            if($temp_time==$formated_time_am_pm and $row["user_id"]==$temp_user_id) {
 
                /* echo "<div><img class=\" message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
 
@@ -116,6 +121,7 @@ function retrieving_messages($conn,$channel_id){
 
             }
             else{
+                $temp_user_id=$row["user_id"];
                 $temp_time=$formated_time_am_pm;
                 date_default_timezone_set("America/New_York");
                 //echo time();
