@@ -71,8 +71,6 @@ function retrieving_messages($conn,$channel_id){
 
             }
 
-
-
        // echo $row["user_id"];
      //   echo $temp_user_id;
 
