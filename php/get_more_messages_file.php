@@ -78,7 +78,7 @@ public function retrieve_next_messages($channel_id,$count){
             if($temp_time==$formated_time_am_pm and $row["user_id"]==$temp_user_id) {
 
 
-                $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" .htmlspecialchars($row["message"]) ." <br> ";
+                $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub \" > <div class=\"message_sub\" id=\"".htmlspecialchars($row["message_id"])."_div\">" .htmlspecialchars($row["message"]) ." <br> ";
 
                 $query_thread_count=$db_object->get_thread_count($row["message_id"]);
 
@@ -98,7 +98,7 @@ public function retrieve_next_messages($channel_id,$count){
                 }
                 $attach_div=$attach_div. "</div>";
 
-                $attach_div=$attach_div. "<div class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
+                $attach_div=$attach_div. "<div  class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
                 if($row_count["count(*)"]>0)
                 {
                     $attach_div=$attach_div. "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."  \">";
@@ -125,39 +125,52 @@ public function retrieve_next_messages($channel_id,$count){
                 $msg_date=date('d.m.Y',strtotime($row["timestamp"]));
                 // echo $date_current;
                 //echo $msg_date;
-
+                $check_br=0;
                 if($date_current_format== $msg_date and $counter_today==0){
                     //echo "DATE";
-                    $attach_div=$attach_div."<hr class=\"left_hr\"> <span class=\"today_text\">today</span> <hr class=\"right_hr\">";
+                    $attach_div=$attach_div."<div class=\"row col-lg-5\"><hr class=\"left_hr col-lg-4\"> <span class=\"today_text col-lg-2\">today</span> <hr class=\"right_hr col-lg-4\"></div>";
                     $counter_today++;
+                    $check_br=1;
                 }
                 else if($counter_yesterday==0 and $date_yesterday_format== $msg_date ){
-                    $attach_div=$attach_div. "<hr class=\"left_hr\"> <span class=\"today_text\">yesterday</span> <hr class=\"right_hr\">";
+                    $attach_div=$attach_div. "<div class=\"row\"><hr class=\"left_hr col-lg-4\"> <span class=\"today_text col-lg-2\">yesterday</span> <hr class=\"right_hr col-lg-4\"></div>";
                     $counter_yesterday++;
+                    $check_br=1;
 
                     // echo "test failed";
                 }
                 else if($temp_time_month!=$formated_date and $counter_yesterday!=1)
                 {
                     if($counter_today!=1) {
-                        $attach_div=$attach_div. "<hr class=\"left_hr\"> <span class=\"date_msg_text\">$formated_date</span> <hr class=\"right_hr\">";
+                        $attach_div=$attach_div. "<div class=\"row\"><hr class=\"left_hr col-lg-4\"> <span class=\"date_msg_text col-lg-2\">$formated_date</span> <hr class=\"right_hr col-lg-4\"></div>";
                         $temp_time_month = $formated_date;
+                       $check_br=1;
                     }
 
                 }
 
+                if($check_br==1)
+                {
+                    // echo "<br><div class=\"gap\"></div>";
+                }
+                else
+                {
+                    $attach_div=$attach_div. "<div class=\"gap\"></div>";
+                }
 
 
+
+                $attach_div=$attach_div."<div class=\"row\">";
 
                 $attach_div=$attach_div. " <div class=\"the_whole_message\">";
 
-                $attach_div=$attach_div. "<div class=\"image_div\"><img class=\"message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
+                $attach_div=$attach_div. "<div class=\"image_div col-xs-1\"><img class=\"message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
 
 
-                $attach_div=$attach_div. "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
+                $attach_div=$attach_div. "<div class=\" col-lg-10 \"><div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
 
 
-                $attach_div=$attach_div. "<div class=\"message_display \" id=\"".htmlspecialchars($row["message_id"])."_div\"><div class=\"only_message\">".htmlspecialchars($row["message"])." </div>  ";
+                $attach_div=$attach_div. "<div class=\"message_display \" id=\"".htmlspecialchars($row["message_id"])."_div\"><div class=\"only_message\">".htmlspecialchars($row["message"])." ";
 
 
                 $query_thread_count=$db_object->get_thread_count($row["message_id"]);
@@ -169,27 +182,27 @@ public function retrieve_next_messages($channel_id,$count){
 
                 if($count_like>0)
                 {
-                    $attach_div=$attach_div. "<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"".htmlspecialchars($row["message_id"])."_like\"  >".$count_like."</i> &nbsp;";
+                    $attach_div=$attach_div. "<br><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"".htmlspecialchars($row["message_id"])."_like\"  >".$count_like."</i> &nbsp;";
 
                 }
                 if($count_dislike>0)
                 {
 
-                    $attach_div=$attach_div. "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\" id=\"".htmlspecialchars($row["message_id"])."_dislike\" >".$count_dislike."</i>&nbsp;";
+                    $attach_div=$attach_div. "<i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\" id=\"".htmlspecialchars($row["message_id"])."_dislike\" >".$count_dislike."</i>&nbsp; ";
                 }
 
-                $attach_div=$attach_div. "<div class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
+                $attach_div=$attach_div. "<div  style=\"margin-left: 0%;\" class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
                 if($row_count["count(*)"]>0) {
                     $attach_div=$attach_div. "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."\">";
-                    $attach_div=$attach_div. " <button id=\"thread_count_".htmlspecialchars($row["message_id"])."\" value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button>";
+                    $attach_div=$attach_div. " <button  id=\"thread_count_".htmlspecialchars($row["message_id"])."\" value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button>";
                     $attach_div=$attach_div. "</div>";
                 }
                 $attach_div=$attach_div. "</div></div> ";
-                $attach_div=$attach_div. "</div>";
+                $attach_div=$attach_div. "</div> </div></div> ";
 
 
-                $attach_div=$attach_div. "<div class=\"message_reactions_with_user\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
-
+                $attach_div=$attach_div. "<div class=\"message_reactions_with_user col-md-1\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
+                $attach_div=$attach_div."</div>";
 
 
             }

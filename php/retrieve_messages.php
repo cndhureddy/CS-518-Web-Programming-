@@ -144,35 +144,45 @@ function retrieving_messages($conn,$channel_id){
                 $msg_date=date('d.m.Y',strtotime($row["timestamp"]));
                // echo $date_current;
                 //echo $msg_date;
-
+                $check_br=0;
                 if($date_current_format== $msg_date and $counter_today==0){
                     //echo "DATE";
-                    echo "<hr class=\"left_hr\"> <span class=\"today_text\">today</span> <hr class=\"right_hr\">";
+                    echo "<div class=\"row\"><hr class=\"left_hr col-md-4\"> <span class=\"today_text col-lg-2\">today</span> <hr class=\"right_hr col-md-4\"></div>";
                     $counter_today++;
+                    $check_br=1;
                 }
                 else if($counter_yesterday==0 and $date_yesterday_format== $msg_date ){
-                    echo "<hr class=\"left_hr\"> <span class=\"today_text\">yesterday</span> <hr class=\"right_hr\">";
+                    echo "<div class=\"row\"><hr class=\"left_hr col-md-4\"> <span class=\"today_text col-lg-2\">yesterday</span> <hr class=\"right_hr col-md-4\"></div>";
                     $counter_yesterday++;
-
+                    $check_br=1;
                    // echo "test failed";
                 }
                 else if($temp_time_month!=$formated_date and $counter_yesterday!=1)
                 {
                     if($counter_today!=1) {
-                        echo "<hr class=\"left_hr\"> <span class=\"date_msg_text\">$formated_date</span> <hr class=\"right_hr\">";
+                        echo "<div class=\"row\"><hr class=\"left_hr col-md-4\"> <span class=\"date_msg_text col-lg-2\">$formated_date</span> <hr class=\"right_hr col-md-4\"></div>";
                         $temp_time_month = $formated_date;
+                        $check_br=1;
                     }
 
                 }
 
+                if($check_br==1)
+                {
+                   // echo "<br><div class=\"gap\"></div>";
+                }
+                else
+                {
+                  //  echo "<div class=\"gap\"></div>";
+                }
+        
 
+                echo "<div class=\"row\">";
+                echo "<div class=\"the_whole_message \">";
 
+                echo "<div class=\"image_div col-xs-1\"><img class=\"message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
 
-                echo " <div class=\"the_whole_message\">";
-
-                echo "<div class=\"image_div\"><img class=\"message_user_image\" src=\"" . $row_user["picture"] . "\"</img></div>";
-
-
+                echo "<div class=\" col-lg-10 \">";
                 echo "<div class=\"message_user_full_name\"><span class=\"fullname_msg_span\" \>" . $row_user['full_name'] . " </span>" . $formated_time_am_pm . "</div>";
 
 
@@ -207,11 +217,11 @@ function retrieving_messages($conn,$channel_id){
                 }
                 echo "</div></div> ";
                 echo "</div>";
+                echo "</div>";
 
+                echo "<div class=\"message_reactions_with_user col-md-2\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
 
-                echo "<div class=\"message_reactions_with_user\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
-
-
+                echo "</div>";
 
             }
 

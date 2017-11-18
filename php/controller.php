@@ -24,3 +24,4 @@ $div=$retrieving_messages->retrieve_next_messages($channel_id,$count);
     echo $div;
 
 }
+

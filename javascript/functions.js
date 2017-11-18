@@ -319,7 +319,7 @@ $( document ).ready(function() {
        $(".message_sub").css("width","88%");
        $(".only_message").css("width","88%");
         $(".message_display").css("width","90%");
-        $(".message_reactions_with_user").css("margin-top","-2%");
+      //  $(".message_reactions_with_user").css("margin-top","-2%");
 
        $('body').append('<div class=\"thread_management\" > <div class=\"thread_top_bar\"> <b style="margin-left: 5%; margin-top: 40%"> Thread</b><button  class=\"close_button\"><i class="fa fa-times" aria-hidden="true"></i></button></div> <div class=\"thread body\"> </div> </div>');
 
@@ -394,6 +394,7 @@ $( document ).ready(function() {
 
        $(".message_post").css("width", "87%");
 
+       $(".only_message").css("width","120% !important");
 
             $(".thread_management").remove();
         }
