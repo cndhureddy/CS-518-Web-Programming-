@@ -51,6 +51,19 @@ public function get_thread_count($message_id){
         return $query;
 
     }
+    public function insert_message($channel_id,$user_id,$message_final,$current_date,$smiley_status,$message_type){
+
+        $query="insert into channel_messages values(DEFAULT,'$channel_id','$user_id','$message_final','$current_date','$smiley_status','$message_type') ";
+        return $query;
+
+    }
+    public function get_file_name(){
+
+        $query="select message_id from channel_messages order by message_id DESC LIMIT 1;";
+        return $query;
+
+
+    }
 
 
 

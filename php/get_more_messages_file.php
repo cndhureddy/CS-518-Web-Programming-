@@ -128,7 +128,7 @@ public function retrieve_next_messages($channel_id,$count){
                 $check_br=0;
                 if($date_current_format== $msg_date and $counter_today==0){
                     //echo "DATE";
-                    $attach_div=$attach_div."<div class=\"row col-lg-5\"><hr class=\"left_hr col-lg-4\"> <span class=\"today_text col-lg-2\">today</span> <hr class=\"right_hr col-lg-4\"></div>";
+                    $attach_div=$attach_div."<div class=\"row \"><hr class=\"left_hr col-lg-4\"> <span class=\"today_text col-lg-2\">today</span> <hr class=\"right_hr col-lg-4\"></div>";
                     $counter_today++;
                     $check_br=1;
                 }

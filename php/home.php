@@ -12,6 +12,7 @@
 
     <script src="../javascript/functions.js"></script>
     <script src="../javascript/pagination.js"></script>
+    <script src="../javascript/picture_upload_preview.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -29,7 +30,8 @@
  * Time: 12:30 AM
  */
 
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start();
 
 if($_SESSION['email'])
@@ -231,8 +233,13 @@ else{
 
     </div>
 
+
+
+
+
+
 <div class="message_post">
-<form method="post" action="message_post.php">
+<form method="post" action="controller.php">
     <textarea type="text" class="input_message" name="message"  contenteditable="true" placeholder="Message" ></textarea>
     <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
         <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
@@ -241,13 +248,165 @@ else{
    <!--<input type="text" class="message_post" contenteditable="true" type="text"/>
 -->
     <button class="submit_button_message" type="submit" value=""> <i class="fa fa-paper-plane lg" aria-hidden="true"></i> </button>
+
+
+
+    <div class="class_modal" style="
+    /* margin-left: 64%; */
+">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#codesnip" style="
+
+    /* margin-left: 242%; */
+    /* margin-bottom: 37%; */
+    /* height: 181%; */
+    /* width: 12%; */
+" >
+            <i class="fa fa-code" aria-hidden="true"></i>
+        </button>
+    </div>
+
+
+
+
+    <div style="
+    /* margin-left: 64%; */
+    float: right;
+    margin-right: -5.3%;
+">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadPic" style="
+
+    /* margin-left: 242%; */
+    /* margin-bottom: 37%; */
+    /* height: 181%; */
+    /* width: 12%; */
+">
+            <i class="fa fa-upload" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <div style="
+    /* margin-left: 64%; */
+    float: right;
+    margin-right: -8.0%;
+">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imglink" style="
+
+    /* margin-left: 242%; */
+    /* margin-bottom: 37%; */
+    /* height: 181%; */
+    /* width: 12%; */
+">
+            <i class="fa fa-link" aria-hidden="true"></i>
+        </button>
+    </div>
+
 </form>
+
+
+
 
 </div>
 
 
 
 
+
+<!-- Modal -->
+<div class="modal fade" id="codesnip" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Code snippet</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="controller.php" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="comment">Code:</label>
+                        <textarea class="form-control" rows="15" name="codesnip_value"></textarea>
+                        <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
+                        <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
+                        <input type="hidden" name="message_type" value="codesnip"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button  type="submit" class="btn btn-primary" id="message_code_snip">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="imglink" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Image Link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="controller.php" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="comment">image url:</label>
+                        <textarea class="form-control" rows="5" name="img_link_content"></textarea>
+                        <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
+                        <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
+                        <input type="hidden" name="message_type" value="image_link"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="message_img_link">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="uploadPic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Picture</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="controller.php" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Upload Image</label>
+                                <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-default btn-file">
+                    Browse… <input type="file" id="imgInp" name="fileToUpload">
+                    <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
+                    <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
+                </span>
+            </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                                <img id='img-upload'/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="message_upload_pic" name="submit" value="end">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 

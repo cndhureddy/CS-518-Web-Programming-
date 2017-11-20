@@ -194,18 +194,20 @@ body{
 
 
 
-    margin-left: 14%;
+    margin-left: 1%;
   /*  border: solid 1px grey;
-*/    width: 83%;
-    min-height: 1.5em;
+*/    width: 80%;
+   /* min-height: 1.5em;
     max-height: 5em;
     overflow-y: auto;
     max-width: 83%;
     padding: 0.2% 0.2% 0.2% 0.2%;
+   */
+    margin-left: 14%;
     border-radius: 0.3em;
     background-color: transparent;
-    position: absolute;
-    bottom: 1%;
+   position: fixed;
+   bottom: 0%;
 
 }
 
@@ -629,7 +631,40 @@ body{
 
 
 }
+.class_modal{
+    float:right;
+}
 
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 100%;
+}
+
+.modal-backdrop {
+    z-index: -2 !important;
+}
+.clear {
+    clear: both;
+}
 
 
 /*
