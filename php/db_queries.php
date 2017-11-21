@@ -15,7 +15,8 @@ class db_queries
     public function retrieve_messages_query($channel_id,$count){
 
 
-        $query = "select * from (SELECT * FROM `channel_messages` where channel_id='" . $channel_id . "' ORDER BY timestamp DESC LIMIT " . $count . ")a order by timestamp ASC";
+       // $query = "SELECT * FROM `channel_messages` where channel_id='" . $channel_id . "' and message_id<'".$count."'  LIMIT 15";
+        $query = "select * from (SELECT * FROM `channel_messages` where channel_id='" . $channel_id . "' and message_id<'".$count."' ORDER BY timestamp DESC LIMIT 15)a order by timestamp ASC";
 
         return $query;
     }

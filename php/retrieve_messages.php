@@ -5,8 +5,8 @@
  * Date: 10/10/2017
  * Time: 2:05 AM
  */
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 include("connect.php");
 function retrieving_messages($conn,$channel_id){
     // echo $channel_id;
@@ -26,9 +26,17 @@ function retrieving_messages($conn,$channel_id){
     //$row_message_id=$result_message_id->fetch_all(MYSQLI_ASSOC);
     // print_r($row_message_id);
     // $restrict=0;
-    echo "<div><label class=\"older_messages\" id=\"$channel_id\">older messages</label></div>";
+    $i_increment=0;
+
     while($row=$result->fetch_array(MYSQLI_ASSOC))
     {
+        $i_increment=$i_increment+1;
+        $attach_id=$row["message_id"];
+        if($i_increment==1){
+
+            echo "<div><label message_id=\"$attach_id\"class=\"older_messages\" id=\"$channel_id\">older messages</label></div>";
+
+        }
         //$restrict=$restrict+1;
         // if($restrict>16){
         //break;
@@ -84,6 +92,7 @@ function retrieving_messages($conn,$channel_id){
                 //echo "<div class=\"clear\"></div>";
 
             }
+
 
 
             $query_thread_count="select count(*) from thread where message_id='".$row["message_id"]."'";

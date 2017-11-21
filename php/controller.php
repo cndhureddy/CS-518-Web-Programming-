@@ -33,13 +33,15 @@ if(isset($_POST["retrieve_channel_id"])){
 
 $channel_id=$_POST["retrieve_channel_id"];
 $count=$_POST["count_div"];
+$total_count=$_POST["total_count"];
 
-$div=$retrieving_messages->retrieve_next_messages($channel_id,$count);
+$div=$retrieving_messages->retrieve_next_messages($channel_id,$count,$total_count);
 
 
 
     echo $div;
 
+//echo "hello";
 }
 
 

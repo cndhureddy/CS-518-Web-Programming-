@@ -344,14 +344,39 @@ $( document ).ready(function() {
 
                if($thread_tag_check[0]) {
                    $(".the_thread_for_a_message").remove();
-                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + image_variable+ '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   if(obj["message_type"]=="codesnip") {
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><pre><code>' + (obj["message"]) + '</code></pre> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   }
+                   if(obj["message_type"]=="picture" ) {
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   }
+                   if(obj["message_type"]=="image_link"){
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><a href=\"' + (obj["message"]) + '\">' + (obj["message"]) + '<a/> </div> </div>   </div><div class=\"the_thread_for_a_message\">  <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
 
+                   }
+                   if(obj["message_type"]=="message") {
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"> ' + (obj["message"]) + '</div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   }
                    $('.thread_management').append($thread_tag);
                }
                else{
 
-                   $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + image_variable + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
+                   if(obj["message_type"]=="codesnip") {
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><pre><code>' + (obj["message"]) + '</code></pre> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   }
+                   if(obj["message_type"]=="picture"  ) {
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   }
 
+
+                   if(obj["message_type"]=="image_link"){
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><a href=\"' + (obj["message"]) + '\">' + (obj["message"]) + '<a/> </div> </div>   </div><div class=\"the_thread_for_a_message\">  <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+
+                   }
+
+                   if(obj["message_type"]=="message") {
+                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"> ' + (obj["message"]) + '</div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                   }
                    $('.thread_management').append($thread_tag);
 
 
@@ -392,7 +417,7 @@ $( document ).ready(function() {
         {
             $(".chat_area").css("width", "87%");
 
-       $(".message_post").css("width", "87%");
+       $(".message_post").css("width", "80%");
 
        $(".only_message").css("width","120% !important");
 
@@ -458,14 +483,40 @@ $( document ).ready(function() {
 
                    if($thread_tag_check[0]) {
                        $(".the_thread_for_a_message").remove();
-                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+
+                       if(obj["message_type"]=="codesnip") {
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><pre><code>' + (obj["message"]) + '</code></pre> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                       }
+                       if( obj["message_type"]=="picture" ) {
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                       }
+
+                       if(obj["message_type"]=="image_link"){
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><a href=\"' + (obj["message"]) + '\">' + (obj["message"]) + '<a/> </div> </div>   </div><div class=\"the_thread_for_a_message\">  <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+
+                       }
+                       if(obj["message_type"]=="message") {
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"> ' + (obj["message"]) + '</div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                       }
 
                        $('.thread_management').append($thread_tag);
                    }
                    else{
 
-                       $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\">' + (obj["message"]) + ' </div> </div> <div class=\"form_thread\" message_id=\"'+obj["message_id"]+'\" user_id =\"'+user_id+'\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\"  value=\"Send\"> Send </button> </div></div>';
+                       if(obj["message_type"]=="codesnip") {
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><pre><code>' + (obj["message"]) + '</code></pre> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                       }
+                       if(obj["message_type"]=="picture" ) {
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                       }
+                       if(obj["message_type"]=="image_link"){
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"><a href=\"' + (obj["message"]) + '\">' + (obj["message"]) + '<a/> </div> </div>   </div><div class=\"the_thread_for_a_message\">  <br><div class=\"thread_message\"><img height=\"150px\" width=\"150px\" src=\" ' + (obj["message"]) + '\"/> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
 
+                       }
+
+                       if(obj["message_type"]=="message") {
+                           $thread_tag = '<div class=\"the_thread_for_a_message\">  <div class=\"thread_start\"> <div class=\"thread_one_to_messages\"><div > <img class=\"thread_user_image\" src=\"' + obj["picture"] + '\">  </div> <div class=\"thread_message_username\" ><div> ' + obj["user_name"] + '</div><div>  in ' + $channel_name + '</div></div></div><div class=\"thread_time\"> &nbsp; ' + obj["time"] + '</div> <br><div class=\"thread_message\"> ' + (obj["message"]) + '</div> </div> <div class=\"form_thread\" message_id=\"' + obj["message_id"] + '\" user_id =\"' + user_id + '\" > <textarea class=\"thread_input\" id=\"id_text\" type="text"> </textarea><button class=\"thread_submit\" id=\"thread_message_submit\" value=\"Send\"> Send </button> </div>  </div>';
+                       }
                        $('.thread_management').append($thread_tag);
 
 
@@ -506,8 +557,9 @@ $( document ).ready(function() {
                {
                    $(".chat_area").css("width", "87%");
 
-                   $(".message_post").css("width", "87%");
+                   $(".message_post").css("width", "80%");
 
+                   $(".only_message").css("width","120% !important");
 
                    $(".thread_management").remove();
                }

@@ -27,6 +27,7 @@ $ret_message=mysqli_query($conn,$sql_message_thread);
 
 $row_message=mysqli_fetch_array($ret_message,MYSQLI_ASSOC);
 $_message_thread = $row_message["message"];
+$message_type=$row_message["message_type"];
 //$_message_timestamp = $row_message["timestamp"];
 
 $formated_time_am_pm=date("d M h:i A",strtotime($row_message["timestamp"]));
@@ -54,7 +55,7 @@ $user_thread_picture= $row_user["picture"];
 
 
 
-$final_array=array('picture'=>$user_thread_picture,'user_name'=>$user_name_thread,'message'=>htmlspecialchars($_message_thread),'time'=>$formated_time_am_pm,'user_id'=>$_user_id_thread_msg,'message_id'=>$message_id);
+$final_array=array('picture'=>$user_thread_picture,'user_name'=>$user_name_thread,'message'=>htmlspecialchars($_message_thread),'time'=>$formated_time_am_pm,'user_id'=>$_user_id_thread_msg,'message_id'=>$message_id,'message_type'=>$message_type);
 
 
 
