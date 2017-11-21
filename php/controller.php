@@ -89,8 +89,17 @@ if(isset($_POST["img_link_content"])){
 
     $channel_id=$_POST["channel_id"];
     $user_id=$_POST["user_id"];
+
+
+
     $message=$_POST["img_link_content"];
-    $message_type=$_POST["message_type"];
+    $headers = get_headers($message, 1);
+    if (strpos($headers['Content-Type'], 'image/') !== false) {
+        $message_type=$_POST["message_type"];
+    } else {
+        $message_type="message";
+    }
+
     $return_value=$message_posting->post_message($channel_id,$user_id,$message,$message_type);
     echo $return_value;
     echo "img_link_content";
