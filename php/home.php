@@ -30,11 +30,11 @@
  * Time: 12:30 AM
  */
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 session_start();
 
-if($_SESSION['email'])
+if($_SESSION['email'] )
 {
 
 }
@@ -328,6 +328,7 @@ else{
                         <textarea class="form-control" rows="15" name="codesnip_value"></textarea>
                         <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
                         <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
+                        <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
                         <input type="hidden" name="message_type" value="codesnip"/>
                     </div>
                 </div>
@@ -356,6 +357,7 @@ else{
                         <textarea class="form-control" rows="5" name="img_link_content"></textarea>
                         <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
                         <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
+                        <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
                         <input type="hidden" name="message_type" value="image_link"/>
                     </div>
                 </div>
@@ -389,6 +391,7 @@ else{
                     Browse… <input type="file" id="imgInp" name="fileToUpload">
                     <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
                     <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
+                    <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
                 </span>
             </span>
                                     <input type="text" class="form-control" readonly>

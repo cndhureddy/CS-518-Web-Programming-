@@ -8,12 +8,17 @@
 
 session_start();
 include ("connect.php");
-if($_SESSION['email'])
+if(isset($_SESSION['email']))
 {
 
 }
 else{
-    header('location:../index.php');
+    if($_SESSION['admin']=="yes"){
+
+    }else {
+
+       header('location:../index.php');
+    }
 }
 
 include_once "./get_more_messages_file.php";
@@ -30,17 +35,22 @@ $message_post_pic=new message_post_pic();
 
 
 if(isset($_POST["retrieve_channel_id"])){
+//echo "entered";
 
 $channel_id=$_POST["retrieve_channel_id"];
 $count=$_POST["count_div"];
 $total_count=$_POST["total_count"];
-
+//echo $channel_id;
+//echo $count;
+//echo $total_count;
+//die();
 $div=$retrieving_messages->retrieve_next_messages($channel_id,$count,$total_count);
 
+//echo div;
 
 
     echo $div;
-
+   // die();
 //echo "hello";
 }
 
@@ -49,15 +59,22 @@ if(isset($_POST["message"])){
     $channel_id=$_POST["channel_id"];
     $user_id=$_POST["user_id"];
     $message=$_POST["message"];
+    $channel_name=$_POST["channel_name"];
     $message_type="message";
     $return_value=$message_posting->post_message($channel_id,$user_id,$message,$message_type);
     echo $return_value;
     echo "in message";
 
     if($return_value==1){
+        if($user_id!=18) {
+            $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+            header("location: home.php?$parameter#test");
+        }
+        else{
 
-        header("location: home.php?$parameter#test");
-
+            $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+            header("location: admin_home.php?$parameter#test");
+        }
     }
 
 
@@ -72,13 +89,21 @@ if(isset($_POST["codesnip_value"])){
     $user_id=$_POST["user_id"];
     $message=$_POST["codesnip_value"];
     $message_type=$_POST["message_type"];
+    $channel_name=$_POST["channel_name"];
     $return_value=$message_posting->post_message($channel_id,$user_id,$message,$message_type);
     echo $return_value;
     echo "in code snip values";
-     if($return_value==1){
-         header("location: home.php?$parameter#test");
+    if($return_value==1){
+        if($user_id!=18) {
+            $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+            header("location: home.php?$parameter#test");
+        }
+        else{
 
-     }
+            $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+            header("location: admin_home.php?$parameter#test");
+        }
+    }
 
 
 
@@ -91,7 +116,7 @@ if(isset($_POST["img_link_content"])){
     $user_id=$_POST["user_id"];
 
 
-
+    $channel_name=$_POST["channel_name"];
     $message=$_POST["img_link_content"];
     $headers = get_headers($message, 1);
     if (strpos($headers['Content-Type'], 'image/') !== false) {
@@ -103,10 +128,17 @@ if(isset($_POST["img_link_content"])){
     $return_value=$message_posting->post_message($channel_id,$user_id,$message,$message_type);
     echo $return_value;
     echo "img_link_content";
-      if($return_value==1){
-          header("location: home.php?$parameter#test");
+    if($return_value==1){
+        if($user_id!=18) {
+            $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+            header("location: home.php?$parameter#test");
+        }
+        else{
 
-      }
+            $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+            header("location: admin_home.php?$parameter#test");
+        }
+    }
 
 
 
@@ -122,6 +154,7 @@ if(isset($_FILES["fileToUpload"])){
 
     $query=$db_object->get_file_name();
     //mysqli_query($conn,$query);
+    $channel_name=$_POST["channel_name"];
 
     $result_set=$conn->query($query);
     mysqli_close($conn);
@@ -129,6 +162,7 @@ if(isset($_FILES["fileToUpload"])){
     $number=$row["message_id"]+1;
     $channel_id=$_POST["channel_id"];
     $user_id=$_POST["user_id"];
+    $channel_name=$_POST["channel_name"];
     $submit=$_POST["submit"];
     $size=$_FILES["fileToUpload"]["size"];
     $image_name_a=$_FILES["fileToUpload"]["name"];
@@ -155,7 +189,7 @@ if(isset($_FILES["fileToUpload"])){
        echo $img_name;*/
     $smiley_status="false";
     $message_type="picture";
-    $message_post_pic->upload_pic($submit,$img_name,$img_file_name,$image_name_a,$size,$channel_id,$user_id,$smiley_status,$message_type);
+    $message_post_pic->upload_pic($submit,$img_name,$img_file_name,$image_name_a,$size,$channel_id,$user_id,$smiley_status,$message_type,$channel_name);
 
     /* $query=$db_object->insert_message($channel_id,$user_id,$message_final,$current_date,$smiley_status,$message_type);
 

@@ -16,7 +16,8 @@ class message_posting
         //$message = $_POST['message'];
         //$user_id = $_POST['user_id'];
         //$channel_id = $_POST['channel_id'];
-
+       // echo "hello";
+       // die();
 
         $smiley_status='False';
         date_default_timezone_set("America/New_York");
@@ -32,16 +33,24 @@ class message_posting
         if (trim($message_final)!=='') {
 
             $db_object=new db_queries();
+            //echo $channel_id;
+            //echo $user_id;
+            //echo $message_final;
+            //echo $current_date;
+            //echo $smiley_status;
+            //echo $message_type;
 
             $query=$db_object->insert_message($channel_id,$user_id,$message_final,$current_date,$smiley_status,$message_type);
 
             //$conn->query($query);
+            //echo $query;
 
 
            // $query = "insert into channel_messages values(DEFAULT,'$channel_id','$user_id','$message_final','$current_date','$smiley_status','$message_type')";
             mysqli_query($conn, $query);
             //echo $query;
             mysqli_close($conn);
+
 //echo "hello";
         }
 

@@ -11,7 +11,7 @@ include_once('db_queries.php');
 class message_post_pic
 {
 
-    function upload_pic($submit,$img_name,$img_file_name,$img_name_a,$size,$channel_id,$user_id,$smiley_status,$message_type){
+    function upload_pic($submit,$img_name,$img_file_name,$img_name_a,$size,$channel_id,$user_id,$smiley_status,$message_type,$channel_name){
         include ("connect.php");
         $db_object=new db_queries();
 
@@ -105,7 +105,17 @@ class message_post_pic
 
 
             if ($uploadOk == 0) {
-                header("location: home.php?$parameter#test");
+
+                    if($user_id!=0) {
+                        $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+                        header("location: home.php?$parameter#test");
+                    }
+                    else{
+
+                        $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+                        header("location: admin_home.php?$parameter#test");
+                    }
+
                 die();
             }
 
@@ -134,7 +144,15 @@ class message_post_pic
                     mysqli_query($conn, $query);
 
                     echo $query;
-                 header("location: home.php?$parameter#test");
+                    if($user_id!=18) {
+                        $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+                        header("location: home.php?$parameter#test");
+                    }
+                    else{
+
+                        $parameter = "channel_id=" . ($channel_id) . "&user_id=" . ($user_id) . "&channel_name=" . ($channel_name);
+                        header("location: admin_home.php?$parameter#test");
+                    }
                  die();
                     echo <<<EOL
 <script type="text/javascript">
