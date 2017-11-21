@@ -13,6 +13,7 @@
     <script src="../javascript/functions.js"></script>
     <script src="../javascript/pagination.js"></script>
     <script src="../javascript/picture_upload_preview.js"></script>
+    <script src="../javascript/onchange_jquery.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -108,6 +109,14 @@ else{
     //button class="channel_names" value="hello"></button>
     ?>
 
+    <div class="Search"><input type="text" class="enter_username" autofill="off"/> </div>
+    <div class="Suggestions">
+        <ul class="Suggestions_ul">
+
+
+        </ul>
+
+    </div>
 
     </div >
 
