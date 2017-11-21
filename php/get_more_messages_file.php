@@ -18,6 +18,10 @@ class get_more_messages
         $temp_user_id="";
        // $check_count=$count;
         //$count=$count+15;
+        $query_channel_status="select * from channels where channel_id='".$channel_id."'";
+
+        $result_channel_status=$conn->query($query_channel_status);
+        $row_channel_status=$result_channel_status->fetch_array(MYSQLI_ASSOC);
         $db_object=new db_queries();
         $query=$db_object->retrieve_messages_query($channel_id,$count);
         $result_set=$conn->query($query);
@@ -109,12 +113,21 @@ class get_more_messages
                 if($row_count["count(*)"]>0)
                 {
                     $attach_div=$attach_div. "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."  \">";
-                    $attach_div=$attach_div. "<button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"   >".  $row_count["count(*)"] ." replies </button>";
+                    if($row_channel_status["archieved_status"]=="unarchieved") {
+                        $attach_div = $attach_div . "<button id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\"   value=\" " . htmlspecialchars($row["message_id"]) . "\"   >" . $row_count["count(*)"] . " replies </button>";
+                    }
+                    else{
+                        $attach_div = $attach_div . "<button archieved=\"yes\" id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\"   value=\" " . htmlspecialchars($row["message_id"]) . "\"   >" . $row_count["count(*)"] . " replies </button>";
+                    }
                     $attach_div=$attach_div. "</div>";
                 }
                 $attach_div=$attach_div. "</div>";
-                $attach_div=$attach_div. "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> </div>";
-                //  echo "</div>";
+                if($row_channel_status["archieved_status"]=="unarchieved") {
+                    $attach_div = $attach_div . "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" " . htmlspecialchars($row["message_id"]) . "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> ";
+                    //  echo "</div>";
+                }
+
+                $attach_div=$attach_div."</div>";
             }
             else{
                 $temp_user_id=$row["user_id"];
@@ -206,12 +219,19 @@ class get_more_messages
                 $attach_div=$attach_div. "<div  style=\"margin-left: 0%;\" class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
                 if($row_count["count(*)"]>0) {
                     $attach_div=$attach_div. "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."\">";
-                    $attach_div=$attach_div. " <button  id=\"thread_count_".htmlspecialchars($row["message_id"])."\" value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button>";
+                    if($row_channel_status["archieved_status"]=="unarchieved") {
+                        $attach_div = $attach_div . " <button  id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\" value=\" " . htmlspecialchars($row["message_id"]) . "\"    >" . $row_count["count(*)"] . " replies</button>";
+                    }else{
+                        $attach_div = $attach_div . " <button  archieved=\"yes\" id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\" value=\" " . htmlspecialchars($row["message_id"]) . "\"    >" . $row_count["count(*)"] . " replies</button>";
+
+                    }
                     $attach_div=$attach_div. "</div>";
                 }
                 $attach_div=$attach_div. "</div></div> ";
                 $attach_div=$attach_div. "</div> </div>";
-                $attach_div=$attach_div. "<div class=\"message_reactions_with_user col-md-1\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
+                if($row_channel_status["archieved_status"]=="unarchieved") {
+                    $attach_div = $attach_div . "<div class=\"message_reactions_with_user col-md-1\"><button id=\"like\"  class=\"like_dislike\" value=\"" . htmlspecialchars($row["message_id"]) . "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"" . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
+                }
                 $attach_div=$attach_div."</div>";
             }
             //$attach_div=$attach_div. " <div id=\"test\"   user_id=\"$user_id\"></div>";
@@ -220,7 +240,7 @@ class get_more_messages
     }
 
 
-    public function retrieve_next_messages_admin($channel_id,$count,$total_count){
+    public function retrieve_next_messages_admin($channel_id,$count,$total_count,$user_id){
         include ("connect.php");
         $temp_time="";
         $temp_time_month="";
@@ -229,6 +249,10 @@ class get_more_messages
         $temp_user_id="";
         // $check_count=$count;
         //$count=$count+15;
+        $query_channel_status="select * from channels where channel_id='".$channel_id."'";
+
+        $result_channel_status=$conn->query($query_channel_status);
+        $row_channel_status=$result_channel_status->fetch_array(MYSQLI_ASSOC);
         $db_object=new db_queries();
         $query=$db_object->retrieve_messages_query($channel_id,$count);
         $result_set=$conn->query($query);
@@ -245,7 +269,7 @@ class get_more_messages
             if($attach_increment==1){
                 $attach_id=$row["message_id"];
                 if($row_count["count(*)"]>=$total_count) {
-                    $attach_div="<div><label class=\"older_messages\" id=\"$channel_id\" message_id=\"$attach_id\">older messages</label></div>";
+                    $attach_div="<div><label user_id=\"$user_id\" class=\"older_messages\" id=\"$channel_id\" message_id=\"$attach_id\">older messages</label></div>";
                 }else{
                     $attach_div="<div><label class=\"the_end\" id=\"$channel_id\" message_id=\"$attach_id\">End of channel messages</label></div>";
                 }
@@ -307,6 +331,7 @@ class get_more_messages
                 $query_thread_count=$db_object->get_thread_count($row["message_id"]);
                 $result_thread_count =$conn->query($query_thread_count);
                 $row_count=$result_thread_count->fetch_array(MYSQLI_ASSOC);
+                $attach_div=$attach_div. "<div> <form action=\"delete_post.php\" method=\"post\"><input type=\"hidden\" name=\"message_id\" value=\"".htmlspecialchars($row["message_id"])."\"/><input type=\"submit\" value=\"delete\"></form></div>";
                 if($count_like>0)
                 {
                     $attach_div=$attach_div."<i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\" id=\"". htmlspecialchars($row["message_id"]). "_like\">".$count_like."</i> &nbsp;";
@@ -320,12 +345,22 @@ class get_more_messages
                 if($row_count["count(*)"]>0)
                 {
                     $attach_div=$attach_div. "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."  \">";
-                    $attach_div=$attach_div. "<button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"   >".  $row_count["count(*)"] ." replies </button>";
+                    if($row_channel_status["archieved_status"]=="unarchieved") {
+                        $attach_div = $attach_div . "<button id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\"   value=\" " . htmlspecialchars($row["message_id"]) . "\"   >" . $row_count["count(*)"] . " replies </button>";
+                    }else{
+                        $attach_div = $attach_div . "<button archieved=\"yes\" id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\"   value=\" " . htmlspecialchars($row["message_id"]) . "\"   >" . $row_count["count(*)"] . " replies </button>";
+
+                    }
                     $attach_div=$attach_div. "</div>";
                 }
+
                 $attach_div=$attach_div. "</div>";
-                $attach_div=$attach_div. "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> </div>";
-                //  echo "</div>";
+                if($row_channel_status["archieved_status"]=="unarchieved") {
+                    $attach_div = $attach_div . "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" " . htmlspecialchars($row["message_id"]) . "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> ";
+                    //  echo "</div>";
+                }
+                $attach_div=$attach_div."</div>";
+             //   $attach_div=$attach_div."<div style=\"float: right; margin-right: 2%;\"> <form action=\"delete_post.php\"><input type=\"hidden\" name=\"message_id\" value=\"".htmlspecialchars($row["message_id"])."\"/><input type=\"submit\" value=\"delete\"></form></div>";
             }
             else{
                 $temp_user_id=$row["user_id"];
@@ -406,6 +441,7 @@ class get_more_messages
                 $query_thread_count=$db_object->get_thread_count($row["message_id"]);
                 $result_thread_count =$conn->query($query_thread_count);
                 $row_count=$result_thread_count->fetch_array(MYSQLI_ASSOC);
+                $attach_div=$attach_div. "<div> <form method=\"post\" action=\"delete_post.php\"><input type=\"hidden\" name=\"message_id\" value=\"".htmlspecialchars($row["message_id"])."\"/><input type=\"submit\" value=\"delete\"></form></div>";
                 if($count_like>0)
                 {
                     $attach_div=$attach_div. "<br><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"  id=\"".htmlspecialchars($row["message_id"])."_like\"  >".$count_like."</i> &nbsp;";
@@ -417,13 +453,21 @@ class get_more_messages
                 $attach_div=$attach_div. "<div  style=\"margin-left: 0%;\" class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
                 if($row_count["count(*)"]>0) {
                     $attach_div=$attach_div. "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."\">";
-                    $attach_div=$attach_div. " <button  id=\"thread_count_".htmlspecialchars($row["message_id"])."\" value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button>";
+                    if($row_channel_status["archieved_status"]=="unarchieved") {
+                        $attach_div = $attach_div . " <button  id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\" value=\" " . htmlspecialchars($row["message_id"]) . "\"    >" . $row_count["count(*)"] . " replies</button>";
+                    }else{
+                        $attach_div = $attach_div . " <button archieved=\"yes\" id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\" value=\" " . htmlspecialchars($row["message_id"]) . "\"    >" . $row_count["count(*)"] . " replies</button>";
+
+                    }
                     $attach_div=$attach_div. "</div>";
                 }
                 $attach_div=$attach_div. "</div></div> ";
                 $attach_div=$attach_div. "</div> </div>";
-                $attach_div=$attach_div. "<div class=\"message_reactions_with_user col-md-1\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
+                if($row_channel_status["archieved_status"]=="unarchieved") {
+                    $attach_div = $attach_div . "<div class=\"message_reactions_with_user col-md-1\"><button id=\"like\"  class=\"like_dislike\" value=\"" . htmlspecialchars($row["message_id"]) . "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"" . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
+                }
                 $attach_div=$attach_div."</div>";
+                //$attach_div=$attach_div."<div style=\"float: right; margin-right: 2%;\"> <form action=\"delete_post.php\"><input type=\"hidden\" name=\"message_id\" value=\"".htmlspecialchars($row["message_id"])."\"/><input type=\"submit\" value=\"delete\"></form></div>";
             }
             //$attach_div=$attach_div. " <div id=\"test\"   user_id=\"$user_id\"></div>";
         }

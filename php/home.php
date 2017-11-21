@@ -36,7 +36,7 @@ session_start();
 
 if($_SESSION['email'] )
 {
-
+    $channel_id=0;
 }
 else{
     header('location:../index.php');
@@ -132,6 +132,10 @@ else{
           
           include ("connect.php");
 
+
+
+
+
           $q_check_user_id=mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$_SESSION['email']) ."'");
           $res_check_user_id=mysqli_fetch_row($q_check_user_id);
 
@@ -173,30 +177,41 @@ else{
               echo '<div class="top_channel_display" > #' . htmlspecialchars($_GET['channel_name']) . '</div>';
 
 
-             //   include ("connect.php");
+              //   include ("connect.php");
 
-              $query_channel_check = mysqli_query($conn,"select * from channels where channel_name='".mysqli_real_escape_string($conn,$_GET['channel_name'] )."'");
+              $query_channel_check = mysqli_query($conn, "select * from channels where channel_name='" . mysqli_real_escape_string($conn, $_GET['channel_name']) . "'");
               //echo $query_channel_check;
 //$res_e = mysqli_query($conn,$query);
-              $res=mysqli_fetch_row($query_channel_check);
+              $res = mysqli_fetch_row($query_channel_check);
 
-              if($res[3]=="public"){
 
-                  echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
+              $query_channel_status = "select * from channels where channel_id='" . $channel_id . "'";
+
+              $result_channel_status = $conn->query($query_channel_status);
+              $row_channel_status = $result_channel_status->fetch_array(MYSQLI_ASSOC);
+              if ($row_channel_status["archieved_status"] == "unarchieved"){
+                  if ($res[3] == "public") {
+
+                      echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
+
+
+                  }
+              if ($res[3] == "private") {
+
+                  if ($user_id == $res[5]) {
+
+                      echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name \"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
+
+
+                  }
 
 
               }
-              if($res[3]=="private"){
+          }
+          else{
 
-                    if($user_id==$res[5]){
-
-                        echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name \"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
-
-
-                    }
-
-
-              }
+                  echo "<b>Archieved</b>";
+          }
 
 
 
@@ -207,13 +222,13 @@ else{
           else{
 
 
-              include("default_channel.php");
-      if ($channel_id) {
+           //   include("default_channel.php");
+      /*if ($channel_id) {
 
           echo '<div class="top_channel_display" > # general</div>';
 
           echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"general\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
-      }
+      }*/
 
 
 
@@ -226,8 +241,10 @@ else{
 
     <div class="chat_area" >
 
-        <?php include("retrieve_messages.php");
-
+        <?php
+        if($channel_id) {
+            include("retrieve_messages.php");
+        }
         ?>
         <div id="test"   user_id="<?php echo $user_id ?>"></div>
 
@@ -235,68 +252,76 @@ else{
 
 
 
+<?php
 
+//include("default_channel.php");
+include ("connect.php");
+$query_channel_status="select * from channels where channel_id='".$channel_id."'";
 
+$result_channel_status=$conn->query($query_channel_status);
+$row_channel_status=$result_channel_status->fetch_array(MYSQLI_ASSOC);
+mysqli_close($conn);
 
-<div class="message_post">
-<form method="post" action="controller.php">
-    <textarea type="text" class="input_message" name="message"  contenteditable="true" placeholder="Message" ></textarea>
-    <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
-        <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
-    <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
+if($row_channel_status["archieved_status"]=="unarchieved") {
+    echo "<div class=\"message_post\">
+<form method=\"post\" action=\"controller.php\">
+    <textarea type=\"text\" class=\"input_message\" name=\"message\"  contenteditable=\"true\" placeholder=\"Message\" ></textarea>
+    <input type=\"hidden\" name=\"user_id\" value=\"<?php echo $user_id ?>\"/>
+        <input type=\"hidden\" name=\"channel_id\" value=\"<?php echo $channel_id ?>\"/>
+    <input type=\"hidden\" name=\"channel_name\" value=\"<?php echo $channel_name ?>\">
     </input>
-   <!--<input type="text" class="message_post" contenteditable="true" type="text"/>
+   <!--<input type=\"text\" class=\"message_post\" contenteditable=\"true\" type=\"text\"/>
 -->
-    <button class="submit_button_message" type="submit" value=""> <i class="fa fa-paper-plane lg" aria-hidden="true"></i> </button>
+    <button class=\"submit_button_message\" type=\"submit\" value=\"\"> <i class=\"fa fa-paper-plane lg\" aria-hidden=\"true\"></i> </button>
 
 
 
-    <div class="class_modal" style="
+    <div class=\"class_modal\" style=\"
     /* margin-left: 64%; */
-">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#codesnip" style="
+\">
+        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#codesnip\" style=\"
 
     /* margin-left: 242%; */
     /* margin-bottom: 37%; */
     /* height: 181%; */
     /* width: 12%; */
-" >
-            <i class="fa fa-code" aria-hidden="true"></i>
+\" >
+            <i class=\"fa fa-code\" aria-hidden=\"true\"></i>
         </button>
     </div>
 
 
 
 
-    <div style="
+    <div style=\"
     /* margin-left: 64%; */
     float: right;
     margin-right: -5.3%;
-">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadPic" style="
+\">
+        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#uploadPic\" style=\"
 
     /* margin-left: 242%; */
     /* margin-bottom: 37%; */
     /* height: 181%; */
     /* width: 12%; */
-">
-            <i class="fa fa-upload" aria-hidden="true"></i>
+\">
+            <i class=\"fa fa-upload\" aria-hidden=\"true\"></i>
         </button>
     </div>
 
-    <div style="
+    <div style=\"
     /* margin-left: 64%; */
     float: right;
     margin-right: -8.0%;
-">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imglink" style="
+\">
+        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#imglink\" style=\"
 
     /* margin-left: 242%; */
     /* margin-bottom: 37%; */
     /* height: 181%; */
     /* width: 12%; */
-">
-            <i class="fa fa-link" aria-hidden="true"></i>
+\">
+            <i class=\"fa fa-link\" aria-hidden=\"true\"></i>
         </button>
     </div>
 
@@ -306,9 +331,10 @@ else{
 
 
 </div>
+";
 
-
-
+}
+?>
 
 
 <!-- Modal -->

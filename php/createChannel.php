@@ -57,7 +57,7 @@ $date = new DateTime();
 
 $current_date = $date->format('Y-m-d H:i:s');
 
-$query_insert = "insert into channels values(DEFAULT,'". mysqli_real_escape_string($conn,$channel_name)."','slack.cs.odu.edu','$privacy_settings','$purpose','$user_id','$current_date')";
+$query_insert = "insert into channels values(DEFAULT,'". mysqli_real_escape_string($conn,$channel_name)."','slack.cs.odu.edu','$privacy_settings','$purpose','$user_id','$current_date',DEFAULT)";
 mysqli_query($conn, $query_insert);
 
 

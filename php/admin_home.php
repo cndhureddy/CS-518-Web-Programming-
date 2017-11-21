@@ -29,7 +29,7 @@ include('connect.php');
 //ini_set('display_errors', 1);
 session_start();
 
-if($_SESSION['admin']=="yes" )
+if($_SESSION['admin']=="yes")
 {
 
 }
@@ -112,9 +112,9 @@ if($_GET["user_id"]!="18")
  -->
     <div class="all_threads" ><i class="fa fa-comments-o " aria-hidden="true"></i> All Threads </div>
 
-    <form action="profiles.php" method="post"><input class="channel_name" name="hello" type="submit" value="Profiles_page"/> </form>
-
-    <div id="channels_tag_div"><a href="" id="channels_tag"> Channels </a> <form style="float: right;margin-right: 10%;" action="channel_creation.php" method="post"><button type="submit" id="channels_tag_button" value=""><i class="fa fa-plus-circle" aria-hidden="true"></i></input></form></div>
+  <!--  <form action="profiles.php" method="post"><input class="channel_name" name="hello" type="submit" value="Profiles_page"/> </form>
+-->
+    <div id="channels_tag_div"><a href="" id="channels_tag"> Channels </a> <form style="float: right;margin-right: 10%;" action="channel_creation_admin.php" method="post"><button type="submit" id="channels_tag_button" value=""><i class="fa fa-plus-circle" aria-hidden="true"></i></input></form></div>
 
 
     <?php
@@ -200,9 +200,26 @@ if($_GET["user_id"]!="18")
 
             //if($res[3]=="public"){
 
-                echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
+              //  echo "<form action=\"invite_members.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"invite_members\" /></form>";
 
+            include ("connect.php");
 
+            $query="select * from channels where channel_id='".$channel_id."'";
+
+            $result_user=$conn->query($query);
+            $row_user=$result_user->fetch_array(MYSQLI_ASSOC);
+            if($row_user["archieved_status"]=="unarchieved")
+            {
+                echo "<form action=\"archieve.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"Archieve\" /></form>";
+                echo "<form style=\"margin-left: 6%;margin-top: -1.6%;\"action=\"admin_channel_membership.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"clicked\" value=\"clicked\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"Edit channel Membership\" /></form>";
+
+            }
+            else{
+
+                echo "<form action=\"unarchieve.php\" method=\"post\"><input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\"/><input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/><input type=\"submit\" value=\"Unarchieve\" /></form>";
+
+            }
+            mysqli_close($conn);
          //   }
          //   if($res[3]=="private"){
 
@@ -246,6 +263,7 @@ if($_GET["user_id"]!="18")
 
 <div class="chat_area" >
 
+
     <?php include("admin_retrieve_msgs.php");
 
     ?>
@@ -259,68 +277,73 @@ if($_GET["user_id"]!="18")
 
 
 <div class="message_post">
-    <form method="post" action="controller.php">
-        <textarea type="text" class="input_message" name="message"  contenteditable="true" placeholder="Message" ></textarea>
-        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>"/>
-        <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
-        <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
+    <?php
+    include ("connect.php");
+
+    $query="select * from channels where channel_id='".$channel_id."'";
+
+    $result_user=$conn->query($query);
+    $row_user=$result_user->fetch_array(MYSQLI_ASSOC);
+    if($row_user["archieved_status"]=="unarchieved")
+    {
+        echo "<form method=\"post\" action=\"controller.php\">
+        <textarea type=\"text\" class=\"input_message\" name=\"message\"  contenteditable=\"true\" placeholder=\"Message\" ></textarea>
+        <input type=\"hidden\" name=\"user_id\" value=\"$user_id\"/>
+        <input type=\"hidden\" name=\"channel_id\" value=\"$channel_id\"/>
+        <input type=\"hidden\" name=\"channel_name\" value=\"$channel_name\">
         </input>
-        <!--<input type="text" class="message_post" contenteditable="true" type="text"/>
-     -->
-        <button class="submit_button_message" type="submit" value=""> <i class="fa fa-paper-plane lg" aria-hidden="true"></i> </button>
+       
+        <button class=\"submit_button_message\" type=\"submit\" value=\"\"> <i class=\"fa fa-paper-plane lg\" aria-hidden=\"true\"></i> </button>
 
 
 
-        <div class="class_modal" style="
-    /* margin-left: 64%; */
-">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#codesnip" style="
+        <div class=\"class_modal\" style=\"\">
+            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#codesnip\" style=\"
 
-    /* margin-left: 242%; */
-    /* margin-bottom: 37%; */
-    /* height: 181%; */
-    /* width: 12%; */
-" >
-                <i class="fa fa-code" aria-hidden="true"></i>
+    
+\" >
+                <i class=\"fa fa-code\" aria-hidden=\"true\"></i>
             </button>
         </div>
 
 
 
 
-        <div style="
+        <div style=\"
     /* margin-left: 64%; */
     float: right;
     margin-right: -5.3%;
-">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadPic" style="
+\">
+            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#uploadPic\" style=\"
 
     /* margin-left: 242%; */
     /* margin-bottom: 37%; */
     /* height: 181%; */
     /* width: 12%; */
-">
-                <i class="fa fa-upload" aria-hidden="true"></i>
+\">
+                <i class=\"fa fa-upload\" aria-hidden=\"true\"></i>
             </button>
         </div>
 
-        <div style="
+        <div style=\"
     /* margin-left: 64%; */
     float: right;
     margin-right: -8.0%;
-">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imglink" style="
+\">
+            <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#imglink\" style=\"
 
     /* margin-left: 242%; */
     /* margin-bottom: 37%; */
     /* height: 181%; */
     /* width: 12%; */
-">
-                <i class="fa fa-link" aria-hidden="true"></i>
-            </button>
-        </div>
+\">
+                <i class=\"fa fa-link\" aria-hidden=\"true\"></i>
+            </button> </div> </form>";
 
-    </form>
+    }
+
+    mysqli_close($conn);
+    ?>
 
 
 

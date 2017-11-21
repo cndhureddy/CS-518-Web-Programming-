@@ -41,21 +41,42 @@ $(".older_messages").on("click",function (event) {
         //count_div= parseInt(divs_check.substring(0,divs_check.indexOf('_')));
         console.log(count_div);
         console.log(total_count);
-        $.ajax({
+        if($(this).attr("user_id")){
+            var user_id=$(this).attr("user_id");
+            $.ajax({
 
-            type: "POST",
-            url: "../php/controller.php",
-            data: {retrieve_channel_id: retrieve_channel_id,count_div:count_div,total_count:total_count},
-            dataType: 'text',
-            async: false,
-            success: function (data) {
-               // $(".chat_area").html("");
-                $(".older_messages").remove();
-                $(".chat_area").prepend(data);
+                type: "POST",
+                url: "../php/controller.php",
+                data: {retrieve_channel_id: retrieve_channel_id, count_div: count_div, total_count: total_count,user_id:user_id},
+                dataType: 'text',
+                async: false,
+                success: function (data) {
+                    // $(".chat_area").html("");
+                    $(".older_messages").remove();
+                    $(".chat_area").prepend(data);
 
-            }
-        });
+                }
+            });
 
+
+
+
+        }else {
+            $.ajax({
+
+                type: "POST",
+                url: "../php/controller.php",
+                data: {retrieve_channel_id: retrieve_channel_id, count_div: count_div, total_count: total_count},
+                dataType: 'text',
+                async: false,
+                success: function (data) {
+                    // $(".chat_area").html("");
+                    $(".older_messages").remove();
+                    $(".chat_area").prepend(data);
+
+                }
+            });
+        }
 
 
 

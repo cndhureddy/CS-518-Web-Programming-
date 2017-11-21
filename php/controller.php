@@ -43,10 +43,19 @@ $total_count=$_POST["total_count"];
 //echo $channel_id;
 //echo $count;
 //echo $total_count;
+///die();
+//echo $_POST["user_id"];
 //die();
-$div=$retrieving_messages->retrieve_next_messages($channel_id,$count,$total_count);
+    if(isset($_POST["user_id"])) {
+        //echo "hello";
+        //die();
+        $user_id=$_POST["user_id"];
+        $div = $retrieving_messages->retrieve_next_messages_admin($channel_id, $count, $total_count,$user_id);
 
-//echo div;
+    }else {
+        $div = $retrieving_messages->retrieve_next_messages($channel_id, $count, $total_count);
+
+    }//echo div;
 
 
     echo $div;

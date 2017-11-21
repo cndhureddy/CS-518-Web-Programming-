@@ -5,6 +5,15 @@
  * Date: 10/31/2017
  * Time: 8:00 AM
  */
+if($_SESSION['email'] )
+{
+
+}
+else{
+    header('location:../index.php');
+    die();
+}
+
 include("connect.php");
 date_default_timezone_set("America/New_York");
 $date = new DateTime();

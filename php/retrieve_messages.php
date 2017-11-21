@@ -28,6 +28,11 @@ function retrieving_messages($conn,$channel_id){
     // $restrict=0;
     $i_increment=0;
 
+    $query_channel_status="select * from channels where channel_id='".$channel_id."'";
+
+    $result_channel_status=$conn->query($query_channel_status);
+    $row_channel_status=$result_channel_status->fetch_array(MYSQLI_ASSOC);
+
     while($row=$result->fetch_array(MYSQLI_ASSOC))
     {
         $i_increment=$i_increment+1;
@@ -111,12 +116,21 @@ function retrieving_messages($conn,$channel_id){
             if($row_count["count(*)"]>0)
             {
                 echo "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."  \">";
-                echo "<button id=\"thread_count_".htmlspecialchars($row["message_id"])."\"   value=\" ". htmlspecialchars($row["message_id"]). "\"   >".  $row_count["count(*)"] ." replies </button>";
+                if($row_channel_status["archieved_status"]=="unarchieved") {
+                    echo "<button id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\"   value=\" " . htmlspecialchars($row["message_id"]) . "\"   >" . $row_count["count(*)"] . " replies </button>";
+                }
+                else{
+
+                    echo "<button archieved=\"yes\" id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\" value=\" " . htmlspecialchars($row["message_id"]) . "\"    >" . $row_count["count(*)"] . " replies</button>";
+
+                }
                 echo "</div>";
             }
             echo "</div>";
-            echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" ". htmlspecialchars($row["message_id"]). "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> </div>";
-            //  echo "</div>";
+            if($row_channel_status["archieved_status"]=="unarchieved") {
+                echo "<div class=\"message_reactions_sub\" ><button id=\"like\"  class=\"like_dislike\" value=\" " . htmlspecialchars($row["message_id"]) . "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div> ";
+
+            }echo "</div>";
         }
         else{
             $temp_user_id=$row["user_id"];
@@ -200,14 +214,20 @@ function retrieving_messages($conn,$channel_id){
             echo "<div class=\"thread_count_div_".htmlspecialchars($row["message_id"])."\">";
             if($row_count["count(*)"]>0) {
                 echo "<div class=\"unique_count_".htmlspecialchars($row["message_id"])."\">";
-                echo " <button id=\"thread_count_".htmlspecialchars($row["message_id"])."\" value=\" ". htmlspecialchars($row["message_id"]). "\"    >" . $row_count["count(*)"] . " replies</button>";
+                if($row_channel_status["archieved_status"]=="unarchieved") {
+                    echo " <button id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\" value=\" " . htmlspecialchars($row["message_id"]) . "\"    >" . $row_count["count(*)"] . " replies</button>";
+                }else{
+                    echo " <button archieved=\"yes\" id=\"thread_count_" . htmlspecialchars($row["message_id"]) . "\" value=\" " . htmlspecialchars($row["message_id"]) . "\"    >" . $row_count["count(*)"] . " replies</button>";
+
+                }
                 echo "</div>";
             }
             echo "</div></div> ";
             echo "</div>";
            echo "</div>";
-
-            echo "<div class=\"message_reactions_with_user col-md-2\"><button id=\"like\"  class=\"like_dislike\" value=\"".htmlspecialchars($row["message_id"])."\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"".htmlspecialchars($row["message_id"])."\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" ". htmlspecialchars($row["message_id"]). "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
+            if($row_channel_status["archieved_status"]=="unarchieved") {
+                echo "<div class=\"message_reactions_with_user col-md-2\"><button id=\"like\"  class=\"like_dislike\" value=\"" . htmlspecialchars($row["message_id"]) . "\"><i class=\"fa fa-thumbs-o-up\" aria-hidden=\"true\"></i></button><button id=\"dis_like\"   class=\"like_dislike\"  value=\"" . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-thumbs-o-down\" aria-hidden=\"true\"></i></button> <button id=\"thread_message\"   class=\"like_dislike\"  value=\" " . htmlspecialchars($row["message_id"]) . "\"> <i class=\"fa fa-reply\" aria-hidden=\"true\"></i></button> </div>";
+            }
             echo "</div>";
         }
     }

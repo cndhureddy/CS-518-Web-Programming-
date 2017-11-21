@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 21, 2017 at 07:52 AM
+-- Generation Time: Nov 21, 2017 at 02:33 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE `slack_lamp_stack_518`;
 USE slack_lamp_stack_518;
+
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -59,27 +60,30 @@ CREATE TABLE IF NOT EXISTS `channels` (
   `purpose` varchar(200) NOT NULL,
   `user_id` int(11) NOT NULL,
   `timestamp` timestamp NOT NULL,
+  `archieved_status` varchar(20) NOT NULL DEFAULT 'unarchieved',
   PRIMARY KEY (`channel_id`),
   KEY `wokr_space_url_channels` (`work_space_url`),
   KEY `user_id_channels` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channels`
 --
 
-INSERT INTO `channels` (`channel_id`, `channel_name`, `work_space_url`, `privacy_settings`, `purpose`, `user_id`, `timestamp`) VALUES
-(1, 'general', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-10 04:00:00'),
-(2, 'random', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-10 04:00:00'),
-(3, 'testing', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00'),
-(4, 'milestone-1', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00'),
-(5, 'web_programming', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00'),
-(6, 'private_channel', 'slack.cs.odu.edu', 'private', '', 1, '2017-10-12 04:00:00'),
-(9, 'ewrewrew', 'slack.cs.odu.edu', 'public', 'werwerwer', 1, '2017-10-31 10:06:32'),
-(10, 'sukku', 'slack.cs.odu.edu', 'public', 'wqdswqdwqdqwd', 1, '2017-10-31 10:08:32'),
-(11, 'test_private', 'slack.cs.odu.edu', 'private', 'efdwsdfsdfgsagdsdfgsdf', 1, '2017-10-31 10:13:13'),
-(12, 'hello_test', 'slack.cs.odu.edu', 'public', 'asd', 4, '2017-10-31 11:58:39'),
-(13, 'hello', 'slack.cs.odu.edu', 'public', 'lkjljlj', 1, '2017-10-31 13:39:58');
+INSERT INTO `channels` (`channel_id`, `channel_name`, `work_space_url`, `privacy_settings`, `purpose`, `user_id`, `timestamp`, `archieved_status`) VALUES
+(1, 'general', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-10 04:00:00', 'unarchieved'),
+(2, 'random', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-10 04:00:00', 'archieved'),
+(3, 'testing', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00', 'unarchieved'),
+(4, 'milestone-1', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00', 'unarchieved'),
+(5, 'web_programming', 'slack.cs.odu.edu', 'public', '', 4, '2017-10-16 04:00:00', 'unarchieved'),
+(6, 'private_channel', 'slack.cs.odu.edu', 'private', '', 1, '2017-10-12 04:00:00', 'unarchieved'),
+(9, 'ewrewrew', 'slack.cs.odu.edu', 'public', 'werwerwer', 1, '2017-10-31 10:06:32', 'unarchieved'),
+(10, 'sukku', 'slack.cs.odu.edu', 'public', 'wqdswqdwqdqwd', 1, '2017-10-31 10:08:32', 'unarchieved'),
+(11, 'test_private', 'slack.cs.odu.edu', 'private', 'efdwsdfsdfgsagdsdfgsdf', 1, '2017-10-31 10:13:13', 'unarchieved'),
+(12, 'hello_test', 'slack.cs.odu.edu', 'public', 'asd', 4, '2017-10-31 11:58:39', 'unarchieved'),
+(13, 'hello', 'slack.cs.odu.edu', 'public', 'lkjljlj', 1, '2017-10-31 13:39:58', 'unarchieved'),
+(14, 'dafdfsdfsd', 'slack.cs.odu.edu', 'public', 'sdfsdfsdf', 1, '2017-11-21 13:29:24', 'unarchieved'),
+(15, 'testing_admin', 'slack.cs.odu.edu', 'public', 'sdsad', 18, '2017-11-21 13:33:48', 'unarchieved');
 
 -- --------------------------------------------------------
 
@@ -99,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `channel_messages` (
   PRIMARY KEY (`message_id`),
   KEY `channel_id_messaged` (`channel_id`),
   KEY `user_id_messages` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=307 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channel_messages`
@@ -139,10 +143,8 @@ INSERT INTO `channel_messages` (`message_id`, `channel_id`, `user_id`, `message`
 (268, 1, 1, 'testing', '2017-11-20 19:40:39', 'False', 'message'),
 (269, 1, 1, 'testing', '2017-11-20 19:40:54', 'False', 'message'),
 (270, 1, 1, 'http://cs518.cs.odu.edu/logs.php?csusername=sukeshsangam', '2017-11-21 02:28:20', 'False', 'message'),
-(272, 1, 1, 'https://www.google.com/search?q=images+tiger&tbm=isch&source=iu&pf=m&ictx=1&fir=2OI5c5ww-GWExM%253A%252CRXBgRZSacjrClM%252C_&usg=__fsDYERpZB2ok9BtwvVoEr3p2uWo%3D&sa=X&ved=0ahUKEwjmx5WY0M7XAhVsQN8KHYHkBQAQ9QEILDAB#imgrc=2OI5c5ww-GWExM:', '2017-11-21 02:32:36', 'False', 'message'),
 (273, 1, 1, 'http://images.all-free-download.com/images/graphiclarge/tiger_avatar_04_hd_pictures_169016.jpg', '2017-11-21 02:33:58', 'False', 'image_link'),
 (274, 1, 1, 'https://dncache-mauganscorp.netdna-ssl.com/thumbseg/378/378006-bigthumbnail.jpg', '2017-11-21 02:34:50', 'False', 'image_link'),
-(275, 1, 1, 'https://stackoverflow.com/questions/40694640/php-check-if-link-is-image-and-check-if-exists', '2017-11-21 02:35:21', 'False', 'message'),
 (276, 1, 1, 'https://cdni.rt.com/files/2017.11/article/5a130359fc7e93db228b4567.jpg', '2017-11-21 02:38:20', 'False', 'image_link'),
 (278, 3, 1, 'hello', '2017-11-21 05:49:19', 'False', 'message'),
 (279, 4, 1, 'hello', '2017-11-21 05:50:57', 'False', 'message'),
@@ -160,13 +162,12 @@ INSERT INTO `channel_messages` (`message_id`, `channel_id`, `user_id`, `message`
 (297, 1, 18, 'ghjfghjghjfghj', '2017-11-21 06:39:35', 'False', 'message'),
 (298, 1, 18, 'hello', '2017-11-21 06:40:09', 'False', 'message'),
 (299, 1, 18, 'sdfgvsdfgsdfgdsfg', '2017-11-21 06:42:19', 'False', 'message'),
-(300, 1, 18, 'admincsodu518@cs.odu.edu', '2017-11-21 06:43:10', 'False', 'codesnip'),
 (301, 1, 18, '../images/301msg_unique_img301.jpg', '2017-11-21 06:43:24', 'false', 'picture'),
 (302, 1, 18, 'https://www.planwallpaper.com/static/images/canberra_hero_image_JiMVvYU.jpg', '2017-11-21 06:43:51', 'False', 'image_link'),
 (303, 5, 18, 'https://www.planwallpaper.com/static/images/canberra_hero_image_JiMVvYU.jpg', '2017-11-21 06:47:24', 'False', 'codesnip'),
 (304, 5, 18, 'https://www.planwallpaper.com/static/images/canberra_hero_image_JiMVvYU.jpg', '2017-11-21 06:47:32', 'False', 'image_link'),
 (305, 5, 18, '../images/305msg_unique_img305.jpg', '2017-11-21 06:47:43', 'false', 'picture'),
-(306, 1, 18, 'yuikuykuyikuyil', '2017-11-21 06:55:13', 'False', 'message');
+(307, 9, 18, 'kjghjh', '2017-11-21 11:26:54', 'False', 'message');
 
 -- --------------------------------------------------------
 
@@ -189,7 +190,6 @@ CREATE TABLE IF NOT EXISTS `channel_users` (
 --
 
 INSERT INTO `channel_users` (`channel_id`, `user_id`, `joined_date`, `left_date`) VALUES
-(1, 1, '2017-10-10 04:00:00', '2017-10-10 04:00:00'),
 (2, 1, '2017-10-10 04:00:00', '2017-10-10 04:00:00'),
 (2, 2, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (1, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
@@ -200,7 +200,6 @@ INSERT INTO `channel_users` (`channel_id`, `user_id`, `joined_date`, `left_date`
 (5, 6, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (5, 5, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (5, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
-(5, 1, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (4, 4, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (4, 1, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (3, 6, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
@@ -222,7 +221,6 @@ INSERT INTO `channel_users` (`channel_id`, `user_id`, `joined_date`, `left_date`
 (2, 10, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (5, 10, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
 (5, 9, '2017-10-16 04:00:00', '2017-10-16 04:00:00'),
-(6, 1, '2017-10-04 04:00:00', '2017-10-04 04:00:00'),
 (10, 1, '2017-10-31 10:08:32', '2017-10-31 10:08:32'),
 (11, 1, '2017-10-31 10:13:13', '2017-10-31 10:13:13'),
 (12, 4, '2017-10-31 11:58:39', '2017-10-31 11:58:39'),
@@ -248,7 +246,10 @@ INSERT INTO `channel_users` (`channel_id`, `user_id`, `joined_date`, `left_date`
 (13, 14, '2017-11-13 22:33:47', '2017-11-13 22:33:47'),
 (13, 15, '2017-11-13 22:33:49', '2017-11-13 22:33:49'),
 (13, 16, '2017-11-13 22:33:52', '2017-11-13 22:33:52'),
-(13, 17, '2017-11-13 22:33:55', '2017-11-13 22:33:55');
+(13, 17, '2017-11-13 22:33:55', '2017-11-13 22:33:55'),
+(1, 1, '2017-11-21 12:54:02', '2017-11-21 12:54:02'),
+(14, 1, '2017-11-21 13:29:24', '2017-11-21 13:29:24'),
+(15, 18, '2017-11-21 13:33:48', '2017-11-21 13:33:48');
 
 -- --------------------------------------------------------
 
@@ -314,7 +315,10 @@ CREATE TABLE IF NOT EXISTS `message_reaction` (
 INSERT INTO `message_reaction` (`message_id`, `reaction`, `user_id`) VALUES
 (251, '1', 1),
 (240, '1', 1),
-(305, '1', 18);
+(305, '1', 18),
+(257, '2', 18),
+(258, '1', 18),
+(240, '2', 18);
 
 -- --------------------------------------------------------
 
@@ -333,7 +337,7 @@ CREATE TABLE IF NOT EXISTS `thread` (
   PRIMARY KEY (`thread_id`),
   KEY `thread_msg_id` (`message_id`),
   KEY `thread_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `thread`
@@ -345,7 +349,9 @@ INSERT INTO `thread` (`thread_id`, `message_id`, `message`, `user_id`, `timestam
 (220, 240, 'kl./kl/k/', 1, '2017-11-20 23:22:19', 'False'),
 (221, 257, 'hello', 1, '2017-11-20 23:44:22', 'False'),
 (222, 305, 'ukyuikuyik', 18, '2017-11-21 06:47:57', 'False'),
-(223, 303, 'ghjnmfgjmghgh', 18, '2017-11-21 06:48:14', 'False');
+(223, 303, 'ghjnmfgjmghgh', 18, '2017-11-21 06:48:14', 'False'),
+(224, 301, 'hi', 1, '2017-11-21 10:48:19', 'False'),
+(225, 307, 'po\'op\'o', 18, '2017-11-21 11:27:06', 'False');
 
 -- --------------------------------------------------------
 
