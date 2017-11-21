@@ -12,6 +12,7 @@
     <div ><img id="logo"  src="images/logo.jpg"></div>
     <div class="logo-text">ODU CS Slack</div>
     <div class="login-button"><form><input id="signin-button" type="submit" value="Sign in"></form></div>
+    <div class="login-button"><form><input id="signin-button" type="submit" value="Help"></form></div>
 </div>
 
 <div id="login-center">
