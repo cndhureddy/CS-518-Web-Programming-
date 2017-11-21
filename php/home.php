@@ -275,9 +275,9 @@ if($row_channel_status["archieved_status"]=="unarchieved") {
     echo "<div class=\"message_post\">
 <form method=\"post\" action=\"controller.php\">
     <textarea type=\"text\" class=\"input_message\" name=\"message\"  contenteditable=\"true\" placeholder=\"Message\" ></textarea>
-    <input type=\"hidden\" name=\"user_id\" value=\"<?php echo $user_id ?>\"/>
-        <input type=\"hidden\" name=\"channel_id\" value=\"<?php echo $channel_id ?>\"/>
-    <input type=\"hidden\" name=\"channel_name\" value=\"<?php echo $channel_name ?>\">
+    <input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"/>
+        <input type=\"hidden\" name=\"channel_id\" value=\"".$channel_id."\"/>
+    <input type=\"hidden\" name=\"channel_name\" value=\"".$channel_name."\">
     </input>
    <!--<input type=\"text\" class=\"message_post\" contenteditable=\"true\" type=\"text\"/>
 -->
