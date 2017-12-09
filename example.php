@@ -73,7 +73,7 @@ var final_user_id;
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me',{ locale: 'en_US', fields: 'name, email' }, function(response) {
       console.log(response);
       console.log('Successful login for: ' + response.name+' '+response.email);
       document.getElementById('status').innerHTML =
@@ -82,16 +82,7 @@ var final_user_id;
       final_user_id=user_id;
       document.getElementById("profile_pic").src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
       
-      FB.api(
-    ""/"+final_user_id",
-    function (response) {
-        console.log(response);
-      if (response && !response.error) {
-        /* handle the result */
-      }
-    }
-);
-      
+     
       
     });
   }
