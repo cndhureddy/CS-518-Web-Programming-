@@ -29,6 +29,42 @@
             <a id="forgot_p" href="">forgot password?</a>
             <a id="forgot_p" href="php/registration.php" > Register</a><br>
             <a id="forgot_p" href="php/admin_login.php" > login as admin</a>
+            <a href="https://www.facebook.com/dialog/oauth?client_id=2009876122630098&redirect_uri=http://sukeshsangam.cs518.cs.odu.edu/index.php&scope=publish_stream,email" title="Signup with facebook">
+ 
+<button>Signup with facebook</button>
+ 
+</a>
+            <?php
+            
+            $app_id = "2009876122630098";
+$app_secret = "4821af77768547a874145bd96db355d3";
+$my_url = "http://sukeshsangam.cs518.cs.odu.edu/index.php";
+$token_url = "https://graph.facebook.com/oauth/access_token?"
+ . "client_id=" . $app_id . "&redirect_uri=" . urlencode($my_url)
+ . "&client_secret=" . $app_secret . "&code=" . $code . "&scope=publish_stream,email";
+ 
+$response = @file_get_contents($token_url);
+$params = null;
+parse_str($response, $params);
+         
+$graph_url = "https://graph.facebook.com/me?access_token="
+ . $params['access_token'];
+ 
+$user = json_decode(file_get_contents($graph_url));
+$username = $user->username;
+$email = $user->email;
+$facebook_id = $user->id;
+            
+            
+            echo "$username";
+            echo "email";
+            echo "facebook_id";
+                
+            
+            ?>
+            
+            
+            
             <?php
             session_start();
             //$_SESSION = array();
