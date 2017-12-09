@@ -80,6 +80,7 @@ var final_user_id;
         'Thanks for logging in, ' + response.name + '!';
       var user_id=response.id;
       final_user_id=user_id;
+      document.getElementById("profile_pic").src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
       
     });
   }
@@ -93,7 +94,7 @@ var final_user_id;
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-<img src="//graph.facebook.com/{+final_user_id+}/picture?type=large">
+<img id="profile_pic" src="//graph.facebook.com/{+final_user_id+}/picture?type=large">
 <div id="status">
   
   
