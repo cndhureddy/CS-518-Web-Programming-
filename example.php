@@ -78,6 +78,17 @@
       console.log('Successful login for: ' + response.name+' '+response.email);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+      user_id=response.id;
+      FB.api(
+    "/user_id/picture",
+    function (response) {
+      if (response && !response.error) {
+        console.log(response);
+      }
+    }
+);
+      
+      
     });
   }
 </script>
