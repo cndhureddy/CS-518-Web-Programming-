@@ -14,22 +14,14 @@
     <div class="login-button"><form><input id="signin-button" type="submit" value="Sign in"></form></div>
     <div class="login-button"><form action="help.php"><input id="signin-button" type="submit" value="Help"></form></div>
 </div>
+    
+    
+    
 
 <div id="login-center">
 
-    <h1 class="logo-text sign-in-text"> Sign in to ODU CS Slack</h1>
-    <span class="sign-in-text-url">oducs.slack.com</span>
-    <form action="php/login.php" method="post">
-        <div id="login">
-            <span style="font-family: Sans-serif;"> Enter your email address and password </span>
-
-            <input id="login-fields" placeholder="email id" type="text" name="email"/> <br>
-            <input id="login-fields" placeholder="password" type="password" name="password"/>
-            <input id="submit" type="submit"/>
-            <a id="forgot_p" href="">forgot password?</a>
-            <a id="forgot_p" href="php/registration.php" > Register</a><br>
-            <a id="forgot_p" href="php/admin_login.php" > login as admin</a>
-            <a href="https://www.facebook.com/dialog/oauth?client_id=2009876122630098&redirect_uri=http://sukeshsangam.cs518.cs.odu.edu/index.php&scope=publish_stream,email" title="Signup with facebook">
+    
+    <a href="https://www.facebook.com/dialog/oauth?client_id=2009876122630098&redirect_uri=http://sukeshsangam.cs518.cs.odu.edu/index.php&scope=publish_stream,email" title="Signup with facebook">
  
 <button>Signup with facebook</button>
  
@@ -62,6 +54,22 @@ $facebook_id = $user->id;
                 
             
             ?>
+    
+    
+    
+    <h1 class="logo-text sign-in-text"> Sign in to ODU CS Slack</h1>
+    <span class="sign-in-text-url">oducs.slack.com</span>
+    <form action="php/login.php" method="post">
+        <div id="login">
+            <span style="font-family: Sans-serif;"> Enter your email address and password </span>
+
+            <input id="login-fields" placeholder="email id" type="text" name="email"/> <br>
+            <input id="login-fields" placeholder="password" type="password" name="password"/>
+            <input id="submit" type="submit"/>
+            <a id="forgot_p" href="">forgot password?</a>
+            <a id="forgot_p" href="php/registration.php" > Register</a><br>
+            <a id="forgot_p" href="php/admin_login.php" > login as admin</a>
+            
             
             
             
