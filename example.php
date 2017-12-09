@@ -68,7 +68,7 @@
     js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-
+var final_user_id;
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
@@ -78,16 +78,8 @@
       console.log('Successful login for: ' + response.name+' '+response.email);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
-      user_id=response.id;
-      FB.api(
-    "/user_id/picture",
-    function (response) {
-      if (response && !response.error) {
-        console.log(response);
-      }
-    }
-);
-      
+      var user_id=response.id;
+      final_user_id=user_id;
       
     });
   }
@@ -101,8 +93,10 @@
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
-
+<img src="//graph.facebook.com/{+final_user_id+}/picture?type=large">
 <div id="status">
+  
+  
 </div>
 
 </body>
