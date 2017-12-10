@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 10, 2017 at 05:13 AM
+-- Generation Time: Dec 10, 2017 at 09:38 PM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -27,8 +27,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `admin`
 --
-CREATE DATABASE slack_lamp_stack_518;
-USE slack_lamp_stack_518;
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -468,6 +466,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `picture` varchar(100) NOT NULL DEFAULT '../images/default.png',
   `mode` varchar(20) NOT NULL,
   `timestamp` timestamp NOT NULL,
+  `type_registration` varchar(20) NOT NULL DEFAULT 'regular',
   PRIMARY KEY (`user_id`),
   KEY `work_space_url` (`work_space_url`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
@@ -476,21 +475,21 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `email_id`, `full_name`, `display_name`, `password`, `work_space_url`, `description`, `status`, `phone_number`, `time_zone`, `skype_id`, `picture`, `mode`, `timestamp`) VALUES
-(1, 'mater@rsprings.gov', 'Tow Mater', 'Tow Mater', '@mater', 'slack.cs.odu.edu', '', '', '', '', '', '../images/Tow Mater.jpg', '', '2017-10-10 04:00:00'),
-(2, 'porsche@rsprings.gov', 'Sally Carrera', 'Sally Carrera', '@sally', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-10 04:00:00'),
-(4, 'sukesh.sangam@gmail.com', 'sukesh sangam', 'sukesh sangam', 'COOLDev0099', 'slack.cs.odu.edu', '', '', '', '', '', '../images/sukesh sangam.jpg', '', '2017-10-10 04:00:00'),
-(5, 'hornet@rsprings.gov', 'Doc Hudson', 'Doc Hudson', '@doc', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
-(6, 'topsecret@agent.org', 'Finn McMissile', 'Finn McMissile', '@mcmissile', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
-(7, 'kachow@rusteze.com', 'Lightning McQueen', 'Lightning McQueen', '@mcqueen', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
-(8, 'chinga@cars.com', 'Chick Hicks', 'Chick Hicks', '@chick', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
-(9, 'sindhujareddy.pannala@gmail.com', 'sindhu reddy', 'sindhu reddy', '@sindhu', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
-(10, 'shwethashyam@gmail.com', 'shwetha', 'shwetha', '@shwetha', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00'),
-(14, 'sukesh.sangam9@gmail.com', 'asasassa', 'asasassa', 'asdfghj=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-30 21:51:49'),
-(15, 'sukesh.sangam10@gmail.com', 'aasdsadsadsadsad', 'aasdsadsadsadsad', 'asdfghj=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-30 21:54:25'),
-(16, 'sukesh.sangam9@gmail.com', 'sukesh.sangam@gmail.com', 'sukesh.sangam@gmail.com', 'asdfgh=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-31 07:33:54'),
-(17, 'testing@gmail.com', 'testing', 'testing', 'testing=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-31 18:32:57'),
-(18, 'admincsodu518@cs.odu.edu', 'Admin', 'Admin', '********************', 'slack.cs.odu.edu', '', '', '', '', '', '../images/admin.png', '', '2017-11-20 05:00:00');
+INSERT INTO `users` (`user_id`, `email_id`, `full_name`, `display_name`, `password`, `work_space_url`, `description`, `status`, `phone_number`, `time_zone`, `skype_id`, `picture`, `mode`, `timestamp`, `type_registration`) VALUES
+(1, 'mater@rsprings.gov', 'Tow Mater', 'Tow Mater', '@mater', 'slack.cs.odu.edu', '', '', '', '', '', '../images/Tow Mater.jpg', '', '2017-10-10 04:00:00', 'regular'),
+(2, 'porsche@rsprings.gov', 'Sally Carrera', 'Sally Carrera', '@sally', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-10 04:00:00', 'regular'),
+(4, 'sukesh.sangam@gmail.com', 'sukesh sangam', 'sukesh sangam', 'COOLDev0099', 'slack.cs.odu.edu', '', '', '', '', '', '../images/sukesh sangam.jpg', '', '2017-10-10 04:00:00', 'regular'),
+(5, 'hornet@rsprings.gov', 'Doc Hudson', 'Doc Hudson', '@doc', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00', 'regular'),
+(6, 'topsecret@agent.org', 'Finn McMissile', 'Finn McMissile', '@mcmissile', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00', 'regular'),
+(7, 'kachow@rusteze.com', 'Lightning McQueen', 'Lightning McQueen', '@mcqueen', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00', 'regular'),
+(8, 'chinga@cars.com', 'Chick Hicks', 'Chick Hicks', '@chick', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00', 'regular'),
+(9, 'sindhujareddy.pannala@gmail.com', 'sindhu reddy', 'sindhu reddy', '@sindhu', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00', 'regular'),
+(10, 'shwethashyam@gmail.com', 'shwetha', 'shwetha', '@shwetha', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-16 04:00:00', 'regular'),
+(14, 'sukesh.sangam9@gmail.com', 'asasassa', 'asasassa', 'asdfghj=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-30 21:51:49', 'regular'),
+(15, 'sukesh.sangam10@gmail.com', 'aasdsadsadsadsad', 'aasdsadsadsadsad', 'asdfghj=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-30 21:54:25', 'regular'),
+(16, 'sukesh.sangam9@gmail.com', 'sukesh.sangam@gmail.com', 'sukesh.sangam@gmail.com', 'asdfgh=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-31 07:33:54', 'regular'),
+(17, 'testing@gmail.com', 'testing', 'testing', 'testing=', 'slack.cs.odu.edu', '', '', '', '', '', '../images/default.png', '', '2017-10-31 18:32:57', 'regular'),
+(18, 'admincsodu518@cs.odu.edu', 'Admin', 'Admin', '********************', 'slack.cs.odu.edu', '', '', '', '', '', '../images/admin.png', '', '2017-11-20 05:00:00', 'regular');
 
 -- --------------------------------------------------------
 
