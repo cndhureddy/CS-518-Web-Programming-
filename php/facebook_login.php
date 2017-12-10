@@ -5,6 +5,7 @@ include ("connect.php");
 session_start();
 //die();
 echo "hello";
+die();
 if(isset($_SESSION["facebook"])){
 
 
