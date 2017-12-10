@@ -111,9 +111,10 @@
                         document.getElementById('status').innerHTML =
                             'Thanks for logging in, ' + response.name + '!';
                         var user_id=response.id;
+                        var user_email=response.email;
                         final_user_id=user_id;
-                        document.getElementById("profile_pic").src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
-
+                        var src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
+                        window.location.href="php/facebook_login.php?user_id="+user_id+"&user_email="+user_email+"image_src="+src;
 
 
                     });
@@ -128,7 +129,7 @@
 
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
             </fb:login-button>
-            <img id="profile_pic" src="//graph.facebook.com/{+final_user_id+}/picture?type=large">
+          <!--  <img id="profile_pic" src="//graph.facebook.com/{+final_user_id+}/picture?type=large">-->
             <div id="status">
 
 
