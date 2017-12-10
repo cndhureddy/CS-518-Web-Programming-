@@ -113,8 +113,8 @@ session_start();
                     FB.api('/me',{ locale: 'en_US', fields: 'name, email,groups' }, function(response) {
                         console.log(response);
                         console.log('Successful login for: ' + response.name+' '+response.email);
-                        document.getElementById('status').innerHTML =
-                            'Thanks for logging in, ' + response.name + '!';
+                      //  document.getElementById('status').innerHTML =
+                       //     'Thanks for logging in, ' + response.name + '!';
                         var user_name=response.name;
                         var user_email=response.email;
                         final_user_id=response.id;
