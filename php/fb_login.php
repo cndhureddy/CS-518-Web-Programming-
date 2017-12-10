@@ -18,9 +18,9 @@ else{
 
 }
 
-$user_id_facebook= GET["user_id"];
-$user_email_facebook= GET["user_email"];
-$user_image_facebook= GET["image_src"];
+$user_id_facebook= $_GET["user_id"];
+$user_email_facebook= $_GET["user_email"];
+$user_image_facebook= $_GET["image_src"];
 
 echo $user_id;
 echo $user_email_facebook;
