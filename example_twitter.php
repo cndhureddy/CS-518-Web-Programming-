@@ -24,7 +24,7 @@ header( 'Location: ' . $url );
 	echo $user->name;
 	
 	echo $user->screen_name;
-	echo $user->email
+	echo $user->email;
 	echo $user->profile_image_url;
 	
 	echo "</pre>";
