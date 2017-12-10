@@ -10,7 +10,11 @@ session_start();
 session_unset();
 session_destroy();
 $_SESSION = array();
-
+<script>
+  FB.logout(function(response) {
+  // user is now logged out
+});
+</script>
 
 
 header('location: ../index.php');
