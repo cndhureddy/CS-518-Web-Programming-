@@ -121,7 +121,7 @@ session_start();
                         var src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
                         console.log(src);
                         <?php $_SESSION["facebook"]="yes"; ?>
-                      window.location="/php/facebook_login.php";
+                      window.location="/php/facebook_login.php?user_name="+user_name+"&user_email="+user_email+"&image_src="+src";
                         //window.location="/php/sample.php";
 
                     });
