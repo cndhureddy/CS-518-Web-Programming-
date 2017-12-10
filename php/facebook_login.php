@@ -56,7 +56,7 @@ mysqli_close($conn);
     
     
 }else{
-$query_insert=mysqli_query($conn,"insert into users values(DEFAULT,'".mysqli_real_escape_string($conn,$user_email_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','***********','slack.cs.odu.edu','','','','','','".mysqli_real_escape_string($conn,$user_image_facebook)."','','2017-10-10 00:00:00','facebook')");
+$query_insert=mysqli_query($conn,"insert into users values(DEFAULT,'".mysqli_real_escape_string($conn,$user_email_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','***********','slack.cs.odu.edu',' ',' ',' ',' ',' ','".mysqli_real_escape_string($conn,$user_image_facebook)."',' ','2017-10-10 00:00:00','facebook')");
 mysqli_close($conn);
     $_SESSION['email']=$user_email_facebook;
     $_SESSION['work_space_name']='slack.cs.odu.edu';
