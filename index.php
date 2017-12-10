@@ -11,7 +11,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-session.start();
+session_start();
     ?>
     <div id="topbar" >
     <div ><img id="logo"  src="images/logo.jpg"></div>
