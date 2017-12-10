@@ -45,9 +45,7 @@ session_start();
             <script>
                 // This is called with the results from from FB.getLoginStatus().
                 
-                FB.logout(function(response) {
-  // user is now logged out
-});
+
                 function statusChangeCallback(response) {
                     console.log('statusChangeCallback');
                     console.log(response);
@@ -69,6 +67,11 @@ session_start();
                 // Button.  See the onlogin handler attached to it in the sample
                 // code below.
                 function checkLoginState() {
+                    
+                                    FB.logout(function(response) {
+  // user is now logged out
+});
+                    
                     FB.getLoginStatus(function(response) {
                         statusChangeCallback(response);
                     });
