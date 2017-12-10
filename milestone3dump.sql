@@ -27,6 +27,8 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `admin`
 --
+CREATE DATABASE slack_lamp_stack_518;
+USE slack_lamp_stack_518;
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
