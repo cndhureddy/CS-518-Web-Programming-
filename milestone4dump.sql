@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 21, 2017 at 02:33 PM
+-- Generation Time: Dec 10, 2017 at 05:13 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -27,9 +27,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `admin`
 --
-CREATE DATABASE `slack_lamp_stack_518`;
-USE slack_lamp_stack_518;
-
 
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -64,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `channels` (
   PRIMARY KEY (`channel_id`),
   KEY `wokr_space_url_channels` (`work_space_url`),
   KEY `user_id_channels` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channels`
@@ -83,7 +80,8 @@ INSERT INTO `channels` (`channel_id`, `channel_name`, `work_space_url`, `privacy
 (12, 'hello_test', 'slack.cs.odu.edu', 'public', 'asd', 4, '2017-10-31 11:58:39', 'unarchieved'),
 (13, 'hello', 'slack.cs.odu.edu', 'public', 'lkjljlj', 1, '2017-10-31 13:39:58', 'unarchieved'),
 (14, 'dafdfsdfsd', 'slack.cs.odu.edu', 'public', 'sdfsdfsdf', 1, '2017-11-21 13:29:24', 'unarchieved'),
-(15, 'testing_admin', 'slack.cs.odu.edu', 'public', 'sdsad', 18, '2017-11-21 13:33:48', 'unarchieved');
+(15, 'testing_admin', 'slack.cs.odu.edu', 'public', 'sdsad', 18, '2017-11-21 13:33:48', 'unarchieved'),
+(16, 'asdasdsad', 'slack.cs.odu.edu', 'public', 'sadsadsad', 1, '2017-11-21 19:27:30', 'unarchieved');
 
 -- --------------------------------------------------------
 
@@ -103,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `channel_messages` (
   PRIMARY KEY (`message_id`),
   KEY `channel_id_messaged` (`channel_id`),
   KEY `user_id_messages` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=308 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channel_messages`
@@ -167,7 +165,21 @@ INSERT INTO `channel_messages` (`message_id`, `channel_id`, `user_id`, `message`
 (303, 5, 18, 'https://www.planwallpaper.com/static/images/canberra_hero_image_JiMVvYU.jpg', '2017-11-21 06:47:24', 'False', 'codesnip'),
 (304, 5, 18, 'https://www.planwallpaper.com/static/images/canberra_hero_image_JiMVvYU.jpg', '2017-11-21 06:47:32', 'False', 'image_link'),
 (305, 5, 18, '../images/305msg_unique_img305.jpg', '2017-11-21 06:47:43', 'false', 'picture'),
-(307, 9, 18, 'kjghjh', '2017-11-21 11:26:54', 'False', 'message');
+(307, 9, 18, 'kjghjh', '2017-11-21 11:26:54', 'False', 'message'),
+(308, 4, 1, 'https://static.pexels.com/photos/34950/pexels-photo.jpg', '2017-11-21 19:39:49', 'False', 'message'),
+(309, 3, 1, 'https://www.w3schools.com/bootstrap/newyork.jpg', '2017-11-21 19:42:36', 'False', 'image_link'),
+(310, 3, 1, 'https://www.w3schools.com/bootstrap/newyork.jpg', '2017-11-21 19:43:06', 'False', 'image_link'),
+(311, 10, 1, 'fdghsdhdfghdfgh', '2017-11-21 23:13:24', 'False', 'message'),
+(312, 10, 1, 'fgfgjnghjghjghj', '2017-11-21 23:14:55', 'False', 'message'),
+(313, 10, 1, 'ujtyrutryuty', '2017-12-03 21:25:25', 'False', 'message'),
+(314, 10, 1, 'ImportError: No module named mrec.sparse', '2017-12-03 21:25:41', 'False', 'codesnip'),
+(315, 10, 1, '../images/315msg_unique_img315.jpg', '2017-12-03 21:25:58', 'false', 'picture'),
+(316, 10, 1, 'http://test.cs518.cs.odu.edu/', '2017-12-03 21:26:20', 'False', 'message'),
+(317, 3, 1, 'ghfgn', '2017-12-05 00:34:15', 'False', 'message'),
+(318, 16, 1, 'to_display_name', '2017-12-06 04:10:18', 'False', 'codesnip'),
+(319, 16, 1, '../images/319msg_unique_img319.jpg', '2017-12-06 04:10:29', 'false', 'picture'),
+(320, 16, 1, 'https://www.w3schools.com/css/paris.jpg', '2017-12-06 04:11:07', 'False', 'image_link'),
+(321, 16, 1, 'img_link_content', '2017-12-06 04:29:42', 'False', 'message');
 
 -- --------------------------------------------------------
 
@@ -249,7 +261,9 @@ INSERT INTO `channel_users` (`channel_id`, `user_id`, `joined_date`, `left_date`
 (13, 17, '2017-11-13 22:33:55', '2017-11-13 22:33:55'),
 (1, 1, '2017-11-21 12:54:02', '2017-11-21 12:54:02'),
 (14, 1, '2017-11-21 13:29:24', '2017-11-21 13:29:24'),
-(15, 18, '2017-11-21 13:33:48', '2017-11-21 13:33:48');
+(15, 18, '2017-11-21 13:33:48', '2017-11-21 13:33:48'),
+(10, 5, '2017-11-21 19:25:59', '2017-11-21 19:25:59'),
+(16, 1, '2017-11-21 19:27:30', '2017-11-21 19:27:30');
 
 -- --------------------------------------------------------
 
@@ -262,14 +276,63 @@ CREATE TABLE IF NOT EXISTS `direct_messages` (
   `dr_message_id` int(11) NOT NULL AUTO_INCREMENT,
   `from_user_id` int(11) NOT NULL,
   `to_user_id` int(11) NOT NULL,
-  `message` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `message_type` varchar(50) NOT NULL DEFAULT 'message',
   `timestamp` timestamp NOT NULL,
   `work_space_url` varchar(500) NOT NULL,
   PRIMARY KEY (`dr_message_id`),
   KEY `dr_from_user_id` (`from_user_id`),
   KEY `dr_to_user_id` (`to_user_id`),
   KEY `dr_work_space_url` (`work_space_url`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `direct_messages`
+--
+
+INSERT INTO `direct_messages` (`dr_message_id`, `from_user_id`, `to_user_id`, `message`, `message_type`, `timestamp`, `work_space_url`) VALUES
+(1, 1, 8, 'hello', 'message', '2017-12-05 08:38:59', 'slack.cs.odu.edu'),
+(2, 1, 6, 'dfsdf', 'message', '2017-12-05 08:40:27', 'slack.cs.odu.edu'),
+(3, 1, 6, 'dfsdf', 'message', '2017-12-05 08:41:44', 'slack.cs.odu.edu'),
+(4, 1, 6, 'gtfdgfdg', 'message', '2017-12-05 08:50:13', 'slack.cs.odu.edu'),
+(5, 1, 4, 'dude', 'message', '2017-12-05 08:51:33', 'slack.cs.odu.edu'),
+(6, 1, 4, 'dsfsdfsdfsdfsdfsdfsdfsdfsdfsdf', 'message', '2017-12-05 08:52:30', 'slack.cs.odu.edu'),
+(7, 1, 4, 'dsfsdfsdfsdfsdfsdfsdfsdfsdfsdf', 'message', '2017-12-05 08:53:30', 'slack.cs.odu.edu'),
+(8, 1, 4, 'dsfsdfsdfsdfsdfsdfsdfsdfsdfsdf', 'message', '2017-12-05 08:53:44', 'slack.cs.odu.edu'),
+(9, 1, 4, 'hi', 'message', '2017-12-05 08:54:11', 'slack.cs.odu.edu'),
+(10, 1, 4, 'hello', 'message', '2017-12-05 19:47:39', 'slack.cs.odu.edu'),
+(11, 1, 4, 'https://www.w3schools.com/css/paris.jpg', 'message', '2017-12-06 04:11:20', 'slack.cs.odu.edu'),
+(12, 1, 2, 'https://www.w3schools.com/css/paris.jpg', 'message', '2017-12-06 04:13:04', 'slack.cs.odu.edu'),
+(13, 1, 2, 'gfd', 'message', '2017-12-06 04:16:00', 'slack.cs.odu.edu'),
+(14, 1, 2, 'sfvfvdfvb', 'message', '2017-12-06 04:17:18', 'slack.cs.odu.edu'),
+(15, 1, 2, 'fgfdgdfgfdg', 'message', '2017-12-06 04:19:09', 'slack.cs.odu.edu'),
+(16, 1, 4, 'fgdfgdfgdf', 'message', '2017-12-06 04:22:16', 'slack.cs.odu.edu'),
+(17, 1, 4, 'https://www.w3schools.com/css/paris.jpg', 'codesnip', '2017-12-06 04:28:35', 'slack.cs.odu.edu'),
+(18, 1, 4, 'img_link_content', 'image_link', '2017-12-06 04:29:00', 'slack.cs.odu.edu'),
+(19, 1, 2, ' $headers = get_headers($message, 1);\r\n        if (strpos($headers[\'Content-Type\'], \'image/\') !== false) {\r\n            $message_type = $_POST[\"message_type\"];\r\n        } else {\r\n            $message_type = \"message\";\r\n        }', 'message', '2017-12-06 04:31:40', 'slack.cs.odu.edu'),
+(20, 1, 2, '1236563\r\n\r\n\r\n', 'message', '2017-12-06 04:46:15', 'slack.cs.odu.edu'),
+(21, 1, 2, 'frfwefwef', 'message', '2017-12-06 05:03:52', 'slack.cs.odu.edu'),
+(22, 1, 2, '$user_name', 'codesnip', '2017-12-06 05:12:59', 'slack.cs.odu.edu'),
+(26, 1, 4, '../images/23dr_msg_unique_img23.jpg', 'picture', '2017-12-06 05:52:47', 'slack.cs.odu.edu'),
+(27, 1, 4, '../images/27dr_msg_unique_img27.jpg', 'picture', '2017-12-06 05:53:07', 'slack.cs.odu.edu'),
+(28, 1, 4, 'bngnhbgnhghn', 'message', '2017-12-06 07:36:46', 'slack.cs.odu.edu'),
+(29, 1, 4, 'hgnghnghnghn', 'message', '2017-12-06 07:36:52', 'slack.cs.odu.edu'),
+(30, 1, 4, 'https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?w=1260&h=750&auto=compress&cs=tinysrgb', 'message', '2017-12-06 07:40:35', 'slack.cs.odu.edu'),
+(31, 1, 4, 'https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?w=1260&h=750&auto=compress&cs=tinysrgb', 'codesnip', '2017-12-06 07:40:46', 'slack.cs.odu.edu'),
+(32, 1, 4, 'https://images.pexels.com/photos/33109/fall-autumn-red-season.jpg?w=1260&h=750&auto=compress&cs=tinysrgb', 'image_link', '2017-12-06 07:40:56', 'slack.cs.odu.edu'),
+(33, 1, 4, '../images/33dr_msg_unique_img33.jpg', 'picture', '2017-12-06 07:41:11', 'slack.cs.odu.edu'),
+(34, 1, 2, 'hello', 'message', '2017-12-09 06:48:51', 'slack.cs.odu.edu'),
+(35, 1, 2, 'czxcxzczxczxczc', 'message', '2017-12-09 06:48:59', 'slack.cs.odu.edu'),
+(36, 1, 2, 'zxczxczxczxczxczxc', 'message', '2017-12-09 06:49:05', 'slack.cs.odu.edu'),
+(37, 1, 2, 'xzczxczxczxczxczxc', 'message', '2017-12-09 06:49:16', 'slack.cs.odu.edu'),
+(38, 1, 2, 'zxczxccccccccccccccccccccccccc', 'message', '2017-12-09 06:49:24', 'slack.cs.odu.edu'),
+(39, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:49:36', 'slack.cs.odu.edu'),
+(40, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:49:41', 'slack.cs.odu.edu'),
+(41, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:49:55', 'slack.cs.odu.edu'),
+(42, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:02', 'slack.cs.odu.edu'),
+(43, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:06', 'slack.cs.odu.edu'),
+(44, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:12', 'slack.cs.odu.edu'),
+(45, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:17', 'slack.cs.odu.edu');
 
 -- --------------------------------------------------------
 
@@ -337,7 +400,7 @@ CREATE TABLE IF NOT EXISTS `thread` (
   PRIMARY KEY (`thread_id`),
   KEY `thread_msg_id` (`message_id`),
   KEY `thread_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=238 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `thread`
@@ -351,7 +414,19 @@ INSERT INTO `thread` (`thread_id`, `message_id`, `message`, `user_id`, `timestam
 (222, 305, 'ukyuikuyik', 18, '2017-11-21 06:47:57', 'False'),
 (223, 303, 'ghjnmfgjmghgh', 18, '2017-11-21 06:48:14', 'False'),
 (224, 301, 'hi', 1, '2017-11-21 10:48:19', 'False'),
-(225, 307, 'po\'op\'o', 18, '2017-11-21 11:27:06', 'False');
+(225, 307, 'po\'op\'o', 18, '2017-11-21 11:27:06', 'False'),
+(226, 283, 'hello', 1, '2017-11-21 19:38:50', 'False'),
+(227, 283, 'fsdfsdf', 1, '2017-11-21 19:38:55', 'False'),
+(228, 283, 'sfsdfsdfsdf', 1, '2017-11-21 19:39:02', 'False'),
+(229, 285, 'xccxc', 1, '2017-11-21 19:42:14', 'False'),
+(230, 285, 'xcxcxcxc', 1, '2017-11-21 19:42:19', 'False'),
+(231, 285, 'xcxcxcxc', 1, '2017-11-21 19:42:24', 'False'),
+(232, 309, 'vxcvxcvxcv', 1, '2017-11-21 19:42:44', 'False'),
+(233, 309, 'fgfdgfdg', 1, '2017-11-21 19:43:15', 'False'),
+(234, 310, 'fdgfdgfdg', 1, '2017-11-21 19:43:21', 'False'),
+(235, 284, 'fdgbfdgfdg', 1, '2017-11-21 19:43:31', 'False'),
+(236, 284, 'n,mjhkhjkl', 1, '2017-11-21 19:45:31', 'False'),
+(237, 316, 'jhtyjtyj', 1, '2017-12-03 21:26:31', 'False');
 
 -- --------------------------------------------------------
 
