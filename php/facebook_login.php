@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 include ("connect.php");
 session_start();
 //die();
@@ -21,7 +21,7 @@ $user_image_facebook= GET["image_src"];
 echo $user_name_facebook;
 echo $user_email_facebook;
 echo $user_image_facebook;
-//die();
+die();
 
  $query = mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
 
