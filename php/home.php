@@ -35,6 +35,7 @@
 
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
+    die();
 session_start();
 
 if($_SESSION['email'] )
