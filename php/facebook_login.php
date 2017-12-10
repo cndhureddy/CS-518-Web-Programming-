@@ -32,7 +32,7 @@ $user_image_facebook= $_GET["image_src"];
         $res=mysqli_fetch_row($query);
 if($res){
 //$query_insert=mysqli_query($conn,"insert into users values()");
-    if($res["type_registration"]=="regular"){
+    if($res[14]=="regular"){
     mysqli_close($conn);
         $_SESSION['email']=$user_email_facebook;
        $_SESSION['work_space_name']='slack.cs.odu.edu';
