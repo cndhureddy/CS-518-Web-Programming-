@@ -8,9 +8,9 @@
 </head>
 <body>
     <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 session_start();
     ?>
     <div id="topbar" >
@@ -110,7 +110,7 @@ session_start();
                 // successful.  See statusChangeCallback() for when this call is made.
                 function testAPI() {
                     console.log('Welcome!  Fetching your information.... ');
-                    FB.api('/me',{ locale: 'en_US', fields: 'name, email,groups' }, function(response) {
+                    FB.api('/me',{ locale: 'en_US', fields: 'name, email' }, function(response) {
                         console.log(response);
                         console.log('Successful login for: ' + response.name+' '+response.email);
                       //  document.getElementById('status').innerHTML =
@@ -120,7 +120,7 @@ session_start();
                         final_user_id=response.id;
                         var src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
                         console.log(src);
-                        <?php $_SESSION["facebook"]="yes;" ?>
+                        <?php $_SESSION["facebook"]="yes"; ?>
                        window.location="/php/facebook_login.php?user_name="+user_name+"&user_email="+user_email+"&image_src="+src;
                        // window.location="/php/sample.php";
 
