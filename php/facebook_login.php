@@ -45,7 +45,9 @@ if($res){
     else{
     
         $query_insert=mysqli_query($conn,"update users set full_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',display_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',picture='".mysqli_real_escape_string($conn,$user_image_facebook)."',type_registration='facebook' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."')");
-mysqli_close($conn);
+         echo $query_insert;
+       die();
+       mysqli_close($conn);
         $_SESSION['email']=$user_email_facebook;
         $_SESSION['work_space_name']='slack.cs.odu.edu';
        $_SESSION['display_name']=$user_name_facebook;
@@ -57,7 +59,9 @@ mysqli_close($conn);
     
 }else{
 $query_insert=mysqli_query($conn,"insert into users values(DEFAULT,'".mysqli_real_escape_string($conn,$user_email_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','***********','slack.cs.odu.edu',' ',' ',' ',' ',' ','".mysqli_real_escape_string($conn,$user_image_facebook)."',' ','2017-10-10 00:00:00','facebook')");
-mysqli_close($conn);
+echo $query_insert;
+   die();
+   mysqli_close($conn);
     $_SESSION['email']=$user_email_facebook;
     $_SESSION['work_space_name']='slack.cs.odu.edu';
        $_SESSION['display_name']=$user_name_facebook;
