@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>ODU CS Slack</title>
     <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
 <!--    <link rel='stylesheet' type='text/css' href='../css/homecss.php' />
 --> <script src="https://use.fontawesome.com/383a6f63f0.js"></script>
 
@@ -12,6 +13,7 @@
 
     <script src="../javascript/functions.js"></script>
     <script src="../javascript/pagination.js"></script>
+    <script src="../javascript/pagination_direct_user.js"></script>
     <script src="../javascript/picture_upload_preview.js"></script>
     <script src="../javascript/onchange_jquery.js"></script>
 
@@ -96,6 +98,8 @@ else{
 -->
     <div class="all_threads" ><i class="fa fa-comments-o " aria-hidden="true"></i> All Threads </div>
 
+    <form action="../help.php" method="post"><input class="channel_name" name="hello" type="submit" value="Help"/> </form>
+
     <form action="profiles.php" method="post"><input class="channel_name" name="hello" type="submit" value="Profiles_page"/> </form>
 
     <div id="channels_tag_div"><a href="" id="channels_tag"> Channels </a> <form style="float: right;margin-right: 10%;" action="channel_creation.php" method="post"><button type="submit" id="channels_tag_button" value=""><i class="fa fa-plus-circle" aria-hidden="true"></i></input></form></div>
@@ -108,26 +112,42 @@ else{
 
     //button class="channel_names" value="hello"></button>
     ?>
-
+    <label class="channel_name" > <b>Search </b></label>
     <div class="Search"><input type="text" class="enter_username" autofill="off"/> </div>
     <div class="Suggestions">
-        <ul class="Suggestions_ul">
 
-
-        </ul>
 
     </div>
+    <label class="channel_name" > <b>Direct Messages </b></label>
+    <?php
+    include ("connect.php");
 
-    </div >
+    $sql_query="select * from users where work_space_url='slack.cs.odu.edu'";
+    $user_details =$conn->query($sql_query);
+    //$row_count=$user_details->fetch_array(MYSQLI_ASSOC);
+    //print_r($row_count["display_name"]);
+    $total_user_rows=mysqli_num_rows (  $user_details );
+    //echo $total_user_rows;
+    $i=0;
+    while($i<$total_user_rows-1)
+    {
+        $result_user_names=$user_details->fetch_array(MYSQLI_ASSOC);
+       #echo "hello".$result_user_names ;
+        if($result_user_names["user_id"]==$_SESSION["user_id"]){
 
 
 
+        }else {
+            echo '<form action="user_submit.php" method="post"><input class="channel_name" name="display_name" type="submit" value="@ ' . $result_user_names["display_name"] . '"/><input type="hidden" name="to_user_id" value="' . $result_user_names["user_id"] . '"/> </form>';
+            // echo '<form action="channel_submit.php" method="post"><input class="channel_name" name="hello" type="submit" value="@ ' . $result_user_names["display_name"] . '"/> </form>';
+            $i = $i + 1;
+        }
+    }
+    //button class="channel_names" value="hello"></button>
+    ?>
+</div >
 
-
-    <div class="home-top-nav">
-
-
-      <?php
+    <div class="home-top-nav"><?php
 
 
 
@@ -243,6 +263,50 @@ else{
 
 
           }
+
+          if(isset($_GET["to_user_id"])){
+
+              $check_1=$_GET["user_id"];
+              $check_2=$_GET["to_user_id"];
+             // echo $check_1;
+             // echo $check_2;
+              if(isset($_GET["to_user_id"])){
+                  $temp_user_id=$_GET["to_user_id"];
+                  $temp_name=substr($_GET["channel_name"],2);
+
+                  $query="select display_name from users where user_id='$temp_user_id'";
+                  $result_set=$conn->query($query);
+                  //mysqli_close($conn);
+                  $row=$result_set->fetch_array(MYSQLI_ASSOC);
+                  $user_name_check=$row["display_name"];
+                  //echo $temp_name;
+                  //echo "\n";
+                  //echo $user_name_check;
+
+                  if($temp_name!=$user_name_check){
+                      //header("location: home.php?#test");
+                      //echo "hello";
+                     // header("location: home.php?#test");
+                      die();
+                  }
+
+                  //echo $temp_name;
+                  //echo $temp_user_id;
+
+
+
+              }
+
+              if($check_1==$check_2){
+
+                  //header("location: home.php?#test");
+                  die();
+              }
+                  echo '<div class="top_channel_display" > ' . htmlspecialchars($_GET['channel_name']) . '</div>';
+
+          }
+
+
       ?>
 
     </div>
@@ -254,6 +318,35 @@ else{
         if($channel_id) {
             include("retrieve_messages.php");
         }
+       if(isset($_GET["to_user_id"])){
+           $temp_user_id=$_GET["to_user_id"];
+           $temp_name=substr($_GET["channel_name"],2);
+           $to_func_user_id=$_GET["user_id"];
+           $query="select display_name from users where user_id='$temp_user_id'";
+           $result_set=$conn->query($query);
+           //mysqli_close($conn);
+           $row=$result_set->fetch_array(MYSQLI_ASSOC);
+           $user_name_check=$row["display_name"];
+            //echo $temp_name;
+            //echo "\n";
+            //echo $user_name_check;
+           //header("location: home.php?#test");
+           if($temp_name!=$user_name_check){
+               //header("location: home.php?#test");
+               //echo "hello";
+               die();
+           }
+           else{
+
+               include("retrieve_direct_messages.php");
+           }
+
+           //echo $temp_name;
+           //echo $temp_user_id;
+
+
+
+       }
         ?>
         <div id="test"   user_id="<?php echo $user_id ?>"></div>
 
@@ -343,6 +436,94 @@ if($row_channel_status["archieved_status"]=="unarchieved") {
 ";
 
 }
+
+if($_GET["to_user_id"]){
+    $check_1=$_GET["user_id"];
+    $check_2=$_GET["to_user_id"];
+    //echo $check_1;
+    //echo $check_2;
+
+    if($check_1==$check_2){
+
+        header("location: home.php?#test");
+        die();
+    }
+   // if($_GET[""])
+$user_id=$_GET["user_id"];
+
+    echo "<div class=\"message_post\">
+<form method=\"post\" action=\"controller.php\">
+    <textarea type=\"text\" class=\"input_message\" name=\"message\"  contenteditable=\"true\" placeholder=\"Message\" ></textarea>
+    <input type=\"hidden\" name=\"user_id\" value=\"".$user_id."\"/>
+        <input type=\"hidden\" name=\"to_user_id\" value=\"".$_GET["to_user_id"]."\"/>
+    <input type=\"hidden\" name=\"to_display_name\" value=\"".$_GET["channel_name"]."\">
+    </input>
+   <!--<input type=\"text\" class=\"message_post\" contenteditable=\"true\" type=\"text\"/>
+-->
+    <button class=\"submit_button_message\" type=\"submit\" value=\"\"> <i class=\"fa fa-paper-plane lg\" aria-hidden=\"true\"></i> </button>
+
+
+
+    <div class=\"class_modal\" style=\"
+    /* margin-left: 64%; */
+\">
+        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#codesnip\" style=\"
+
+    /* margin-left: 242%; */
+    /* margin-bottom: 37%; */
+    /* height: 181%; */
+    /* width: 12%; */
+\" >
+            <i class=\"fa fa-code\" aria-hidden=\"true\"></i>
+        </button>
+    </div>
+
+
+
+
+    <div style=\"
+    /* margin-left: 64%; */
+    float: right;
+    margin-right: -5.3%;
+\">
+        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#uploadPic\" style=\"
+
+    /* margin-left: 242%; */
+    /* margin-bottom: 37%; */
+    /* height: 181%; */
+    /* width: 12%; */
+\">
+            <i class=\"fa fa-upload\" aria-hidden=\"true\"></i>
+        </button>
+    </div>
+
+    <div style=\"
+    /* margin-left: 64%; */
+    float: right;
+    margin-right: -8.0%;
+\">
+        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#imglink\" style=\"
+
+    /* margin-left: 242%; */
+    /* margin-bottom: 37%; */
+    /* height: 181%; */
+    /* width: 12%; */
+\">
+            <i class=\"fa fa-link\" aria-hidden=\"true\"></i>
+        </button>
+    </div>
+
+</form>
+
+
+
+
+</div>
+";
+
+
+}
+
 ?>
 
 
@@ -362,8 +543,16 @@ if($row_channel_status["archieved_status"]=="unarchieved") {
                         <label for="comment">Code:</label>
                         <textarea class="form-control" rows="15" name="codesnip_value"></textarea>
                         <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
+                        <?php
+
+                        if(isset($_GET["to_user_id"])){
+                            $to_user_id=$_GET["to_user_id"];
+                            echo "<input type=\"hidden\" name=\"to_user_id\" value=\"$to_user_id\"/>";
+                        }
+
+                        ?>
                         <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
-                        <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
+                        <input type="hidden" name="channel_name" value="<?php echo $_GET["channel_name"] ?>">
                         <input type="hidden" name="message_type" value="codesnip"/>
                     </div>
                 </div>
@@ -391,8 +580,16 @@ if($row_channel_status["archieved_status"]=="unarchieved") {
                         <label for="comment">image url:</label>
                         <textarea class="form-control" rows="5" name="img_link_content"></textarea>
                         <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
+                        <?php
+
+                        if(isset($_GET["to_user_id"])){
+                            $to_user_id=$_GET["to_user_id"];
+                            echo "<input type=\"hidden\" name=\"to_user_id\" value=\"$to_user_id\"/>";
+                        }
+
+                        ?>
                         <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
-                        <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
+                        <input type="hidden" name="channel_name" value="<?php echo $_GET["channel_name"] ?>">
                         <input type="hidden" name="message_type" value="image_link"/>
                     </div>
                 </div>
@@ -409,6 +606,8 @@ if($row_channel_status["archieved_status"]=="unarchieved") {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
+
+
                 <h5 class="modal-title" id="exampleModalLabel">Upload Picture</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -425,8 +624,18 @@ if($row_channel_status["archieved_status"]=="unarchieved") {
                 <span class="btn btn-default btn-file">
                     Browse… <input type="file" id="imgInp" name="fileToUpload">
                     <input type="hidden" name="user_id" value="<?php echo $user_id ?>"/>
+
+                    <?php
+
+                    if(isset($_GET["to_user_id"])){
+                        $to_user_id=$_GET["to_user_id"];
+                        echo "<input type=\"hidden\" name=\"to_user_id\" value=\"$to_user_id\"/>";
+                    }
+
+                    ?>
+
                     <input type="hidden" name="channel_id" value="<?php echo $channel_id ?>"/>
-                    <input type="hidden" name="channel_name" value="<?php echo $channel_name ?>">
+                    <input type="hidden" name="channel_name" value="<?php echo $_GET["channel_name"] ?>">
                 </span>
             </span>
                                     <input type="text" class="form-control" readonly>

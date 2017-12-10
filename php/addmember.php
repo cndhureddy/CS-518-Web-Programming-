@@ -6,7 +6,7 @@
  * Time: 8:00 AM
  */
 session_start();
-if($_SESSION['email'] )
+if($_SESSION['email'])
 {
 
 }

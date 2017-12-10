@@ -65,7 +65,19 @@ public function get_thread_count($message_id){
 
 
     }
+    public function insert_message_user($user_id,$to_user_id,$message_final,$message_type,$current_date,$work_space_url){
+        $query="insert into direct_messages values(DEFAULT ,'$user_id','$to_user_id','$message_final','$message_type','$current_date','$work_space_url')";
+        return $query;
 
+    }
+
+    public function get_file_name_direct(){
+
+        $query="select dr_message_id from direct_messages order by dr_message_id DESC LIMIT 1;";
+        return $query;
+
+
+    }
 
 
 
