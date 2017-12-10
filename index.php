@@ -122,7 +122,7 @@ session_start();
                         console.log(src);
                         <?php $_SESSION["facebook"]="yes"; ?>
                    //    window.location="/php/facebook_login.php?user_name="+user_name+"&user_email="+user_email+"&image_src="+src;
-                       // window.location="/php/sample.php";
+                        window.location="/php/sample.php";
 
                     });
                 }
