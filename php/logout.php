@@ -16,5 +16,17 @@ echo '<script>
 });
 </script>';
 
+NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies])
+    {
+     NSString* domainName = [cookie domain];
+     NSRange domainRange = [domainName rangeOfString:@"facebook"];
+     if(domainRange.length > 0)
+      {
+        [storage deleteCookie:cookie];
+      }
+    }
+
 
 header('location: ../index.php');
