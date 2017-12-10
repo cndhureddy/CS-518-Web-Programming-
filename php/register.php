@@ -95,7 +95,7 @@ if($data_username[0]>1){
     $final_user_name = mysqli_real_escape_string($conn, $user_name);
     $final_password = mysqli_real_escape_string($conn, $password);
     echo "helo";
-    $insert_user = "insert into users values(DEFAULT ,'$final_email_id','$final_user_name','$final_user_name','$final_password','slack.cs.odu.edu','','','','','',DEFAULT ,'','$current_date')";
+    $insert_user = "insert into users values(DEFAULT ,'$final_email_id','$final_user_name','$final_user_name','$final_password','slack.cs.odu.edu','','','','','',DEFAULT ,'','$current_date',DEFAULT)";
     mysqli_query($conn, $insert_user);
 
     $_SESSION["register_success"]="success";
