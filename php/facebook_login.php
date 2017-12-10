@@ -6,6 +6,7 @@ session_start();
 //die();
 //echo "hello";
 //die();
+/*
 if(isset($_SESSION["facebook"])){
 
 
@@ -15,7 +16,7 @@ else{
    header("../index.php");
     die();
 
-}
+}*/
 
 $user_name_facebook= GET["user_name"];
 $user_email_facebook= GET["user_email"];
