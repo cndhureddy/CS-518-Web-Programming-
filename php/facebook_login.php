@@ -1,13 +1,14 @@
 <?php
 include ("connect.php");
+session_start();
 if(isset($_SESSION["facebook"])){
 
 
 }
 else{
 
-  //  header("../index.php");
-   // die();
+   header("../index.php");
+    die();
 
 }
 
