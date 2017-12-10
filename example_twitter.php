@@ -22,8 +22,9 @@ header( 'Location: ' . $url );
 	$user = $connection->get("account/verify_credentials",$params);
 	echo "<pre>";
 	echo $user->name;
+	
 	echo $user->screen_name;
-	echo $email->screen_name;
+	echo $user->email
 	echo $user->profile_image_url;
 	
 	echo "</pre>";
