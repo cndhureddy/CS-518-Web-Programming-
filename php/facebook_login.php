@@ -37,7 +37,7 @@ if($res){
         $_SESSION['email']=$user_email_facebook;
        $_SESSION['work_space_name']='slack.cs.odu.edu';
        $_SESSION['display_name']=$res[3];
-       $_SESSION['full_name']=$res[4];
+       $_SESSION['full_name']=$res[2];
        echo "hello";
        echo $_SESSION['email'];
        echo $_SESSION['work_space_name'];
