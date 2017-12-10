@@ -7,8 +7,13 @@
 
 </head>
 <body>
-
-<div id="topbar" >
+    <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session.start();
+    ?>
+    <div id="topbar" >
     <div ><img id="logo"  src="images/logo.jpg"></div>
     <div class="logo-text">ODU CS Slack</div>
     <div class="login-button"><form><input id="signin-button" type="submit" value="Sign in"></form></div>
