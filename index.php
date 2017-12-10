@@ -119,7 +119,7 @@ session_start();
                         var user_email=response.email;
                         final_user_id=user_id;
                         var src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
-                        window.location.href="/php/facebook_login.php?user_id="+user_id+"&user_email="+user_email+"&image_src="+src;
+                        window.location="/php/facebook_login.php?user_id="+user_id+"&user_email="+user_email+"&image_src="+src;
 
 
                     });
