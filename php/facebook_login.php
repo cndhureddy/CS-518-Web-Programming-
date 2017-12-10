@@ -12,3 +12,5 @@ session_start();
 echo GET["user_id"];
 echo GET["user_email"];
 echo GET["image_src"];
+
+?>
