@@ -36,8 +36,8 @@ if($res){
     mysqli_close($conn);
         $_SESSION['email']=$user_email_facebook;
        $_SESSION['work_space_name']='slack.cs.odu.edu';
-       $_SESSION['display_name']=$user_name_facebook;
-       $_SESSION['full_name']=$user_name_facebook;
+       $_SESSION['display_name']=$res[3];
+       $_SESSION['full_name']=$res[4];
        
     header('location:home.php#test');
     
