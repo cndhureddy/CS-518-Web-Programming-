@@ -105,7 +105,7 @@ session_start();
                     js.src = "https://connect.facebook.net/en_US/sdk.js";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
-                var final_user_id;
+              //  var final_user_id;
                 // Here we run a very simple test of the Graph API after login is
                 // successful.  See statusChangeCallback() for when this call is made.
                 function testAPI() {
