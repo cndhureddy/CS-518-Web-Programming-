@@ -115,12 +115,12 @@ session_start();
                         console.log('Successful login for: ' + response.name+' '+response.email);
                         document.getElementById('status').innerHTML =
                             'Thanks for logging in, ' + response.name + '!';
-                        var user_id=response.id;
+                        var user_name=response.name;
                         var user_email=response.email;
                         final_user_id=user_id;
                         var src="//graph.facebook.com/"+final_user_id+"/picture?type=large";
                         <?php $_SESSION["facebook"]="yes;" ?>
-                       //window.location="/php/facebook_login.php?user_id="+user_id+"&user_email="+user_email+"&image_src="+src;
+                       window.location="/php/facebook_login.php?user_name="+user_name+"&user_email="+user_email+"&image_src="+src;
                        // window.location="/php/sample.php";
 
                     });
