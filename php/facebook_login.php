@@ -15,6 +15,10 @@ else{
 $user_name_facebook= GET["user_name"];
 $user_email_facebook= GET["user_email"];
 $user_image_facebook= GET["image_src"];
+echo $user_name_facebook;
+echo $user_email_facebook;
+echo $user_image_facebook;
+die();
 
  $query = mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
 
