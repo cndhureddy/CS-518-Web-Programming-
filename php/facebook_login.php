@@ -38,7 +38,11 @@ if($res){
        $_SESSION['work_space_name']='slack.cs.odu.edu';
        $_SESSION['display_name']=$res[3];
        $_SESSION['full_name']=$res[4];
-       
+       echo "hello";
+       echo $_SESSION['email'];
+       echo $_SESSION['work_space_name'];
+       echo $_SESSION['display_name'];
+       echo $_SESSION['full_name'];
     header('location:home.php#test');
     
     }
