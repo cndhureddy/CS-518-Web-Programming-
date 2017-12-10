@@ -15,18 +15,6 @@ echo '<script type=\"javascript\">
   // user is now logged out
 });
 </script>';
-
-NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [storage cookies])
-    {
-     NSString* domainName = [cookie domain];
-     NSRange domainRange = [domainName rangeOfString:@"facebook"];
-     if(domainRange.length > 0)
-      {
-        [storage deleteCookie:cookie];
-      }
-    }
-
+die();
 
 header('location: ../index.php');
