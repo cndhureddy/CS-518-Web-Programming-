@@ -15,6 +15,6 @@ echo '<script type=\"javascript\">
   // user is now logged out
 });
 </script>';
-die();
+//die();
 
 header('location: ../index.php');
