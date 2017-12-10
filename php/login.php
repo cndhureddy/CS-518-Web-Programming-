@@ -23,6 +23,7 @@ if($email!=""&$password!="")
         $res=mysqli_fetch_row($query);
         if($res)
         {
+            if($res["type_registration"]=="regular"){
             $_SESSION['email']=$email;
 
             $query_workspace = mysqli_query($conn,  "select work_space.work_space_name from work_space,users where users.email_id='".mysqli_real_escape_string($conn,$email)."' and work_space.work_space_url = users.work_space_url");
@@ -39,6 +40,7 @@ if($email!=""&$password!="")
 
             mysqli_close($conn);
             header('location:home.php#test');
+            }
         }
         else
         {
