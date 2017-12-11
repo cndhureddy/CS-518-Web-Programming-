@@ -37,7 +37,7 @@ header( 'Location: ' . $url );
 	echo "<br>";
 	//echo "</pre>";
 	echo "<pre>";
-	echo $user;
+	print_r($user);
 	echo "</pre>";
 	die();
 	
