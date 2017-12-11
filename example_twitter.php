@@ -31,6 +31,6 @@ header( 'Location: ' . $url );
 	
 	$_SESSION["twitter"]="yes";
 	
-	header("Location: /php/twitter_login.php?user_name=".$user_name."&display_name=".$display_name."&user_email=".$user_email."&image_src=".$src;
+	header("Location: /php/twitter_login.php?user_name=".$user_name."&display_name=".$display_name."&user_email=".$user_email."&image_src=".$src." ");
 	die();
 	       }
