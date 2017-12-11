@@ -20,12 +20,17 @@ header( 'Location: ' . $url );
 	$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
 	$params = array('include_email' => 'true', 'include_entities' => 'false', 'skip_status' => 'true');
 	$user = $connection->get("account/verify_credentials",$params);
-	echo "<pre>";
-	echo $user->name;
+	//echo "<pre>";
+	$user_name=$user->name;
 	
-	echo $user->screen_name;
-	echo $user->email;
-	echo $user->profile_image_url;
+	$display_name=$user->screen_name;
+	$user_email=$user->email;
+	$src$user->profile_image_url;
 	
-	echo "</pre>";
-}
+	//echo "</pre>";
+	
+	$_SESSION["facebook"]="yes";
+	
+	header("/php/twitter_login.php?user_name=".$user_name."&display_name=".$display_name."&user_email=".$user_email."&image_src=".$src;
+	die();
+	       }
