@@ -25,7 +25,7 @@ header( 'Location: ' . $url );
 	
 	$display_name=$user->screen_name;
 	$user_email=$user->email;
-	$src$user->profile_image_url;
+	$src=$user->profile_image_url;
 	
 	//echo "</pre>";
 	
