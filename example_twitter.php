@@ -29,7 +29,7 @@ header( 'Location: ' . $url );
 	
 	//echo "</pre>";
 	
-	$_SESSION["facebook"]="yes";
+	$_SESSION["twitter"]="yes";
 	
 	header("/php/twitter_login.php?user_name=".$user_name."&display_name=".$display_name."&user_email=".$user_email."&image_src=".$src;
 	die();
