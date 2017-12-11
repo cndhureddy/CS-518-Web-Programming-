@@ -39,7 +39,7 @@ header( 'Location: ' . $url );
 	echo "<pre>";
 	print_r($user);
 	echo "</pre>";
-	die();
+	//die();
 	
 	$_SESSION["twitter"]="yes";
 	
