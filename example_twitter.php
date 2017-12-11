@@ -12,7 +12,8 @@ if (!isset($_SESSION['access_token'])) {
 	$request_token = $connection->oauth('oauth/request_token', array('oauth_callback' => OAUTH_CALLBACK));
 	$_SESSION['oauth_token'] = $request_token['oauth_token'];
 	$_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
-	$url = $connection->url('oauth/authorize', array('oauth_token' => $request_token['oauth_token']),array('force_login'=>'true'));
+	$_dude=array('force_login'=>'true');
+	$url = $connection->url('oauth/authorize', array('oauth_token' => $request_token['oauth_token'],'force_login'=> $_dude['force_login']));
 	//echo $url;
 header( 'Location: ' . $url );
 } else {
