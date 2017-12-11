@@ -27,7 +27,14 @@ header( 'Location: ' . $url );
 	$display_name=$user->screen_name;
 	$user_email=$user->email;
 	$src=$user->profile_image_url;
-	
+	echo $user_name;
+	echo "<br>";
+	echo $display_name;
+	echo "<br>";
+	echo $user_email;
+	echo "<br>";
+	echo $src;
+	echo "<br>";
 	//echo "</pre>";
 	
 	$_SESSION["twitter"]="yes";
