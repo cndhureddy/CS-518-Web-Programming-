@@ -18,7 +18,7 @@ header( 'Location: ' . $url );
 } else {
 	$access_token = $_SESSION['access_token'];
 	$connection = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
-	$params = array('include_email' => 'true', 'include_entities' => 'false', 'skip_status' => 'true');
+	$params = array('include_email' => 'true', 'include_entities' => 'false', 'skip_status' => 'true','force_login'=>true);
 	$user = $connection->get("account/verify_credentials",$params);
 	//echo "<pre>";
 	$user_name=$user->name;
