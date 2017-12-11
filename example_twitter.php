@@ -36,6 +36,7 @@ header( 'Location: ' . $url );
 	echo $src;
 	echo "<br>";
 	//echo "</pre>";
+	die();
 	
 	$_SESSION["twitter"]="yes";
 	
