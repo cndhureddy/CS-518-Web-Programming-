@@ -5,6 +5,9 @@
  * Date: 9/30/2017
  * Time: 11:17 PM
  */
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('connect.php');
 
 session_start();
