@@ -22,10 +22,10 @@ $user_name_facebook= $_GET["user_name"];
 $user_email_facebook= $_GET["user_email"];
 $user_image_facebook= $_GET["image_src"];
 $user_display_twitter=$_GET["display_name"];
-echo $user_name_facebook;
-echo $user_email_facebook;
-echo $user_image_facebook;
-die();
+//echo $user_name_facebook;
+//echo $user_email_facebook;
+//echo $user_image_facebook;
+//die();
 
 
  $query = mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
