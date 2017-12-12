@@ -5,6 +5,9 @@
  * Date: 11/19/2017
  * Time: 6:20 PM
  */
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include_once('db_queries.php');
 
 
