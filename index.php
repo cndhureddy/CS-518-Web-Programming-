@@ -13,19 +13,9 @@
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 session_start();
-    require_once "recaptchalib.php";
+   
     
-    $secret="6LdTujwUAAAAAD9byuY_VxqBNT495nPli3KurV9Z";
-    $response = null;
- 
-// check secret key
-$reCaptcha = new ReCaptcha($secret);
-    if ($_POST["g-recaptcha-response"]) {
-    $response = $reCaptcha->verifyResponse(
-        $_SERVER["REMOTE_ADDR"],
-        $_POST["g-recaptcha-response"]
-    );
-}
+   
     
     ?>
     <div id="topbar" >
@@ -54,7 +44,7 @@ $reCaptcha = new ReCaptcha($secret);
             <input id="login-fields" placeholder="password" type="password" name="password"/>
             
             
-             <div class="g-recaptcha" data-sitekey="6LdTujwUAAAAACskPvNM3QdBn3FRs-xjHLk4sExj"></div>
+            
             
             
             <input id="submit" type="submit"/>
@@ -197,7 +187,7 @@ $reCaptcha = new ReCaptcha($secret);
  
             
     </form>
-        <script src='https://www.google.com/recaptcha/api.js'></script>
+        
 </div>
 
 </body>
