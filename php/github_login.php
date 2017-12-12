@@ -54,7 +54,7 @@ $gitImage = $output["avatar_url"];
 function checkLogin($gitUserName){
    global $conn;
  
-   $sql = "SELECT * FROM users where email= '$gitUserName'";
+   $sql = "SELECT * FROM users where email_id= '$gitUserName'";
    $result = mysqli_query($conn,$sql);
    if($result->num_rows > 0 ){
         echo "1";
