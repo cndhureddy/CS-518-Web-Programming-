@@ -105,6 +105,7 @@ if($data_username[0]>1){
         } else {
             echo "not a image";
         }
+  echo "TEST";
     die();
     $insert_user = "insert into users values(DEFAULT ,'$final_email_id','$final_user_name','$final_user_name','$final_password','slack.cs.odu.edu','','','','','',DEFAULT ,'','$current_date',DEFAULT)";
     mysqli_query($conn, $insert_user);
