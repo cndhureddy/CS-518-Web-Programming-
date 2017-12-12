@@ -53,7 +53,7 @@ if($res){
     
         $query_insert=mysqli_query($conn,"update users set full_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',display_name='".mysqli_real_escape_string($conn,$user_display_twitter)."',picture='".mysqli_real_escape_string($conn,$user_image_facebook)."',type_registration='facebook' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."')");
          echo $query_insert;
-$query_update=mysqli_query($conn,"update dp_urls set twitter_url='".mysqli_real_escape_string($conn,$user_image_facebook)."' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."');
+$query_update=mysqli_query($conn,"update dp_urls set twitter_url='".mysqli_real_escape_string($conn,$user_image_facebook)."' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
       // die();
        mysqli_close($conn);
         $_SESSION['email']=$user_email_facebook;
@@ -68,7 +68,7 @@ $query_update=mysqli_query($conn,"update dp_urls set twitter_url='".mysqli_real_
 }else{
 $query_insert=mysqli_query($conn,"insert into users values(DEFAULT,'".mysqli_real_escape_string($conn,$user_email_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','".mysqli_real_escape_string($conn,$user_display_twitter)."','***********','slack.cs.odu.edu',' ',' ',' ',' ',' ','".mysqli_real_escape_string($conn,$user_image_facebook)."',' ','2017-10-10 00:00:00','facebook')");
 echo $query_insert;
-  $query_update=mysqli_query($conn,"update dp_urls set twitter_url='".mysqli_real_escape_string($conn,$user_image_facebook)."' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."');
+  $query_update=mysqli_query($conn,"update dp_urls set twitter_url='".mysqli_real_escape_string($conn,$user_image_facebook)."' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
    //die();
    mysqli_close($conn);
     $_SESSION['email']=$user_email_facebook;
