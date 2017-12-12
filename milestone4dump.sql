@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 10, 2017 at 09:38 PM
+-- Generation Time: Dec 12, 2017 at 08:48 AM
 -- Server version: 5.7.19
 -- PHP Version: 5.6.31
 
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `admin`
 --
+
 CREATE DATABASE slack_lamp_stack_518;
 USE slack_lamp_stack_518;
 
@@ -103,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `channel_messages` (
   PRIMARY KEY (`message_id`),
   KEY `channel_id_messaged` (`channel_id`),
   KEY `user_id_messages` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=324 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `channel_messages`
@@ -181,7 +182,9 @@ INSERT INTO `channel_messages` (`message_id`, `channel_id`, `user_id`, `message`
 (318, 16, 1, 'to_display_name', '2017-12-06 04:10:18', 'False', 'codesnip'),
 (319, 16, 1, '../images/319msg_unique_img319.jpg', '2017-12-06 04:10:29', 'false', 'picture'),
 (320, 16, 1, 'https://www.w3schools.com/css/paris.jpg', '2017-12-06 04:11:07', 'False', 'image_link'),
-(321, 16, 1, 'img_link_content', '2017-12-06 04:29:42', 'False', 'message');
+(321, 16, 1, 'img_link_content', '2017-12-06 04:29:42', 'False', 'message'),
+(322, 14, 1, '../images/322msg_unique_img322.jpg', '2017-12-12 05:46:31', 'false', 'picture'),
+(323, 14, 1, '../images/323msg_unique_img323.jpg', '2017-12-12 05:46:42', 'false', 'picture');
 
 -- --------------------------------------------------------
 
@@ -286,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `direct_messages` (
   KEY `dr_from_user_id` (`from_user_id`),
   KEY `dr_to_user_id` (`to_user_id`),
   KEY `dr_work_space_url` (`work_space_url`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `direct_messages`
@@ -334,7 +337,25 @@ INSERT INTO `direct_messages` (`dr_message_id`, `from_user_id`, `to_user_id`, `m
 (42, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:02', 'slack.cs.odu.edu'),
 (43, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:06', 'slack.cs.odu.edu'),
 (44, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:12', 'slack.cs.odu.edu'),
-(45, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:17', 'slack.cs.odu.edu');
+(45, 1, 2, '$headers = get_headers($message, 1); if (strpos($headers[\'Content-Type\'], \'image/\') !== false) { $message_type = $_POST[\"message_type\"]; } else { $message_type = \"message\"; }', 'message', '2017-12-09 06:50:17', 'slack.cs.odu.edu'),
+(46, 1, 4, '../images/46dr_msg_unique_img46.Turn_1', 'file', '2017-12-12 06:30:39', 'slack.cs.odu.edu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dp_urls`
+--
+
+DROP TABLE IF EXISTS `dp_urls`;
+CREATE TABLE IF NOT EXISTS `dp_urls` (
+  `email_id` varchar(200) NOT NULL,
+  `local_url` text NOT NULL,
+  `gravatar_url` text NOT NULL,
+  `facebook_url` text NOT NULL,
+  `twitter_url` text NOT NULL,
+  PRIMARY KEY (`email_id`),
+  KEY `email_id` (`email_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -470,7 +491,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `timestamp` timestamp NOT NULL,
   `type_registration` varchar(20) NOT NULL DEFAULT 'regular',
   PRIMARY KEY (`user_id`),
-  KEY `work_space_url` (`work_space_url`)
+  KEY `work_space_url` (`work_space_url`),
+  KEY `email_id` (`email_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
@@ -554,6 +576,12 @@ ALTER TABLE `direct_messages`
   ADD CONSTRAINT `dr_from_user_id` FOREIGN KEY (`from_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dr_to_user_id` FOREIGN KEY (`to_user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `dr_work_space_url` FOREIGN KEY (`work_space_url`) REFERENCES `work_space` (`work_space_url`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `dp_urls`
+--
+ALTER TABLE `dp_urls`
+  ADD CONSTRAINT `please` FOREIGN KEY (`email_id`) REFERENCES `users` (`email_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `message_reaction`
