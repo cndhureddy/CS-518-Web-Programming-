@@ -259,6 +259,8 @@ if(isset($_FILES["fileToUpload"])){
         $number=$row["dr_message_id"]+1;
         $submit=$_POST["submit"];
         $size=$_FILES["fileToUpload"]["size"];
+        echo $size;
+        die();
         $image_name_a=$_FILES["fileToUpload"]["name"];
         $img_file_name=$_FILES["fileToUpload"]["tmp_name"];
         $img_name=$number."dr_msg_unique_img".$number;
