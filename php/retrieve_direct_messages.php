@@ -106,6 +106,12 @@ function retrieving_messages_user($conn,$to_func_user_id,$temp_user_id){
                 //echo "<div class=\"clear\"></div>";
 
             }
+                        if($row["message_type"]=="file"){
+
+                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["dr_message_id"]) . "_div\"><a  href=\"" . htmlspecialchars($row["message"]) . "\"\><br> ";
+                //echo "<div class=\"clear\"></div>";
+
+            }
 
 
 
@@ -209,6 +215,13 @@ function retrieving_messages_user($conn,$to_func_user_id,$temp_user_id){
                 echo "<div class=\"message_display \" id=\"" . htmlspecialchars($row["dr_message_id"]) . "_div\"><div class=\"only_message\"><pre> <code>" . htmlspecialchars($row["message"]) . " </code></pre> </div>  ";
                 // echo "<div class=\"clear\"></div>";
             }
+                        if($row["message_type"]=="file"){
+
+
+                echo "<div class=\"message_display \" id=\"" . htmlspecialchars($row["dr_message_id"]) . "_div\"><div class=\"only_message\"><a href=\"" . htmlspecialchars($row["message"]) ." \">" . htmlspecialchars($row["message"]) . "</a><br>  </div>  ";
+
+            }
+
            /* $query_thread_count="select count(*) from thread where message_id='".$row["dr_message_id"]."'";
             $result_thread_count =$conn->query($query_thread_count);
             $row_count=$result_thread_count->fetch_array(MYSQLI_ASSOC);
