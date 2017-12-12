@@ -54,8 +54,8 @@ if($res){
         else{
 
             $query_update=mysqli_query($conn,"insert into dp_urls values('".mysqli_real_escape_string($conn,$user_email_facebook)."','','','".mysqli_real_escape_string($conn,$user_image_facebook)."',''");
-            echo $query_update;
-            die();
+           // echo $query_update;
+          //  die();
 
         }mysqli_close($conn);
         header('location:home.php#test');
