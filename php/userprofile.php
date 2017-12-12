@@ -141,6 +141,7 @@ include("connect.php");
             $user_id_channel=$row_user_id["user_id"];
         }
     } else {
+        
     }
 mysqli_close($conn);
         
@@ -155,8 +156,9 @@ mysqli_close($conn);
         $sql_user_dp="SELECT * from dp_urls where email_id='".mysqli_real_escape_string($conn,$email)."'";
     $result_urls = $conn->query($sql_user_dp);
         $row_urls = $result_urls->fetch_assoc();
-        print_r($row_urls);
-        die();
+        //print_r($row_urls);
+        //die();
+        echo $sql_user_dp;
 mysqli_close($conn);
         
 if($row_urls["local_url"]!=''){
