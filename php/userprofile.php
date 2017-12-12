@@ -132,12 +132,8 @@ $res=mysqli_fetch_row($query);
 
     $sql_user_id = "SELECT user_id from users where email_id='".mysqli_real_escape_string($conn,$email)."'";
     $result_urls = $conn->query($sql_user_id);
-        $row_urls = $result_urls->fetch_assoc()
-if($row_urls["local_url"]!=''){
+        $row_urls = $result_urls->fetch_assoc();
 
-    echo "<form action=\"update_local_url.php\"><input type=\"submit\" value=\"use my image\"></input></form>";
-
-}
         
 if($row_urls["local_url"]!=''){
 
