@@ -143,6 +143,9 @@ session_start();
 
             <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
             </fb:login-button>
+            <form action="example_twitter.php">
+                <input type="submit" value="twitter login"/>
+            </form>
           <!--  <img id="profile_pic" src="//graph.facebook.com/{+final_user_id+}/picture?type=large">-->
             <div id="status">
 
