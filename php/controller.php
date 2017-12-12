@@ -24,6 +24,7 @@ else{
 include_once "./get_more_messages_file.php";
 include_once "./message_posting.php";
 include_once "./message_post_pic.php";
+include_once "./message_post_pic.php";
 include_once "./get_more_messages_user_file.php";
 //include('db_queries.php');
 
@@ -32,6 +33,7 @@ $retrieving_messages=new get_more_messages();
 $message_posting=new message_posting();
 $message_post_pic=new message_post_pic();
 $get_more_messages_user_file=new get_more_messages_user_file();
+$message_post_pic=new message_post_pic();
 
 
 
@@ -274,10 +276,19 @@ if(isset($_FILES["fileToUpload"])){
         //echo $file_size;
         //die();
         if($file_size!==false){        
-        $message_post_pic->upload_pic_direct($submit,$img_name,$img_file_name,$image_name_a,$size,$to_user_id,$user_id,$smiley_status,$message_type,$user_name);
+        
+            
+            
+          
+            
+            $message_post_pic->upload_pic_direct($submit,$img_name,$img_file_name,$image_name_a,$size,$to_user_id,$user_id,$smiley_status,$message_type,$user_name);
         }
         else{
-            echo "hello";
+            //echo "hello";
+            $message_type="file";
+            $message_post_file->upload_file_direct($submit,$img_name,$img_file_name,$image_name_a,$size,$to_user_id,$user_id,$smiley_status,$message_type,$user_name);
+
+            //message_post_pic
         }
 
 
@@ -301,6 +312,7 @@ if(isset($_FILES["fileToUpload"])){
     $image_name_a=$_FILES["fileToUpload"]["name"];
     $img_file_name=$_FILES["fileToUpload"]["tmp_name"];
     $img_name=$number."msg_unique_img".$number;
+    $file_size=getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 
     /*
        echo $img_file_name;
@@ -322,8 +334,13 @@ if(isset($_FILES["fileToUpload"])){
        echo $img_name;*/
     $smiley_status="false";
     $message_type="picture";
+     if($file_size!==false){  
     $message_post_pic->upload_pic($submit,$img_name,$img_file_name,$image_name_a,$size,$channel_id,$user_id,$smiley_status,$message_type,$channel_name);
-
+     }
+    else{
+        $message_type="file";
+    $message_post_file->upload_file($submit,$img_name,$img_file_name,$image_name_a,$size,$channel_id,$user_id,$smiley_status,$message_type,$channel_name);
+    }
     /* $query=$db_object->insert_message($channel_id,$user_id,$message_final,$current_date,$smiley_status,$message_type);
 
      //$conn->query($query);
