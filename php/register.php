@@ -97,6 +97,12 @@ if($data_username[0]>1){
     echo "helo";
     $gravatar_url=get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, array() );
     echo $gravatar_url;
+    $headers = get_headers($gravatar_url, 1);
+    if (strpos($headers['Content-Type'], 'image/') !== false) {
+            echo "image";
+        } else {
+            echo "not a image";
+        }
     die();
     $insert_user = "insert into users values(DEFAULT ,'$final_email_id','$final_user_name','$final_user_name','$final_password','slack.cs.odu.edu','','','','','',DEFAULT ,'','$current_date',DEFAULT)";
     mysqli_query($conn, $insert_user);
