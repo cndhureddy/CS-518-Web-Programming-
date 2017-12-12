@@ -271,11 +271,14 @@ if(isset($_FILES["fileToUpload"])){
         
         $file_size=getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         
-        echo $file_size;
-        die();
-        
+        //echo $file_size;
+        //die();
+        if($file_size!==false){        
         $message_post_pic->upload_pic_direct($submit,$img_name,$img_file_name,$image_name_a,$size,$to_user_id,$user_id,$smiley_status,$message_type,$user_name);
-
+        }
+        else{
+        
+        }
 
 
     }
