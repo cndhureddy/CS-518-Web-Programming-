@@ -45,8 +45,8 @@ if($res){
         //echo $_SESSION['full_name'];
         include ("connect.php");
         $query_insert=mysqli_query($conn,"update users set picture='$user_image_facebook' where email_id='$user_email_facebook'");
-        echo "update users set picture='$user_image_facebook' where email_id='$user_email_facebook'";
-        echo "<br>";
+        //echo "update users set picture='$user_image_facebook' where email_id='$user_email_facebook'";
+        //echo "<br>";
         mysqli_close($conn);
         include ("connect.php");
         $query_c_1 = mysqli_query($conn,"select * from dp_urls where email_id='$user_email_facebook'");
@@ -62,7 +62,7 @@ if($res){
             include ("connect.php");
             $a=mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')");
 
-            echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
+            //echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
             //  if($a){
             //echo "sucess";
             //  die();
@@ -78,7 +78,7 @@ if($res){
     else{
 
         mysqli_query($conn,"update users set full_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',display_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',picture='".mysqli_real_escape_string($conn,$user_image_facebook)."',type_registration='facebook' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."')");
-        echo $query_insert;
+       // echo $query_insert;
         $query_c_1 = mysqli_query($conn,"select * from dp_urls where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
 
         $res_c_1=mysqli_fetch_row($query_c_1);
@@ -101,7 +101,7 @@ if($res){
 
 }else{
     $query_insert=mysqli_query($conn,"insert into users values(DEFAULT,'".mysqli_real_escape_string($conn,$user_email_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','".mysqli_real_escape_string($conn,$user_name_facebook)."','***********','slack.cs.odu.edu',' ',' ',' ',' ',' ','".mysqli_real_escape_string($conn,$user_image_facebook)."',' ','2017-10-10 00:00:00','facebook')");
-    echo $query_insert;
+    //echo $query_insert;
     $query_c_1 = mysqli_query($conn,"select * from dp_urls where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
 
     $res_c_1=mysqli_fetch_row($query_c_1);
