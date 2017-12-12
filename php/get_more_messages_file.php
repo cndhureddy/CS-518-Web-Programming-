@@ -94,7 +94,7 @@ class get_more_messages
                 }
                 if($row["message_type"]=="file"){
 
-                    $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><a  href=\"" . htmlspecialchars($row["message"]) . "\"download\><br> ";
+                    $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><a href=\"" . htmlspecialchars($row["message"]) ." \"download>" . htmlspecialchars($row["message"]) . "</a><br> ";
                     //echo "<div class=\"clear\"></div>";
 
                 }
