@@ -43,6 +43,8 @@ if($res){
        echo $_SESSION['work_space_name'];
        echo $_SESSION['display_name'];
        echo $_SESSION['full_name'];
+        $query_update=mysqli_query($conn,"update dp_urls set facebook_url='".mysqli_real_escape_string($conn,$user_image_facebook)."' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."');
+        mysqli_close($conn);
     header('location:home.php#test');
     
     }
