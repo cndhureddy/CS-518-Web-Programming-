@@ -131,28 +131,46 @@ $res=mysqli_fetch_row($query);
    // echo "";
 
     $sql_user_id = "SELECT user_id from users where email_id='".mysqli_real_escape_string($conn,$email)."'";
-    $result_urls = $conn->query($sql_user_id);
+        
+        $result_user_id = $conn->query($sql_user_id);
+
+
+    if ($result_user_id->num_rows > 0) {
+        // output data of each row
+        while($row_user_id = $result_user_id->fetch_assoc()) {
+            $user_id_channel=$row_user_id["user_id"];
+        }
+    } else {
+    }
+
+    $sql_channel_ids = "SELECT channel_id from channel_users where user_id='".mysqli_real_escape_string($conn,$user_id_channel)."'";
+    $result_channel_id = $conn->query($sql_channel_ids);
+
+        
+        
+        $sql_user_dp="SELECT * from dp_urls where email_id='".mysqli_real_escape_string($conn,$email)."'";
+    $result_urls = $conn->query($sql_user_dp);
         $row_urls = $result_urls->fetch_assoc();
 
         
-if($row_urls["local_url"]!=''){
+if($row_urls[1]!=''){
 
     echo "<form action=\"update_local_url.php\"><input type=\"submit\" value=\"use my image\"></input></form>";
 
 }
         
-if($row_urls["gravatar_url"]!=''){
+if($row_urls[2]!=''){
 
     echo "<form action=\"update_gravatar_url.php\"><input type=\"submit\" value=\"use Gravatar image\"></input></form>";
 
 }
         
-if($row_urls["facebook_url"]!=''){
+if($row_urls[3]!=''){
 
     echo "<form action=\"update_facebook_url.php\"><input type=\"submit\" value=\"use Facebook image\"></input></form>";
 
 }
-        if($row_urls["twitter_url"]!=''){
+        if($row_urls[4]!=''){
 
     echo "<form action=\"update_twitter_url.php\"><input type=\"submit\" value=\"use Twitter image\"></input></form>";
 
