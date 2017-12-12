@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include("connect.php");
 $email=$_SESSION["email"];
 $query_1="select * from dp_urls where email_id='".$email."'";
