@@ -100,8 +100,9 @@ if($data_username[0]>1){
     $gravatar_url=get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, array() );
     echo $gravatar_url;
     $headers = get_headers($gravatar_url, 1);
-   /* if (strpos($headers['Content-Type'], 'image/') !== false) {
-         */if(1){
+    if (strpos($headers['Content-Type'], 'image/') !== false) {
+         
+ {
          echo "image";
         } else {
             echo "not a image";
