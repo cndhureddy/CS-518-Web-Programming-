@@ -120,7 +120,7 @@ if (!empty($_POST['submit'])){
 
             $query = "update users set picture='".mysqli_real_escape_string($conn,$filename_to_insert)."' where email_id='".mysqli_real_escape_string($conn,$_SESSION['email'])."'";
             mysqli_query($conn, $query);
-
+    $query_update=mysqli_query($conn,"update dp_urls set local_url='".mysqli_real_escape_string($conn,$filename_to_insert)."' where email_id='".mysqli_real_escape_string($conn,$_SESSION['email'])."');
 
             header('location:userprofile.php');
             echo <<<EOL
