@@ -46,10 +46,10 @@ $gitEmail = $output["email"];
 $gitUserName = $output["login"];
 $gitImage = $output["avatar_url"];
 
-echo $gitEmail;
-  echo $gitUserName;
-echo $gitImage;
-die();
+//echo $gitEmail;
+  //echo $gitUserName;
+//echo $gitImage;
+//die();
 
 function checkLogin($gitUserName){
    global $conn;
@@ -63,20 +63,20 @@ function checkLogin($gitUserName){
    }
 }
 if(checkLogin($gitUserName)){
-   $sql = "INSERT INTO `users` VALUES(DEFAULT,'$gitEmail','$gitUserName','$gitUserName','**********','slack.cs.odu.edu','','','','','','$gitImage','','2017-10-10 00:00:00','Github')";
+   $sql = "INSERT INTO `users` VALUES(DEFAULT,'$gitUserName','$gitUserName','$gitUserName','**********','slack.cs.odu.edu','','','','','','$gitImage','','2017-10-10 00:00:00','Github')";
    
     if (mysqli_query($conn, $sql)) {
-      $_SESSION['email']=$gitEmail;
+      $_SESSION['email']=$gitUserName;
     $_SESSION['work_space_name']='slack.cs.odu.edu';
     $_SESSION['display_name']=$gitUserName;
     $_SESSION['full_name']=$gitUserName;
        header("location:home.php#test");
     }
 }else{
-   $update_sql = "update users set picture='$gitImage' where email_id='$gitEmail'";
+   $update_sql = "update users set picture='$gitImage' where email_id='$gitUserName'";
    $result = $conn->query($update_sql);
    
-   $_SESSION['email']=$gitEmail;
+   $_SESSION['email']=$gitUserName;
     $_SESSION['work_space_name']='slack.cs.odu.edu';
     $_SESSION['display_name']=$gitUserName;
     $_SESSION['full_name']=$gitUserName;
