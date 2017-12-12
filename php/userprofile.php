@@ -168,7 +168,8 @@ if($row_urls["gravatar_url"]!=''){
     echo "<form action=\"update_gravatar_url.php\"><input type=\"submit\" value=\"use Gravatar image\"></input></form>";
 
 }
-        
+        echo $row_urls["facebook_url"];
+        die();
 if($row_urls["facebook_url"]!=''){
 
     echo "<form action=\"update_facebook_url.php\"><input type=\"submit\" value=\"use Facebook image\"></input></form>";
