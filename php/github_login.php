@@ -66,7 +66,7 @@ if(checkLogin($gitUserName)){
    $sql = "insert into users values(DEFAULT,'$gitUserName','$gitUserName','$gitUserName','**********','slack.cs.odu.edu','','','','','','$gitImage','','2017-10-10 00:00:00','Github')";
    
     if (mysqli_query($conn, $sql)) {
-       echo $sql;;
+       echo $sql;
        die();
       $_SESSION['email']=$gitUserName;
     $_SESSION['work_space_name']='slack.cs.odu.edu';
@@ -76,7 +76,7 @@ if(checkLogin($gitUserName)){
     }
 }else{
    $update_sql = "update users set picture='$gitImage' where email_id='$gitUserName'";
-   echo $update_sql;\
+   echo $update_sql;
        die();
    $result = $conn->query($update_sql);
    
