@@ -47,7 +47,7 @@ function retrieving_messages_user($conn,$to_func_user_id,$temp_user_id){
         //die();
         if($i_increment==1){
            // echo $temp_user_id .  "hello";
-            echo "<div><label message_id=\"$attach_id\"class=\"older_messages_direct\" from_user_id=\"$to_func_user_id\" to_user_id=\"$temp_user_id_attach\">older messages</label></div>";
+          //  echo "<div><label message_id=\"$attach_id\"class=\"older_messages_direct\" from_user_id=\"$to_func_user_id\" to_user_id=\"$temp_user_id_attach\">older messages</label></div>";
 
         }
         //$restrict=$restrict+1;
