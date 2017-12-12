@@ -51,7 +51,7 @@ if($res){
         $query_update=mysqli_query($conn,"update dp_urls set facebook_url='".mysqli_real_escape_string($conn,$user_image_facebook)."' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
        }
        else{
-       $query_update=mysqli_query($conn,"insert into dp_urls values('','','','".mysqli_real_escape_string($conn,$user_image_facebook)."',''");
+       $query_update=mysqli_query($conn,"insert into dp_urls values('".mysqli_real_escape_string($conn,$user_email_facebook)."','','','".mysqli_real_escape_string($conn,$user_image_facebook)."',''");
        
        }mysqli_close($conn);
     header('location:home.php#test');
@@ -68,7 +68,7 @@ if($res){
         $query_update=mysqli_query($conn,"update dp_urls set facebook_url='".mysqli_real_escape_string($conn,$user_image_facebook)."' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
        }
        else{
-       $query_update=mysqli_query($conn,"insert into dp_urls values('','','','".mysqli_real_escape_string($conn,$user_image_facebook)."',''");
+       $query_update=mysqli_query($conn,"insert into dp_urls values('".mysqli_real_escape_string($conn,$user_email_facebook)."','','','".mysqli_real_escape_string($conn,$user_image_facebook)."',''");
        
        }
        mysqli_close($conn);
