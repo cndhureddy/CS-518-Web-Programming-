@@ -7,7 +7,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
      <script type='text/javascript'>
  	function reCaptchad(){
-		document.getElementById("submit").disabled = true;
+		document.getElementById("submit").disabled = false;
 	}
      </script>
 
