@@ -102,7 +102,7 @@ if($data_username[0]>1){
     $headers = get_headers($gravatar_url, 1);
     if (strpos($headers['Content-Type'], 'image/') !== false) {
          
- {
+ 
          echo "image";
         } else {
             echo "not a image";
