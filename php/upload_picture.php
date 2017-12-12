@@ -123,7 +123,17 @@ if (!empty($_POST['submit'])){
             $query = "update users set picture='".mysqli_real_escape_string($conn,$filename_to_insert)."' where email_id='".mysqli_real_escape_string($conn,$_SESSION['email'])."'";
             mysqli_query($conn, $query);
 
-
+           $query_c_1 = mysqli_query($conn,"select * from dp_urls where email_id='$user_email_facebook'");
+       // mysqli_close($conn);
+        $res_c_1=mysqli_fetch_row($query_c_1);
+        //mysqli_close($conn);
+        if($res_c_1){ 
+       $query_update=mysqli_query($conn,"update dp_urls set local_url='".mysqli_real_escape_string($conn,$filename_to_insert)."' where email_id='$user_email_facebook'");
+        }
+           else{
+           mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','".mysqli_real_escape_string($conn,$filename_to_insert)."','','','')");
+           }
+            mysqli_close($conn);
             header('location:userprofile.php');
             echo <<<EOL
 <script type="text/javascript">
