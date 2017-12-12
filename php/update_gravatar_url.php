@@ -11,3 +11,4 @@ $query="update users set picture='".$to_update."'";
 mysqli_query($conn,$query);
 header("location:userprofile.php");
 mysqli_close($conn);
+?>
