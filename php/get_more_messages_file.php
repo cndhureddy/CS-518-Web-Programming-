@@ -92,6 +92,12 @@ class get_more_messages
                     //echo "<div class=\"clear\"></div>";
 
                 }
+                if($row["message_type"]=="file"){
+
+                    $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><a  href=\"" . htmlspecialchars($row["message"]) . "\"\><br> ";
+                    //echo "<div class=\"clear\"></div>";
+
+                }
 
 
 
@@ -198,6 +204,11 @@ class get_more_messages
 
                     $attach_div=$attach_div. "<div class=\"message_display \" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><div class=\"only_message\"><pre> <code>" . htmlspecialchars($row["message"]) . " </code></pre> </div>  ";
                     // echo "<div class=\"clear\"></div>";
+                }
+                if($row["message_type"]=="file"){
+
+                    $attach_div=$attach_div. "<div class=\"message_display \" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><div class=\"only_message\"><a href=\"" . htmlspecialchars($row["message"]) ." \">" . htmlspecialchars($row["message"]) . "</a></div>  ";
+
                 }
 
 
