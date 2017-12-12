@@ -50,13 +50,13 @@ if($res){
 
         $res_c_1=mysqli_fetch_row($query_c_1);
         if($res_c_1){
-            $query_update=mysqli_query($conn,"update dp_urls set facebook_url='$user_image_facebook)' where email_id='$user_email_facebook'");
+            $query_update=mysqli_query($conn,"update dp_urls set facebook_url='$user_image_facebook' where email_id='$user_email_facebook'");
         }
         else{
 
             $query_update=mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','$user_image_facebook',''");
-           echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook',''";
-           // die();
+           echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
+            //die();
 
         }mysqli_close($conn);
         header('location:home.php#test');
