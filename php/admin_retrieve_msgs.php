@@ -106,7 +106,7 @@ function retrieving_messages($conn,$channel_id){
             }
             if($row["message_type"]=="file"){
 
-                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><a  href=\"" . htmlspecialchars($row["message"]) . "\"download\><br> ";
+                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><a href=\"" . htmlspecialchars($row["message"]) ." \"download>" . htmlspecialchars($row["message"]) . "</a><br> ";
                 //echo "<div class=\"clear\"></div>";
 
             }
@@ -206,7 +206,7 @@ function retrieving_messages($conn,$channel_id){
             }
             if($row["message_type"]=="file" ){
 
-                echo "<div class=\"message_display \" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><div class=\"only_message\"><a  href=\"" . htmlspecialchars($row["message"]) . "\"download\>  </div>  ";
+                echo "<div class=\"message_display \" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><div class=\"only_message\"><a href=\"" . htmlspecialchars($row["message"]) ." \"download>" . htmlspecialchars($row["message"]) . "</a> </div>  ";
                 // echo "<div class=\"clear\"></div>";
             }
             if($row["message_type"]=="image_link"){
