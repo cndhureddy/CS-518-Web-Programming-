@@ -60,12 +60,15 @@ if($res){
         }
         else{
             include ("connect.php");
-            $a=mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','$user_image_facebook',''");
+            $a=mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
+            
           echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
-            if($a){
-            echo "sucess";
-                die();
-            }
+          //  if($a){
+            //echo "sucess";
+              //  die();
+            //}
+            //ehco $a;
+            //die();
             //die();
             mysqli_close($conn);
         }
