@@ -10,7 +10,34 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
+function chmod_R($path, $filemode) {
+ if ( !is_dir($path) ) {
+  return chmod($path, $filemode);
+ }
+ $dh = opendir($path);
+ while ( $file = readdir($dh) ) {
+  if ( $file != '.' && $file != '..' ) {
+   $fullpath = $path.'/'.$file;
+   if( !is_dir($fullpath) ) {
+    if ( !chmod($fullpath, $filemode) ){
+     return false;
+    }
+   } else {
+    if ( !chmod_R($fullpath, $filemode) ) {
+     return false;
+    }
+   }
+  }
+ }
+ 
+ closedir($dh);
+ 
+ if ( chmod($path, $filemode) ) {
+  return true;
+ } else {
+  return false;
+ }
+}
 
 session_start();
 include ("connect.php");
@@ -81,6 +108,7 @@ if (!empty($_POST['submit'])){
 
     $target_dir= "../images/";
    //chmod($target_dir,0777);
+    chmod_R($target_dir,"0777");
 
     $temp = explode(".", $_FILES["fileToUpload"]["name"]);
     $newfilename =$uname. '.' . end($temp);
