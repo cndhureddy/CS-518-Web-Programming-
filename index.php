@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>ODU CS Slack</title>
     <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+     <script type='text/javascript'>
+ 	function reCaptchad(){
+		document.getElementById("submit").disabled = true;
+	}
+     </script>
 
 </head>
 <body>
@@ -45,9 +51,10 @@ session_start();
             
             
             
+            <div class="g-recaptcha" data-sitekey="6Le0vAgUAAAAAH_ZWM8tw3It6jkrqLHkFFTMOW-J" 
+		data-callback="reCaptchad"></div>
             
-            
-            <input id="submit" type="submit"/>
+            <input id="submit" type="submit" disabled/>
             <a id="forgot_p" href="">forgot password?</a>
             <a id="forgot_p" href="php/registration.php" > Register</a><br>
             <a id="forgot_p" href="php/admin_login.php" > login as admin</a>
