@@ -259,15 +259,21 @@ if(isset($_FILES["fileToUpload"])){
         $number=$row["dr_message_id"]+1;
         $submit=$_POST["submit"];
         $size=$_FILES["fileToUpload"]["size"];
-        echo $size;
-        die();
+        //echo $size;
+        //die();
         $image_name_a=$_FILES["fileToUpload"]["name"];
         $img_file_name=$_FILES["fileToUpload"]["tmp_name"];
         $img_name=$number."dr_msg_unique_img".$number;
 
-
+    
         $smiley_status="false";
         $message_type="picture";
+        
+        $file_size=getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        
+        echo $file_size;
+        die();
+        
         $message_post_pic->upload_pic_direct($submit,$img_name,$img_file_name,$image_name_a,$size,$to_user_id,$user_id,$smiley_status,$message_type,$user_name);
 
 
