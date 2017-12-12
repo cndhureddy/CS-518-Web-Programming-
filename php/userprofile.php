@@ -130,7 +130,7 @@ mysqli_close($conn);
 
    // echo "";
 include("connect.php");
-    $sql_user_id = "SELECT user_id from users where email_id='".mysqli_real_escape_string($conn,$email)."'";
+    $sql_user_id = "select user_id from users where email_id='".mysqli_real_escape_string($conn,$email)."'";
         
         $result_user_id = $conn->query($sql_user_id);
 
@@ -146,14 +146,14 @@ include("connect.php");
 mysqli_close($conn);
         
         include("connect.php");
-    $sql_channel_ids = "SELECT channel_id from channel_users where user_id='".mysqli_real_escape_string($conn,$user_id_channel)."'";
+    $sql_channel_ids = "select channel_id from channel_users where user_id='".mysqli_real_escape_string($conn,$user_id_channel)."'";
     $result_channel_id = $conn->query($sql_channel_ids);
 mysqli_close($conn);
         
         include("connect.php");
         
         
-        $sql_user_dp="SELECT * from dp_urls where email_id='".mysqli_real_escape_string($conn,$email)."'";
+        $sql_user_dp="select * from dp_urls where email_id='".mysqli_real_escape_string($conn,$email)."'";
     $result_urls = $conn->query($sql_user_dp);
         $row_urls = $result_urls->fetch_assoc();
         //print_r($row_urls);
