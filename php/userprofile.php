@@ -153,24 +153,24 @@ $res=mysqli_fetch_row($query);
         $row_urls = $result_urls->fetch_assoc();
 
         
-if($row_urls[1]!=''){
+if($row_urls["local_url"]!=''){
 
     echo "<form action=\"update_local_url.php\"><input type=\"submit\" value=\"use my image\"></input></form>";
 
 }
         
-if($row_urls[2]!=''){
+if($row_urls["gravatar_url"]!=''){
 
     echo "<form action=\"update_gravatar_url.php\"><input type=\"submit\" value=\"use Gravatar image\"></input></form>";
 
 }
         
-if($row_urls[3]!=''){
+if($row_urls["facebook_url"]!=''){
 
     echo "<form action=\"update_facebook_url.php\"><input type=\"submit\" value=\"use Facebook image\"></input></form>";
 
 }
-        if($row_urls[4]!=''){
+        if($row_urls["twitter_url"]!=''){
 
     echo "<form action=\"update_twitter_url.php\"><input type=\"submit\" value=\"use Twitter image\"></input></form>";
 
