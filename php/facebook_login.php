@@ -60,8 +60,8 @@ if($res){
         }
         else{
             include ("connect.php");
-            $query_update=mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','$user_image_facebook',''");
-          // echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
+            mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','$user_image_facebook',''");
+          echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
             //die();
             mysqli_close($conn);
         }
@@ -70,7 +70,7 @@ if($res){
     }
     else{
 
-        $query_insert=mysqli_query($conn,"update users set full_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',display_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',picture='".mysqli_real_escape_string($conn,$user_image_facebook)."',type_registration='facebook' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."')");
+        mysqli_query($conn,"update users set full_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',display_name='".mysqli_real_escape_string($conn,$user_name_facebook)."',picture='".mysqli_real_escape_string($conn,$user_image_facebook)."',type_registration='facebook' where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."')");
         echo $query_insert;
         $query_c_1 = mysqli_query($conn,"select * from dp_urls where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
 
