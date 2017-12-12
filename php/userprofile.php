@@ -158,7 +158,7 @@ mysqli_close($conn);
         $row_urls = $result_urls->fetch_assoc();
         //print_r($row_urls);
         //die();
-        echo $sql_user_dp;
+       // echo $sql_user_dp;
 mysqli_close($conn);
         
 if($row_urls["local_url"]!=''){
