@@ -56,7 +56,7 @@ if($res){
 
             $query_update=mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','$user_image_facebook',''");
            echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
-            //die();
+            die();
 
         }mysqli_close($conn);
         header('location:home.php#test');
