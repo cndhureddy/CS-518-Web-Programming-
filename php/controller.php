@@ -30,7 +30,7 @@ else{
 include_once "./get_more_messages_file.php";
 include_once "./message_posting.php";
 include_once "./message_post_pic.php";
-include_once "./message_post_pic.php";
+include_once "./message_post_file.php";
 include_once "./get_more_messages_user_file.php";
 //include('db_queries.php');
 
@@ -39,7 +39,7 @@ $retrieving_messages=new get_more_messages();
 $message_posting=new message_posting();
 $message_post_pic=new message_post_pic();
 $get_more_messages_user_file=new get_more_messages_user_file();
-$message_post_pic=new message_post_pic();
+$message_post_file=new message_post_file();
 
 
 
