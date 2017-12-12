@@ -51,7 +51,7 @@ session_start();
             
             
             
-            <div class="g-recaptcha" data-sitekey="6Le0vAgUAAAAAH_ZWM8tw3It6jkrqLHkFFTMOW-J" 
+            <div class="g-recaptcha" data-sitekey="6LdTujwUAAAAACskPvNM3QdBn3FRs-xjHLk4sExj" 
 		data-callback="reCaptchad"></div>
             
             <input id="submit" type="submit" disabled/>
