@@ -43,7 +43,7 @@ if($res){
         //echo $_SESSION['work_space_name'];
         //echo $_SESSION['display_name'];
         //echo $_SESSION['full_name'];
-        $query_insert=mysqli_query($conn,"update users set picture='$user_image_facebook' where email_id='$conn,$user_email_facebook)'");
+        $query_insert=mysqli_query($conn,"update users set picture='$user_image_facebook' where email_id='$user_email_facebook'");
         echo "update users set picture='$user_image_facebook' where email_id='$user_email_facebook'";
         echo "<br>";
         $query_c_1 = mysqli_query($conn,"select * from dp_urls where email_id='$user_email_facebook'");
