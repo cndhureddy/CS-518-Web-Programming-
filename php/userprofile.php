@@ -100,13 +100,7 @@ $res=mysqli_fetch_row($query);
         </div>
         <div >
             <br>
-            <?php 
-    $select_images="select * from dp_urls where email_id='".mysqli_real_escape_string($conn,$email)."'";
-            $exset=$conn->query($select_images);
-            
     
-    
-    ?>
             
             <br>
 
@@ -134,7 +128,7 @@ $res=mysqli_fetch_row($query);
 
 
 
-    echo "";
+   // echo "";
 
     $sql_user_id = "SELECT user_id from users where email_id='".mysqli_real_escape_string($conn,$email)."'";
     $result_urls = $conn->query($sql_user_id);
