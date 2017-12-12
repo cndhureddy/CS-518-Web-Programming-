@@ -34,7 +34,7 @@ mysqli_close($conn);
 if($res){
 //$query_insert=mysqli_query($conn,"insert into users values()");
    echo "hello";
-   exit();
+   die();
     if($res[14]=="regular"){
     mysqli_close($conn);
         $_SESSION['email']=$user_email_facebook;
