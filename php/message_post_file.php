@@ -304,7 +304,7 @@ EOL;
             else {
                 echo "target file <br>";
                 echo $target_file;
-                die();
+               // die();
                 if (move_uploaded_file($img_file_name, $target_file)) {
 
                     $filename_to_insert='../images/'.$modifiedname;
