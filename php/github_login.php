@@ -63,9 +63,11 @@ function checkLogin($gitUserName){
    }
 }
 if(checkLogin($gitUserName)){
-   $sql = "INSERT INTO `users` VALUES(DEFAULT,'$gitUserName','$gitUserName','$gitUserName','**********','slack.cs.odu.edu','','','','','','$gitImage','','2017-10-10 00:00:00','Github')";
+   $sql = "insert into users VALUES(DEFAULT,'$gitUserName','$gitUserName','$gitUserName','**********','slack.cs.odu.edu','','','','','','$gitImage','','2017-10-10 00:00:00','Github')";
    echo $sql;
     if (mysqli_query($conn, $sql)) {
+       echo "hello";
+       die();
       $_SESSION['email']=$gitUserName;
     $_SESSION['work_space_name']='slack.cs.odu.edu';
     $_SESSION['display_name']=$gitUserName;
