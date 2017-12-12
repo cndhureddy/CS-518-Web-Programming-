@@ -27,12 +27,14 @@ $user_display_twitter=$_GET["display_name"];
 //echo $user_image_facebook;
 //die();
 
-
+ include ("connect.php");
  $query = mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
-
+mysqli_close($conn);
         $res=mysqli_fetch_row($query);
 if($res){
 //$query_insert=mysqli_query($conn,"insert into users values()");
+   echo "hello";
+   exit();
     if($res[14]=="regular"){
     mysqli_close($conn);
         $_SESSION['email']=$user_email_facebook;
