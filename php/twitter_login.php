@@ -27,16 +27,16 @@ $user_display_twitter=$_GET["display_name"];
 //echo $user_image_facebook;
 //die();
 
- include ("connect.php");
+ //include ("connect.php");
  $query = mysqli_query($conn,"select * from users where email_id='".mysqli_real_escape_string($conn,$user_email_facebook)."'");
-mysqli_close($conn);
+//mysqli_close($conn);
         $res=mysqli_fetch_row($query);
 if($res){
 //$query_insert=mysqli_query($conn,"insert into users values()");
-   echo "hello";
-   die();
+  // echo "hello";
+   //die();
     if($res[14]=="regular"){
-    mysqli_close($conn);
+    //mysqli_close($conn);
         $_SESSION['email']=$user_email_facebook;
        $_SESSION['work_space_name']='slack.cs.odu.edu';
        $_SESSION['display_name']=$res[3];
@@ -52,12 +52,12 @@ if($res){
       $query_c_1 = mysqli_query($conn,"select * from dp_urls where email_id='$user_email_facebook'");
        $res_c_1=mysqli_fetch_row($query_c_1);
        if($res_c_1){
-            include ("connect.php");
+           // include ("connect.php");
             $query_update=mysqli_query($conn,"update dp_urls set facebook_url='$user_image_facebook' where email_id='$user_email_facebook'");
-            mysqli_close($conn);
+           // mysqli_close($conn);
         }
         else{
-            include ("connect.php");
+           // include ("connect.php");
             $a=mysqli_query($conn,"insert into dp_urls values('$user_email_facebook','','','','$user_image_facebook')");
 
             //echo "insert into dp_urls values('$user_email_facebook','','','$user_image_facebook','')";
@@ -68,7 +68,7 @@ if($res){
             //ehco $a;
             //die();
             //die();
-            mysqli_close($conn);
+           // mysqli_close($conn);
         }
        
        header('location:home.php#test');
