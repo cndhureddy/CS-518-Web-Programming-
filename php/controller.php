@@ -277,7 +277,7 @@ if(isset($_FILES["fileToUpload"])){
         $message_post_pic->upload_pic_direct($submit,$img_name,$img_file_name,$image_name_a,$size,$to_user_id,$user_id,$smiley_status,$message_type,$user_name);
         }
         else{
-        
+            echo "hello";
         }
 
 
