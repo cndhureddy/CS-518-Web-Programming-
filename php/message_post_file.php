@@ -99,7 +99,7 @@ class message_post_file
 
             //echo "size <br>";
             //echo $size;
-
+            $uploadOk = 1;
             if ($size > 1000000) {
 
                 $uploadOk = 0;
@@ -278,7 +278,7 @@ EOL;
 
             //echo "size <br>";
             //echo $size;
-
+            $uploadOk = 1;
             if ($size > 1000000) {
 
                 $uploadOk = 0;
