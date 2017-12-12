@@ -95,6 +95,9 @@ if($data_username[0]>1){
     $final_user_name = mysqli_real_escape_string($conn, $user_name);
     $final_password = mysqli_real_escape_string($conn, $password);
     echo "helo";
+    $gravatar_url=get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, array() );
+    echo $gravatar_url;
+  
     $insert_user = "insert into users values(DEFAULT ,'$final_email_id','$final_user_name','$final_user_name','$final_password','slack.cs.odu.edu','','','','','',DEFAULT ,'','$current_date',DEFAULT)";
     mysqli_query($conn, $insert_user);
 
@@ -110,4 +113,17 @@ if($data_username[0]>1){
 
 
 }
+function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+    $url = 'https://www.gravatar.com/avatar/';
+    $url .= md5( strtolower( trim( $email ) ) );
+    $url .= "?s=$s&d=$d&r=$r";
+    if ( $img ) {
+        $url = '<img src="' . $url . '"';
+        foreach ( $atts as $key => $val )
+            $url .= ' ' . $key . '="' . $val . '"';
+        $url .= ' />';
+    }
+    return $url;
+}
+
 mysqli_close($conn);
