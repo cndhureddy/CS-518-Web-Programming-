@@ -684,7 +684,8 @@ body{
 }
 
 #img-upload{
-    width: 100%;
+    width: 50%;
+    height: 50%;
 }
 
 .modal-backdrop {
