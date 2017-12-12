@@ -108,7 +108,7 @@ function retrieving_messages_user($conn,$to_func_user_id,$temp_user_id){
             }
                         if($row["message_type"]=="file"){
 
-                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["dr_message_id"]) . "_div\"><a  href=\"" . htmlspecialchars($row["message"]) . "\"download\><br> ";
+                echo "<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["dr_message_id"]) . "_div\"><a href=\"" . htmlspecialchars($row["message"]) ." \"download>" . htmlspecialchars($row["message"]) . "</a><br> ";
                 //echo "<div class=\"clear\"></div>";
 
             }
