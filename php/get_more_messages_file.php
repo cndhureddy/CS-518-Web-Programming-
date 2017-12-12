@@ -336,7 +336,7 @@ class get_more_messages
                 }
                 if($row["message_type"]=="file"){
 
-                    $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><a href=\"" . htmlspecialchars($row["message"]) . "\"\download><br> ";
+                    $attach_div=$attach_div."<div class=\"message_display_sub the_whole_message_sub\" > <div class=\"message_sub\" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><a href=\"" . htmlspecialchars($row["message"]) ." \"download>" . htmlspecialchars($row["message"]) . "</a><br> ";
                     //echo "<div class=\"clear\"></div>";
 
                 }
@@ -449,9 +449,10 @@ class get_more_messages
                     $attach_div=$attach_div. "<div class=\"message_display \" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><div class=\"only_message\"><pre> <code>" . htmlspecialchars($row["message"]) . " </code></pre> </div>  ";
                     // echo "<div class=\"clear\"></div>";
                 }
-                 if($row["message_type"]=="picture" ){
+                
+                 if($row["message_type"]=="file" ){
 
-                    $attach_div=$attach_div. "<div class=\"message_display \" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><div class=\"only_message\"><a href=\"" . htmlspecialchars($row["message"]) . "\"download\>  </div>  ";
+                    $attach_div=$attach_div. "<div class=\"message_display \" id=\"" . htmlspecialchars($row["message_id"]) . "_div\"><div class=\"only_message\"><a href=\"" . htmlspecialchars($row["message"]) ." \"download>" . htmlspecialchars($row["message"]) . "</a>  </div>  ";
                     // echo "<div class=\"clear\"></div>";
                 }
 
