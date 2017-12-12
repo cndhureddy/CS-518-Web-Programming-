@@ -5,7 +5,9 @@
  * Date: 10/30/2017
  * Time: 2:09 AM
  */
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('connect.php');
 if($_POST["username"]!=""&&$_POST["email"]!=""&&$_POST["password"]!=""&&$_POST["confirmpassword"]!="") {
 $user_name=$_POST["username"];
