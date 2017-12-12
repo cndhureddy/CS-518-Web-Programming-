@@ -14,7 +14,7 @@ function retrieving_messages_user($conn,$to_func_user_id,$temp_user_id){
     $temp_user_id_attach=$temp_user_id;
 
 
-    $query = "select * from (SELECT * FROM `direct_messages` where from_user_id='" . $to_func_user_id . "' and to_user_id='" . $temp_user_id . "' or to_user_id='" . $to_func_user_id . "' and from_user_id='" . $temp_user_id . "' ORDER BY timestamp DESC LIMIT 15)a order by timestamp ASC";
+    $query = "SELECT * FROM `direct_messages` where from_user_id='" . $to_func_user_id . "' and to_user_id='" . $temp_user_id . "' or to_user_id='" . $to_func_user_id . "' and from_user_id='" . $temp_user_id . "' order by timestamp ASC";
     //select * from (SELECT * FROM `channel_messages` where channel_id='1' ORDER BY timestamp DESC LIMIT 15)a order by timestamp ASC
     $result =$conn->query($query);
     //$message_array = array();
