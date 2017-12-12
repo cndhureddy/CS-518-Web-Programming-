@@ -76,7 +76,7 @@ $query = mysqli_query($conn,"select * from users where email_id='".mysqli_real_e
 //$res_e = mysqli_query($conn,$query);
 $res=mysqli_fetch_row($query);
 
-
+mysqli_close($conn);
 
 
 ?>
@@ -129,7 +129,7 @@ $res=mysqli_fetch_row($query);
 
 
    // echo "";
-
+include("connect.php");
     $sql_user_id = "SELECT user_id from users where email_id='".mysqli_real_escape_string($conn,$email)."'";
         
         $result_user_id = $conn->query($sql_user_id);
@@ -142,16 +142,20 @@ $res=mysqli_fetch_row($query);
         }
     } else {
     }
-
+mysqli_close($conn);
+        
+        include("connect.php");
     $sql_channel_ids = "SELECT channel_id from channel_users where user_id='".mysqli_real_escape_string($conn,$user_id_channel)."'";
     $result_channel_id = $conn->query($sql_channel_ids);
-
+mysqli_close($conn);
+        
+        include("connect.php");
         
         
         $sql_user_dp="SELECT * from dp_urls where email_id='".mysqli_real_escape_string($conn,$email)."'";
     $result_urls = $conn->query($sql_user_dp);
         $row_urls = $result_urls->fetch_assoc();
-
+mysqli_close($conn);
         
 if($row_urls["local_url"]!=''){
 
@@ -183,7 +187,7 @@ if($row_urls["facebook_url"]!=''){
         }
     } else {
     }
-
+include("connect.php");
     $sql_channel_ids = "SELECT channel_id from channel_users where user_id='".mysqli_real_escape_string($conn,$user_id_channel)."'";
     $result_channel_id = $conn->query($sql_channel_ids);
 
@@ -215,7 +219,7 @@ if($row_urls["facebook_url"]!=''){
 
     }
 
-
+mysqli_close($conn);
     ?>
 
 
