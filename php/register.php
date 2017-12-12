@@ -112,7 +112,7 @@ if($data_username[0]>1){
     $insert_user = "insert into users values(DEFAULT ,'$final_email_id','$final_user_name','$final_user_name','$final_password','slack.cs.odu.edu','','','','','','$gravatar_url','','$current_date',DEFAULT)";
     mysqli_query($conn, $insert_user);
 
-  $inser_gravatar="insert into dp_urls values('$final_email_id',DEFAULT,'$gravatar_url','','')";
+  $insert_gravatar="insert into dp_urls values('$final_email_id',DEFAULT,'$gravatar_url','','')";
   mysqli_query($conn,$insert_gravatar);
   
     $_SESSION["register_success"]="success";
