@@ -46,6 +46,11 @@ $gitEmail = $output["email"];
 $gitUserName = $output["login"];
 $gitImage = $output["avatar_url"];
 
+echo $gitEmail;
+  echo $gitUserName;
+echo $gitImage;
+die();
+
 function checkLogin($gitUserName){
    global $conn;
    echo "check login function";
@@ -65,7 +70,7 @@ if(checkLogin($gitUserName)){
     $_SESSION['work_space_name']='slack.cs.odu.edu';
     $_SESSION['display_name']=$gitUserName;
     $_SESSION['full_name']=$gitUserName;
-       header("location:home.php");
+       header("location:home.php#test");
     }
 }else{
    $update_sql = "update users set picture='$gitImage' where email_id='$gitEmail'";
@@ -76,7 +81,7 @@ if(checkLogin($gitUserName)){
     $_SESSION['display_name']=$gitUserName;
     $_SESSION['full_name']=$gitUserName;
    
-   header("location: home.php");
+   header("location: home.php#test");
 }
 
 ?>
