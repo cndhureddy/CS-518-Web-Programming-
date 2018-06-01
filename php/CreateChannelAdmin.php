@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ssangam and spannala
+ * Created by PhpStorm
  * Date: 10/31/2017
  * Time: 5:21 AM*/
 
