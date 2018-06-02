@@ -27,8 +27,7 @@
 
 <?php
 /*
- * Created by PhpStorm.
- * User: ssangam
+ * Created by PhpStorm
  * Date: 10/1/2017
  * Time: 12:30 AM
  */
